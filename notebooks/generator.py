@@ -2,7 +2,7 @@ import torch
 from transformers import BertConfig, BertTokenizer, BertModel
 
 class Generator():
-    def generate_instances(dataset, 
+    def generate_instances(self, dataset, 
                            orig_tokenizer=None,
                            max_length=128,
                            pad_to_max_length=True,
@@ -10,11 +10,11 @@ class Generator():
         pass
 
 class HuggingFaceGenerator(Generator):
-    def __init__(model_name):
+    def __init__(self, model_name):
         self.model = self.load_bert_model(model_name)
         self.tokenizer = self.load_bert_tokenizer(model_name)
 
-    def load_bert_model(model_name, bert_config=None)
+    def load_bert_model(self,model_name, bert_config=None):
         if bert_config is None:
             bert_config = BertConfig.from_pretrained(model_name)
             bert_config.output_hidden_states=True
@@ -24,19 +24,26 @@ class HuggingFaceGenerator(Generator):
 
         return bert_model
 
-    def load_bert_tokenizer(model_name, bert_config=None)
+    def load_bert_tokenizer(self,model_name, bert_config=None):
         if bert_config is None:
             bert_tokenizer = BertTokenizer.from_pretrained(model_name)
         else:
             bert_tokenizer = BertTokenizer.from_pretrained(model_name,config=bert_config)
         return bert_tokenizer
 
-    def generate_instances(dataset,
+    def generate_dataset(self, inputs, 
                            orig_tokenizer=None,
                            max_length=128,
                            pad_to_max_length=True,
                            use_cuda=False):
-        sents_all = [instance['sentence_text'] for instance in dataset]
+        return np.array([x for x in self.generate_instances(inputs,orig_tokenizer,max_length,pad_to_max_length,use_cuda)])
+        
+    def generate_instances(self,inputs,
+                           orig_tokenizer=None,
+                           max_length=128,
+                           pad_to_max_length=True,
+                           use_cuda=False):
+        sents_all = [instance['sentence_text'] for instance in inputs]
         if use_cuda:
             self.model.to('cuda')
         retuple = lambda word_attr : (word_attr['text'],
@@ -44,7 +51,7 @@ class HuggingFaceGenerator(Generator):
                                       word_attr['pos_tag'],
                                       word_attr['lemma'],
                                       word_attr['trail_space'])
-        for instance in dataset:
+        for instance in inputs:
             annotated4tpl = (retuple(instance['V']),
                              retuple(instance['N']),
                              retuple(instance['P']),
@@ -69,8 +76,8 @@ class HuggingFaceGenerator(Generator):
                 word_pieces_array.append(word_pieces)
                 bert_tokens.extend(word_pieces)
             bert_tokens.append("[SEP]")
-            indexed_tokens = tokenizer.convert_tokens_to_ids(bert_tokens)
-            tokens_tensor = tokenizer.encode(indexed_tokens,
+            indexed_tokens = self.tokenizer.convert_tokens_to_ids(bert_tokens)
+            tokens_tensor = self.tokenizer.encode(indexed_tokens,
                                              max_length=max_length,
                                              pad_to_max_length=pad_to_max_length,
                                              return_tensors='pt')
@@ -86,7 +93,7 @@ class HuggingFaceGenerator(Generator):
                 # We want the last 4 layers of 24, which will be found in
                 # elements 21-24 of the second return tuple (embedding matrix is
                 # element 0).
-                hidden_layers = model(tokens_tensor)[2][21:25]
+                hidden_layers = self.model(tokens_tensor)[2][21:25]
                 for orig_token_idx in orig_token_indexes:
                     word_pieces = word_pieces_array[orig_token_idx]
                     num_word_pieces = len(word_pieces)
