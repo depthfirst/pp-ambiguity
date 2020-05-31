@@ -35,6 +35,7 @@ class CountVectorizerGenerator(Generator):
     def fit_transform(self, inputs):
         X = self.vectorizer.fit_transform([instance['sentence_text'] for instance in inputs])
         self.vocabulary = self.vectorizer.vocabulary_
+        return X
 
     def transform(self, inputs):
         if self.vocabulary is None:
