@@ -35,12 +35,12 @@ class CountVectorizerGenerator(Generator):
     def fit_transform(self, inputs):
         X = self.vectorizer.fit_transform([instance['sentence_text'] for instance in inputs])
         self.vocabulary = self.vectorizer.vocabulary_
-        return X
+        return X.toarray()
 
     def transform(self, inputs):
         if self.vocabulary is None:
             raise ValueError("Vocabulary not set")
-        return self.vectorizer.transform([instance['sentence_text'] for instance in inputs])
+        return self.vectorizer.transform([instance['sentence_text'] for instance in inputs]).toarray()
 
     def generate_instances(self, inputs, 
                            orig_tokenizer=None,
