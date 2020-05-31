@@ -32,15 +32,20 @@ class CountVectorizerGenerator(Generator):
                 binary=binarize, ngram_range=ngram_range)
             self.tokenizer = self.vectorizer.build_tokenizer()
 
+    def instance_to_4tpl(self, rec):
+        return " ".join([rec['V']['lemma'],rec['N']['lemma'],rec['P']['lemma'],rec['N2']['lemma']])
+        
     def fit_transform(self, inputs):
-        X = self.vectorizer.fit_transform([instance['sentence_text'] for instance in inputs])
+        X = self.vectorizer.fit_transform([self.instance_to_4tpl(instance) for instance in inputs])
+        #X = self.vectorizer.fit_transform([instance['sentence_text'] for instance in inputs])
         self.vocabulary = self.vectorizer.vocabulary_
-        return X
+        return X.toarray()
 
     def transform(self, inputs):
         if self.vocabulary is None:
             raise ValueError("Vocabulary not set")
-        return self.vectorizer.transform([instance['sentence_text'] for instance in inputs])
+        X = self.vectorizer.transform([self.instance_to_4tpl(instance) for instance in inputs])
+        return X.toarray()
 
     def generate_instances(self, inputs, 
                            orig_tokenizer=None,
