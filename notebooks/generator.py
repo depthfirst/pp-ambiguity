@@ -1,5 +1,7 @@
 import torch
+import numpy as np
 from transformers import BertConfig, BertTokenizer, BertModel
+from sklearn.feature_extraction.text import CountVectorizer
 
 class Generator():
     def generate_instances(self, dataset, 
@@ -8,6 +10,52 @@ class Generator():
                            pad_to_max_length=True,
                            use_cuda=False):
         pass
+
+    def generate_dataset(self, inputs, 
+                           orig_tokenizer=None,
+                           max_length=128,
+                           pad_to_max_length=True,
+                           use_cuda=False):
+        pass
+
+class CountVectorizerGenerator(Generator):
+    def __init__(self, binarize=True, tokenizer=None, vocabulary=None, lowercase=True, ngram_range=(1,1)):
+        self.binarize=binarize
+        self.vocabulary=vocabulary
+        if tokenizer is not None:
+            self.tokenizer = tokenizer
+            self.vectorizer = CountVectorizer(tokenizer=tokenizer, vocabulary=vocabulary, 
+                analyzer='word', min_df=1, 
+                ngram_range=ngram_range, binary=binarize, lowercase=False)
+        else:
+            self.vectorizer = CountVectorizer(vocabulary=vocabulary, min_df=1, lowercase=lowercase, 
+                binary=binarize, ngram_range=ngram_range)
+            self.tokenizer = self.vectorizer.build_tokenizer()
+
+    def fit_transform(self, inputs):
+        X = self.vectorizer.fit_transform([instance['sentence_text'] for instance in inputs])
+        self.vocabulary = self.vectorizer.vocabulary_
+
+    def transform(self, inputs):
+        if self.vocabulary is None:
+            raise ValueError("Vocabulary not set")
+        return self.vectorizer.transform([instance['sentence_text'] for instance in inputs])
+
+    def generate_instances(self, inputs, 
+                           orig_tokenizer=None,
+                           max_length=128,
+                           pad_to_max_length=True,
+                           use_cuda=False):
+        for instance in inputs:
+            yield self.transform([instance])
+
+    def generate_dataset(self, inputs, 
+                           orig_tokenizer=None,
+                           max_length=128,
+                           pad_to_max_length=True,
+                           use_cuda=False):
+        return np.array([x for x in self.generate_instances(inputs)])
+
 
 class HuggingFaceGenerator(Generator):
     def __init__(self, model_name):
@@ -37,7 +85,7 @@ class HuggingFaceGenerator(Generator):
                            pad_to_max_length=True,
                            use_cuda=False):
         return np.array([x for x in self.generate_instances(inputs,orig_tokenizer,max_length,pad_to_max_length,use_cuda)])
-        
+
     def generate_instances(self,inputs,
                            orig_tokenizer=None,
                            max_length=128,
