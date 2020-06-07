@@ -269,17 +269,19 @@ class MaskedPrepGenerator(HuggingFaceGenerator):
             bert_tokens.append("[SEP]")
             yield bert_tokens, masked_indexes, correct_preps
 
-    def evaluate_dataset(self, settype="dev",
+    def evaluate_dataset(self, inputs,
                            max_length=128,
                            pad_to_max_length=True,
                            use_cuda=False):
-        nlvr2_generator = NLVR2SentenceGenerator(datadir=self.datadir)
-        nlvr2=list(nlvr2_generator.generate_inputs(settype=settype))
-        nlvr2=list(nlvr2_generator.generate_instances(inputs=nlvr2))
-        print("Evaluating {}, {} instances".format(settype,len(nlvr2)))
+        #nlvr2_generator = NLVR2SentenceGenerator(datadir=self.datadir)
+        #nlvr2=list(nlvr2_generator.generate_inputs(settype=settype))
+        #nlvr2=list(nlvr2_generator.generate_instances(inputs=nlvr2))
+        #print("Evaluating {}, {} instances".format(settype,len(nlvr2)))
         num_correct = 0
         num_total = 0
-        for bert_tokens, masked_indexes, correct_preps in self.generate_instances(nlvr2):
+        predictions = []
+        labels = []
+        for bert_tokens, masked_indexes, correct_preps in self.generate_instances(inputs, use_cuda=use_cuda):
             for masked_index,correct_prep in zip(masked_indexes,correct_preps):
                 bert_tokens[masked_index] = "[MASK]"
                 indexed_tokens = self.tokenizer.convert_tokens_to_ids(bert_tokens)
@@ -299,11 +301,13 @@ class MaskedPrepGenerator(HuggingFaceGenerator):
                 # Predict all tokens
                 with torch.no_grad():
                     outputs = self.model(tokens_tensor) #, token_type_ids=segments_tensors)
-                    predictions = outputs[0]
+                    predictions_tensor = outputs[0]
 
                 # confirm we were able to predict 'henson'
-                predicted_index = torch.argmax(predictions[0, masked_index]).item()
+                predicted_index = torch.argmax(predictions_tensor[0, masked_index]).item()
                 predicted_token = self.tokenizer.convert_ids_to_tokens([predicted_index])[0]
+                labels.append(correct_prep)
+                predictions.append(predicted_token)
                 if predicted_token==correct_prep:
                     num_correct+=1
                 #else:
@@ -313,7 +317,7 @@ class MaskedPrepGenerator(HuggingFaceGenerator):
                     #print("Torch Tensor Dimensions: {}".format(tokens_tensor.size()))
                     #print("BERT Tokens: {}".format(len(bert_tokens)))
                     print("({} correct / {} total)".format(num_correct, num_total))
-        return num_correct, num_total
+        return labels, predictions
 
     def generate_dataset(self, inputs, 
                            orig_tokenizer=None,
