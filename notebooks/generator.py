@@ -66,6 +66,27 @@ class CountVectorizerGenerator(Generator):
                            use_cuda=False):
         return np.array([x for x in self.generate_instances(inputs)])
 
+class SpacyModel():
+    def __init__(self,model_name='en_core_web_lg'):
+        self.nlp = spacy.load(model_name)
+
+    def predict(self, instance):
+        sent_text = instance['sentence_text']
+        get_token_index = lambda instance,pos_tag : int(instance[pos_tag]['source'].split('.')[-1])-1
+        verb_index = get_token_index(instance,'V')
+        noun_index = get_token_index(instance,'N')
+        prep_index = get_token_index(instance,'P')
+        tokens = [token for token in [sent for sent in self.nlp(sent_text)]]
+        if tokens[prep_index].text != instance['P']['text']:
+            print("Token mismatch: {} <> {}".format(tokens[prep_index].text, instance['P']['text']))
+            raise ValueError
+        prep_token = tokens[prep_index]
+        if prep_token in tokens[noun_index].children:
+            return "N"
+        elif prep_token in tokens[verb_index].children:
+            return "V"
+        return "O"
+        
 
 class HuggingFaceGenerator(Generator):
     def __init__(self, model_name):
