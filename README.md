@@ -58,4 +58,5 @@ Example:
 python src/generator.py -m llama3 -p dual -t p2zperiod -f data/dev-matters.csv -o ../results/dev-matters-llama3-dual-p2zperiod.jsonlines --promptcolprefix pe
 ```
 Resulting Plot:
+
 ![images/info_vs_plausibility-llama3p2zperiod-dual.png](images/info_vs_plausibility-llama3p2zperiod-dual.png)
