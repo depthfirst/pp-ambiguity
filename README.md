@@ -15,9 +15,9 @@ cd pp-ambiguity
 conda create -n ppa transformers spacy scikit-learn matplotlib plotly
 conda activate ppa
 ```
-Install PyTorch:
+Install torch and sentencepiece:
 ```sh
-pip install torch
+pip install torch sentencepiece
 ```
 
 Download spaCy model:

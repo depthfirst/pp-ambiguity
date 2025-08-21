@@ -222,6 +222,7 @@ class VeraGenerator(ModelGenerator):
         super().__init__(model_name)
 
     def initialize(self):
+        #self.tokenizer = transformers.T5Tokenizer.from_pretrained('liujch1998/vera')
         self.tokenizer = transformers.AutoTokenizer.from_pretrained('liujch1998/vera')
         self.model = transformers.T5EncoderModel.from_pretrained('liujch1998/vera')
         self.model.D = self.model.shared.embedding_dim
