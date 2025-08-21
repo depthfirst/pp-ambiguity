@@ -17,11 +17,6 @@ from collections import Counter
 from sklearn.metrics import accuracy_score
 from scipy.stats import pearsonr as correlation
 
-from plotly import express as px
-from plotly import graph_objects as go
-from plotly.io import to_html as fig_to_html
-from plotly.offline import iplot
-
 from prompter import *
 from evaluator import *
 
@@ -72,12 +67,8 @@ class Llama3Generator(ModelGenerator):
     def initialize(self):
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_eos_token=True)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
-        print(f"tokenizer.eos_token_id={self.tokenizer.eos_token_id} ({self.tokenizer.eos_token})")
         if self.tokenizer.pad_token is None:
-            print(f"tokenizer.pad_token is None. Setting to {self.tokenizer.eos_token_id} ({self.tokenizer.eos_token})")
             self.tokenizer.pad_token_id=self.tokenizer.eos_token_id
-        else:
-            print(f"tokenizer.pad_token_id={self.tokenizer.pad_token_id} ({self.tokenizer.pad_token})")
     
     def process(self, source_dict={}):
         if 'prompt' not in source_dict:
@@ -231,6 +222,7 @@ class VeraGenerator(ModelGenerator):
         super().__init__(model_name)
 
     def initialize(self):
+        #self.tokenizer = transformers.T5Tokenizer.from_pretrained('liujch1998/vera')
         self.tokenizer = transformers.AutoTokenizer.from_pretrained('liujch1998/vera')
         self.model = transformers.T5EncoderModel.from_pretrained('liujch1998/vera')
         self.model.D = self.model.shared.embedding_dim
@@ -276,6 +268,7 @@ def init_parser():
     parser.add_argument("-m", "--model", metavar="<model>", help="Model to use (llama3, vera)", 
         default="llama3", required=True)
     parser.add_argument("-p", '--prompter', metavar="<prompter>", help="Prompter to use (raw, here, herenorm, there, this, orig)", default="raw", required=True)
+    parser.add_argument("-r", "--results_dir", metavar="<results_dir>", help="Directory for results files (jsonlines and html)", default="results")
     parser.add_argument("-t", '--token', metavar="<token>", help="Which token to use for probabilities (first,last, period, p2z)", required=False)
     parser.add_argument("--promptcolprefix", metavar="<pcp>", help="Columns named <pcp>_x, <pcp>_y",
         default=None, required=False)
@@ -357,7 +350,7 @@ def main():
 
     parser = init_parser()
     args = parser.parse_args()
-    plot_prefix = f"results/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
+    plot_prefix = f"{args.results_dir}/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
     overwrite = False
     while args.output_file is not None and os.path.exists(args.output_file) and not overwrite:
         print(f"Output file {args.output_file} exists. ")
@@ -402,7 +395,7 @@ def main():
                 model=args.model.lower(), prompter=args.prompter, token=args.token,
                 xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
                 boundary=args.boundary)
-            plot_prefix = f"results/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
+            plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
             fig02.write_html(f"{plot_prefix}.html")
             fig02.write_image(f"{plot_prefix}.png")        
 
