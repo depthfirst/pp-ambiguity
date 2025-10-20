@@ -172,8 +172,8 @@ class Prompter():
             print(source_dict['sentence_text'])
             print(f"yhead.text has tag '{yhead.tag_}'")
             raise ValueError()
-        params = dict(zip(['X','p1', 'Y', 'p2', 'Z', 'xdt', 'xv', 'xv2', 'xhead', 'yv', 'yv2', 'yhead'],
-            [X, p1, Y, p2, Z, xdt, xv, xv2, xhead, yv, yv2, yhead]))
+        params = dict(zip(['doc','X','p1', 'Y', 'p2', 'Z', 'xdt', 'xv', 'xv2', 'xhead', 'yv', 'yv2', 'yhead'],
+            [doc, X, p1, Y, p2, Z, xdt, xv, xv2, xhead, yv, yv2, yhead]))
         return params
 
     def interactive(self):
@@ -452,7 +452,7 @@ class HereNormPrompter(HerePrompter):
         rec["class"] = "Y"
         yield rec
 
-class TherePrompter(Prompter):
+class OldTherePrompter(Prompter):
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if source_dict is None or 'sentence_text' not in source_dict:
             raise ValueError("Entry not found: 'sentence_text'")
@@ -481,6 +481,161 @@ class TherePrompter(Prompter):
         rec["prompt"] = f"There {yv} {Y} {p2} {Z}."
         rec["class"] = "YpZ"
         yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"There {xv} {xdt}{X} {p1} {Y} {p2} {Z}."
+        rec["class"] = "XpYpZ"
+        yield rec
+
+class TherePrompter(Prompter):
+    def nwords(self, phrase):
+        return len([t for t in self.nlp(phrase)])
+
+    def preprocess(self, source_dict=None, promptcolprefix='pe'):
+        if source_dict is None or 'sentence_text' not in source_dict:
+            raise ValueError("Entry not found: 'sentence_text'")
+        params = self.parse_caption(source_dict['sentence_text'])
+        X = params["X"]
+        p1 = params["p1"]
+        Y = params["Y"]
+        p2 = params["p2"]
+        Z = params["Z"]
+        xv = params["xv"]
+        yv = params["yv"]
+        xdt = params["xdt"]
+        if len(xdt)>0:
+            xdt = f"{xdt} "
+        stext = source_dict['sentence_text']
+
+        singulars = ['NN','NNP','PRP','VBN','VB']
+        plurals = ['NNS','VBZ']
+        pcap = params['doc']
+        x = X.lower()
+        nx = len(x.split())
+        np1 = min(len(p1.split()),self.nwords(p1))
+        ny = min(len(Y.split()),self.nwords(Y))
+        np2 = len(p2.split()) #nwords(p2)
+        nz = len(Z.split()) #nwords(z)
+        xidx = 0
+        p1idx = nx
+        yidx = p1idx+np1
+        p2idx = yidx+ny
+        zidx = p2idx+np2
+        tokens = [tok for tok in pcap]
+        xhead = tokens[nx-1]
+        yhead = tokens[p2idx-1]
+        xdt2 = "The"
+        ydt2 = "The"
+        xdt1 = ""
+        ydt1 = ""
+        if tokens[0].tag_ in ['DT','PRP$']: #, 'JJ']:
+            #print("Yay! I found a DT: {}".format(tokens[0]))
+            xc = x[len(tokens[0].text)+1:]
+            #xdt = tokens[0].text
+        else:
+            xc =x
+            if tokens[0].text.lower()[0] in ['a','e','i','o','u']:
+                xdt1 = "an "
+            else:
+                xdt1 = "a "
+        if tokens[yidx].tag_ in ['DT', 'PRP$']: #, 'JJ']:
+            #print("Yay! I found a DT: {}".format(tokens[yidx]))
+            yc = Y[len(tokens[yidx].text)+1:]
+            if tokens[yidx].tag_=='PRP$':
+                ydt2 = tokens[yidx].text.capitalize()
+        else:
+            yc = Y
+            if yhead.tag_ in singulars:
+                if tokens[yidx].text.lower()[0] in ['a','e','i','o','u']:
+                    ydt1 = "an "
+                else:
+                    ydt1 = "a "
+        if xhead.tag_ in singulars:
+            v1 = "is"
+            if p2=='with':
+                xv = "has"
+                xp2z = " {}".format(Z)
+            else:
+                xv = "is"
+                xp2z = " {} {}".format(p2,Z)
+        elif xhead.tag_ in plurals:
+            v1 = "are"
+            xdt1 = ""
+            if p2=='with':
+                xv = "have"
+                xp2z = " {}".format(Z)
+            else:
+                xv = "are"
+                xp2z = " {} {}".format(p2,Z)
+        else:
+            raise ValueError("{} Unrecognized tag for X head '{}': {}".format(stext,xhead,xhead.tag_))
+            
+        if yhead.tag_ in singulars:
+            if p2=='with':
+                yv = "has"
+                yp2z = " {}".format(Z)
+            else:
+                yv = "is"
+                yp2z = " {} {}".format(p2, Z)
+        elif yhead.tag_ in plurals:
+            if p2=="with":
+                yv = "have"
+                yp2z = " {}".format(Z)
+            else:
+                yv = "are"
+                yp2z = " {} {}".format(p2, Z)
+        else:
+            raise ValueError("{} Unrecognized tag for Y head '{}': {}".format(stext,yhead,yhead.tag_))
+
+        newcaps1 = "There {} {}{} {} {}{}.".format(v1,xdt1,x,p1,ydt1,Y)
+        #newcapx = "{} {} {} {} {}.".format(newcaps1, xdt2, xc, xvp2, z)
+        #newcapy = "{} {} {} {} {}.".format(newcaps1, ydt2, yc, yvp2, z)
+        newcapx = "{} {} {} {}".format(newcaps1, xdt2, xc, xv)
+        newcapxz = "{}.".format(xp2z)
+        newcapy = "{} {} {} {}".format(newcaps1, ydt2, yc, yv)
+        newcapyz = "{}.".format(yp2z)
+        #yield((example,(newcapx,newcapxz),(newcapy,newcapyz)))
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"There {xv} {xdt}{X} {p1} {Y}."
+        rec["class"] = "XpY"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = "{}{}".format(newcapx, newcapxz)
+        rec["class"] = "XpZ"
+
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = "{}{}".format(newcapy,newcapyz)
+        rec["class"] = "YpZ"
+        #rec[f'{promptcolprefix}_x'] = ncx
+
+        yield rec
+        #rec[f'{promptcolprefix}_y'] = ncy
+        #print(d['sentence_text'])
+        #tokens = [tok for tok in d['parsed_caption']]
+        #nz = len(tokenizer(x['Z'])['input_ids'])
+        #nz = len(Z.split())
+        #idx = len(tokens)-nz-1
+        #tok = tokens[idx]
+        #print(tok.text, tok.tag_)
+        #print(d['pe_x'])
+        #print(d['pe_y'])    
+        #(xscores,xids,xtokens)=scorer.tokens_score(ncx, log=True)
+        #(yscores,yids,ytokens)=scorer.tokens_score(ncy, log=True)
+        #zlen = nwords(Z) #len(tokenizer(d['Z'])['input_ids'])
+        #px = sum(xscores[-2-zlen:-2])
+        #py = sum(yscores[-2-zlen:-2])
+        #if px>py:
+        #    d['pred_gpt2xl'] = 'X'
+        #elif py>px:
+        #    d['pred_gpt2xl'] = 'Y'
+        #else:
+        #    d['pred_gpt2xl'] = '='
+        #d['probs_zx_gpt2xl'] = px
+        #d['probs_zy_gpt2xl'] = py
 
         rec = self.init_rec(source_dict)
         rec["prompt"] = f"There {xv} {xdt}{X} {p1} {Y} {p2} {Z}."
