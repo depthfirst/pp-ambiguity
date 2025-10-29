@@ -125,7 +125,8 @@ def results_to_dataframe(res):
     # Make generic - loop through classes
     xpydf = df.loc[df['class']=='XpY'].set_index('annidx')
     
-    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
+    extra_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
+    drop_columns = [col for col in extra_columns if col in df]
     xpypzdf = df.loc[df['class']=='XpYpZ'].drop(columns=drop_columns).set_index('annidx')
     xpzdf = df.loc[df['class']=='XpZ'].drop(columns=drop_columns).set_index('annidx')
     ypzdf = df.loc[df['class']=='YpZ'].drop(columns=drop_columns).set_index('annidx')    
@@ -186,9 +187,9 @@ def compute_accuracy(X_train, X_test, y_train, y_test):
     acc = accuracy_score(y_test, preds)
     return preds, acc, m, b
 
-def eval_results(results, plaus_col='plausibility', struct_col='structure', folds=5):
+def eval_results(results, plaus_col='plausibility', struct_col='structure', y_col='attachment', folds=5):
     X = results[[plaus_col, struct_col]].values
-    y = results.attachment.values
+    y = results[y_col].values
 
     X_plaus = X[:,:1]
     X_info = X[:,1:]

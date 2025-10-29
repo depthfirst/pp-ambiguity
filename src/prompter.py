@@ -62,15 +62,16 @@ class Prompter():
                         yield newrec
 
     def init_rec(self, source_dict):
-        if "attachment" in source_dict:
-            rec = {"annidx": source_dict['annidx'], "sentence_text": source_dict["sentence_text"],
-                   "X": source_dict["X"], "P1": source_dict["P1"], "Y": source_dict["Y"],
-                   "P2": source_dict["P2"], "Z": source_dict["Z"], "attachment": source_dict["attachment"]}
-        elif "annidx" in source_dict:
-            rec = {"annidx": source_dict["annidx"], "X": source_dict["X"], "P1": source_dict["P1"], "Y": source_dict["Y"],
-                   "P2": source_dict["P2"], "Z": source_dict["Z"]}
-        else:
-            rec = {}
+        req_entries = ["annidx", "sentence_text", "X", "P1", "Y", "P2", "Z"]
+        opt_entries = ["attachment"]
+        rec = {}
+        for entry in req_entries: 
+            if entry not in source_dict:
+                raise ValueError(f"Entry not found: '{entry}'")
+            rec[entry] = source_dict[entry]
+        for entry in opt_entries:
+            if entry in source_dict:
+                rec[entry] = source_dict[entry]
         return rec
 
     def parse_caption(self, caption):
@@ -134,7 +135,7 @@ class Prompter():
             else:
                 xv2 = "is"
         else:
-            print(source_dict['sentence_text'])
+            print(caption)
             print(f"xhead.text has tag '{xhead.tag_}'")
             raise ValueError()
         last_token = nps[2][-1]
@@ -169,7 +170,7 @@ class Prompter():
             else:
                 yv2 = "is"
         else:
-            print(source_dict['sentence_text'])
+            print(caption)
             print(f"yhead.text has tag '{yhead.tag_}'")
             raise ValueError()
         params = dict(zip(['doc','X','p1', 'Y', 'p2', 'Z', 'xdt', 'xv', 'xv2', 'xhead', 'yv', 'yv2', 'yhead'],
@@ -491,10 +492,8 @@ class TherePrompter(Prompter):
     def nwords(self, phrase):
         return len([t for t in self.nlp(phrase)])
 
-    def preprocess(self, source_dict=None, promptcolprefix='pe'):
-        if source_dict is None or 'sentence_text' not in source_dict:
-            raise ValueError("Entry not found: 'sentence_text'")
-        params = self.parse_caption(source_dict['sentence_text'])
+    def parse_caption(self, sentence_text):
+        params = super().parse_caption(sentence_text)
         X = params["X"]
         p1 = params["p1"]
         Y = params["Y"]
@@ -505,8 +504,7 @@ class TherePrompter(Prompter):
         xdt = params["xdt"]
         if len(xdt)>0:
             xdt = f"{xdt} "
-        stext = source_dict['sentence_text']
-
+        stext = sentence_text
         singulars = ['NN','NNP','PRP','VBN','VB']
         plurals = ['NNS','VBZ']
         pcap = params['doc']
@@ -588,13 +586,35 @@ class TherePrompter(Prompter):
             raise ValueError("{} Unrecognized tag for Y head '{}': {}".format(stext,yhead,yhead.tag_))
 
         newcaps1 = "There {} {}{} {} {}{}.".format(v1,xdt1,x,p1,ydt1,Y)
-        #newcapx = "{} {} {} {} {}.".format(newcaps1, xdt2, xc, xvp2, z)
-        #newcapy = "{} {} {} {} {}.".format(newcaps1, ydt2, yc, yvp2, z)
         newcapx = "{} {} {} {}".format(newcaps1, xdt2, xc, xv)
         newcapxz = "{}.".format(xp2z)
         newcapy = "{} {} {} {}".format(newcaps1, ydt2, yc, yv)
         newcapyz = "{}.".format(yp2z)
-        #yield((example,(newcapx,newcapxz),(newcapy,newcapyz)))
+        params["ncx"]  = newcapx
+        params["ncxz"] = newcapxz
+        params["ncy"]  = newcapy
+        params["ncyz"] = newcapyz
+        return params
+
+    def preprocess(self, source_dict=None, promptcolprefix='pe'):
+        if source_dict is None or 'sentence_text' not in source_dict:
+            raise ValueError("Entry not found: 'sentence_text'")
+        params = self.parse_caption(source_dict['sentence_text'])
+        X = params["X"]
+        p1 = params["p1"]
+        Y = params["Y"]
+        p2 = params["p2"]
+        Z = params["Z"]
+        xv = params["xv"]
+        yv = params["yv"]
+        xdt = params["xdt"]
+        if len(xdt)>0:
+            xdt = f"{xdt} "
+        stext = source_dict['sentence_text']
+        newcapx = params["ncx"]
+        newcapxz = params["ncxz"]
+        newcapy  = params["ncy"]
+        newcapyz  = params["ncyz"]
 
         rec = self.init_rec(source_dict)
         rec["prompt"] = f"There {xv} {xdt}{X} {p1} {Y}."
@@ -610,39 +630,15 @@ class TherePrompter(Prompter):
         rec = self.init_rec(source_dict)
         rec["prompt"] = "{}{}".format(newcapy,newcapyz)
         rec["class"] = "YpZ"
-        #rec[f'{promptcolprefix}_x'] = ncx
 
         yield rec
-        #rec[f'{promptcolprefix}_y'] = ncy
-        #print(d['sentence_text'])
-        #tokens = [tok for tok in d['parsed_caption']]
-        #nz = len(tokenizer(x['Z'])['input_ids'])
-        #nz = len(Z.split())
-        #idx = len(tokens)-nz-1
-        #tok = tokens[idx]
-        #print(tok.text, tok.tag_)
-        #print(d['pe_x'])
-        #print(d['pe_y'])    
-        #(xscores,xids,xtokens)=scorer.tokens_score(ncx, log=True)
-        #(yscores,yids,ytokens)=scorer.tokens_score(ncy, log=True)
-        #zlen = nwords(Z) #len(tokenizer(d['Z'])['input_ids'])
-        #px = sum(xscores[-2-zlen:-2])
-        #py = sum(yscores[-2-zlen:-2])
-        #if px>py:
-        #    d['pred_gpt2xl'] = 'X'
-        #elif py>px:
-        #    d['pred_gpt2xl'] = 'Y'
-        #else:
-        #    d['pred_gpt2xl'] = '='
-        #d['probs_zx_gpt2xl'] = px
-        #d['probs_zy_gpt2xl'] = py
 
         rec = self.init_rec(source_dict)
         rec["prompt"] = f"There {xv} {xdt}{X} {p1} {Y} {p2} {Z}."
         rec["class"] = "XpYpZ"
         yield rec
 
-class DualPrompter(HerePrompter):
+class DualPrompter(TherePrompter):
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if source_dict is None or 'sentence_text' not in source_dict:
             raise ValueError("Entry not found: 'sentence_text'")
@@ -657,6 +653,10 @@ class DualPrompter(HerePrompter):
         xdt = params["xdt"]
         if len(xdt)>0:
             xdt = f"{xdt} "
+        newcapx = params["ncx"]
+        newcapxz = params["ncxz"]
+        newcapy  = params["ncy"]
+        newcapyz  = params["ncyz"]
 
         rec = self.init_rec(source_dict)
         rec["prompt"] = f"Here we have {X} {p1} {Y}."
@@ -664,12 +664,12 @@ class DualPrompter(HerePrompter):
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = source_dict[f"{promptcolprefix}_x"]
+        rec["prompt"] = "{}{}".format(newcapx, newcapxz)
         rec["class"] = "XpZ"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = source_dict[f"{promptcolprefix}_y"]
+        rec["prompt"] = "{}{}".format(newcapy, newcapyz)
         rec["class"] = "YpZ"
         yield rec
 
