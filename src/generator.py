@@ -31,14 +31,15 @@ class Generator():
             output = open(outputfile, "w")
 
         for source_dict in inputs:
+            classprefix = "" if "class" not in source_dict else f"{source_dict['class']}: "
             if outputfile is None:
-                print(f"{source_dict['prompt']}")
+                print(f"{classprefix}{source_dict['prompt']}")
             response = self.process(source_dict)
             self.postprocess(source_dict, response=response)
             if outputfile is not None:
                 json.dump(source_dict, output)
                 output.write("\n")
-            else:
+            elif response is not None:
                 print(f"{response}")
             yield source_dict
 
@@ -266,7 +267,7 @@ def init_parser():
     parser.add_argument("-o", '--output-file', metavar="<file>", help="Output file", 
         default=None, required=False)
     parser.add_argument("-m", "--model", metavar="<model>", help="Model to use (llama3, vera)", 
-        default="llama3", required=True)
+        default=None, required=False)
     parser.add_argument("-p", '--prompter', metavar="<prompter>", help="Prompter to use (raw, here, herenorm, there, this, orig)", default="raw", required=True)
     parser.add_argument("-r", "--results_dir", metavar="<results_dir>", help="Directory for results files (jsonlines and html)", default="results")
     parser.add_argument("-t", '--token', metavar="<token>", help="Which token to use for probabilities (first,last, period, p2z)", required=False)
@@ -294,6 +295,8 @@ def init_prompter(prompter_name):
         prompter = OrigPrompter()
     elif prompter_name=="dual":
         prompter = DualPrompter()
+    elif prompter_name=="matters":
+        prompter = MattersPrompter()
     else:
         prompter = Prompter()
     return prompter
@@ -323,6 +326,8 @@ def init_generator(model_name, prob_token="last"):
             generator = Llama3Generator()
     elif model_name=="vera":
         generator = VeraGenerator()
+    elif model_name is None:
+        generator = Generator()
     else:
         raise IllegalArgument(f"Unknown model: '{model_name}'")
     return generator
@@ -350,54 +355,60 @@ def main():
 
     parser = init_parser()
     args = parser.parse_args()
-    plot_prefix = f"{args.results_dir}/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
-    overwrite = False
-    while args.output_file is not None and os.path.exists(args.output_file) and not overwrite:
-        print(f"Output file {args.output_file} exists. ")
-        print("What do you want to do?")
-        print("(P)lot the results")
-        print("(O)verwrite")
-        print("(R)ename")
-        print("(Q)uit")
-        choice = input("Enter choice ([P]ORQ): ").strip()
-        if choice is None or len(choice)==0:
-            choice = "P"
-        choice = choice[0].lower()
-        if choice=='q':
-            sys.exit(0)
-        elif choice=='p':
-            print("Plotting results.")
-            with open(args.output_file) as jsonlines:
-                journal = [json.loads(line.strip()) for line in jsonlines]
-                fig01=plot_results(journal, 
-                    model=args.model, prompter=args.prompter, token=args.token, boundary=args.boundary)
-                fig01.write_html(f"{plot_prefix}.html")
-                fig01.write_image(f"{plot_prefix}.png")        
-            sys.exit(0)
-        elif choice=='r':
-            args.output_file = input("Enter new output_file: ").strip()
-        elif choice=='o':
-            overwrite = True
     prompter = init_prompter(args.prompter)
-    generator = init_generator(args.model, args.token)
     inputs = collect_inputs(args, prompter)
-    if args.interactive:
-        journal = list(generator.generate(inputs, outputfile=args.output_file))
-    else:
-        journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
-        fig01=plot_results(journal, title="Information Structure vs Plausibility", 
-            model=args.model.lower(), prompter=args.prompter, token=args.token,
-            boundary=args.boundary)
-        fig01.write_html(f"{plot_prefix}.html")
-        fig01.write_image(f"{plot_prefix}.png")        
-        if args.model.lower()=='vera':
-            fig02=plot_results(journal, title="Information Structure vs Plausibility", 
+    if args.model is not None:
+        plot_prefix = f"{args.results_dir}/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
+        overwrite = False
+        while args.output_file is not None and os.path.exists(args.output_file) and not overwrite:
+            print(f"Output file {args.output_file} exists. ")
+            print("What do you want to do?")
+            print("(P)lot the results")
+            print("(O)verwrite")
+            print("(R)ename")
+            print("(Q)uit")
+            choice = input("Enter choice ([P]ORQ): ").strip()
+            if choice is None or len(choice)==0:
+                choice = "P"
+            choice = choice[0].lower()
+            if choice=='q':
+                sys.exit(0)
+            elif choice=='p':
+                print("Plotting results.")
+                with open(args.output_file) as jsonlines:
+                    journal = [json.loads(line.strip()) for line in jsonlines]
+                    fig01=plot_results(journal, 
+                        model=args.model, prompter=args.prompter, token=args.token, boundary=args.boundary)
+                    fig01.write_html(f"{plot_prefix}.html")
+                    fig01.write_image(f"{plot_prefix}.png")        
+                sys.exit(0)
+            elif choice=='r':
+                args.output_file = input("Enter new output_file: ").strip()
+            elif choice=='o':
+                overwrite = True
+        generator = init_generator(args.model, args.token)
+        if args.interactive:
+            journal = list(generator.generate(inputs, outputfile=args.output_file))
+        else:
+            journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
+            fig01=plot_results(journal, title="Information Structure vs Plausibility", 
                 model=args.model.lower(), prompter=args.prompter, token=args.token,
-                xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
                 boundary=args.boundary)
-            plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
-            fig02.write_html(f"{plot_prefix}.html")
-            fig02.write_image(f"{plot_prefix}.png")        
-
+            fig01.write_html(f"{plot_prefix}.html")
+            fig01.write_image(f"{plot_prefix}.png")        
+            if args.model.lower()=='vera':
+                fig02=plot_results(journal, title="Information Structure vs Plausibility", 
+                    model=args.model.lower(), prompter=args.prompter, token=args.token,
+                    xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
+                    boundary=args.boundary)
+                plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
+                fig02.write_html(f"{plot_prefix}.html")
+                fig02.write_image(f"{plot_prefix}.png")        
+    else:
+        print("Generating prompts without a model.")
+        generator = Generator()
+        journal = list(generator.generate(inputs, outputfile=args.output_file))
+    print(f"Finished generating {len(journal)} prompts. ")
+    print("Bye!")
 if __name__ == "__main__":
     main()

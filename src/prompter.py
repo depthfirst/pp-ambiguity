@@ -590,6 +590,19 @@ class TherePrompter(Prompter):
         newcapxz = "{}.".format(xp2z)
         newcapy = "{} {} {} {}".format(newcaps1, ydt2, yc, yv)
         newcapyz = "{}.".format(yp2z)
+        params["v1"]   = v1
+        params["xdt1"] = xdt1
+        params["x"] = x
+        params["ydt1"] = ydt1
+        params["xc"]   = xc
+        params["xv"]   = xv
+        params["nc1"]  = newcaps1
+        params["xdt2"] = xdt2
+        params["ydt2"] = ydt2
+        params["yc"]   = yc
+        params["yv"]   = yv
+        params["xp2z"] = xp2z
+        params["yp2z"] = yp2z
         params["ncx"]  = newcapx
         params["ncxz"] = newcapxz
         params["ncy"]  = newcapy
@@ -675,6 +688,80 @@ class DualPrompter(TherePrompter):
 
         rec = self.init_rec(source_dict)
         rec["prompt"] = f"Here we have {X} {p1} {Y} {p2} {Z}."
+        rec["class"] = "XpYpZ"
+        yield rec
+
+class MattersPrompter(TherePrompter):
+    def preprocess(self, source_dict=None, promptcolprefix=None):
+        if source_dict is None or 'sentence_text' not in source_dict:
+            raise ValueError("Entry not found: 'sentence_text'")
+        params = self.parse_caption(source_dict['sentence_text'])
+        X = params["X"]
+        p1 = params["p1"]
+        Y = params["Y"]
+        p2 = params["p2"]
+        Z = params["Z"]
+        xv = params["xv"]
+        yv = params["yv"]
+        x  = params["x"]
+        xdt = params["xdt"]
+        if len(xdt)>0:
+            xdt = f"{xdt} "
+        newcapx  = params["ncx"]
+        newcapxz = params["ncxz"]
+        newcapy  = params["ncy"]
+        newcapyz = params["ncyz"]
+        nc1      = params["nc1"]
+        xp2z     = params["xp2z"]
+        yp2z     = params["yp2z"]
+        v1       = params["v1"]
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = nc1
+        rec["class"] = "XpY"
+        yield rec
+
+        XpYpZ = f"There {v1} {xdt}{X} {p1} {Y} {p2} {Z}."
+        if yv=="has":
+            yv2 = "does"
+        elif yv=="have":
+            yv2 = "do"
+        else:
+            yv2 = yv
+        if xv=="has":
+            xv2 = "does"
+        elif xv=="have":
+            xv2 = "do"
+        else:
+            xv2 = xv
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} but the {Y} {yv2} not."
+        rec["class"] = "XpZ"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} and not the {Y}."
+        rec["class"] = "XpZ2"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"{XpYpZ} That means {Y} {yv}{yp2z} but the {x} {xv2} not."
+        rec["class"] = "YpZ"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"{XpYpZ} That means {Y} {yv}{yp2z} and not the {X}."
+        rec["class"] = "YpZ2"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} and {Y} {yv} also{yp2z}."
+        rec["class"] = "XpYpZ"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec["prompt"] = f"{XpYpZ} That means both {x} and {Y} are{xp2z}."
         rec["class"] = "XpYpZ"
         yield rec
 
