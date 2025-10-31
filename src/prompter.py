@@ -715,9 +715,11 @@ class MattersPrompter(TherePrompter):
         xp2z     = params["xp2z"]
         yp2z     = params["yp2z"]
         v1       = params["v1"]
+        xc       = params["xc"]
+        yc       = params["yc"]
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = nc1
+        rec["prompt"] = f"There {v1} {xdt}{X} {p1} {source_dict['Y']}."
         rec["class"] = "XpY"
         yield rec
 
@@ -736,33 +738,42 @@ class MattersPrompter(TherePrompter):
             xv2 = xv
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} but the {Y} {yv2} not."
+        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} but the {yc} {yv2} not."
+        #rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} but {Y} {yv2} not."
         rec["class"] = "XpZ"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} and not the {Y}."
+        rec["prompt"] = f"{XpYpZ} That means {X} {xv}{xp2z} and not the {yc}."
         rec["class"] = "XpZ2"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = f"{XpYpZ} That means {Y} {yv}{yp2z} but the {x} {xv2} not."
+        rec["prompt"] = f"{XpYpZ} That means {Y} {yv}{yp2z} but the {xc} {xv2} not."
         rec["class"] = "YpZ"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = f"{XpYpZ} That means {Y} {yv}{yp2z} and not the {X}."
+        rec["prompt"] = f"{XpYpZ} That means {Y} {yv}{yp2z} and not the {xc}."
         rec["class"] = "YpZ2"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = f"{XpYpZ} That means {x} {xv}{xp2z} and {Y} {yv} also{yp2z}."
+        if yv in ["has", "have"]:
+
+            rec["prompt"] = f"{XpYpZ} That means {X} {xv}{xp2z} and {Y} also {yv}{yp2z}."
+        else:
+            rec["prompt"] = f"{XpYpZ} That means {X} {xv}{xp2z} and {Y} {yv} also{yp2z}."
         rec["class"] = "XpYpZ"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec["prompt"] = f"{XpYpZ} That means both {x} and {Y} are{xp2z}."
-        rec["class"] = "XpYpZ"
+        if yv in ["has","have"]:
+
+            rec["prompt"] = f"{XpYpZ} That means both {X} and {Y} have{xp2z}."
+        else:
+            rec["prompt"] = f"{XpYpZ} That means both {X} and {Y} are{xp2z}."
+        rec["class"] = "XpYpZ2"
         yield rec
 
 
