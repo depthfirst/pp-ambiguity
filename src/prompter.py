@@ -13,7 +13,7 @@ class Prompter():
         self.initialize()
 
     def initialize(self):
-        self.nlp = spacy.load("en_core_web_trf")
+        pass
 
     # Can I implement generator and iterator patterns? 
 
@@ -73,6 +73,48 @@ class Prompter():
             if entry in source_dict:
                 rec[entry] = source_dict[entry]
         return rec
+
+    def interactive(self):
+        prompt_again = True
+        examples = []
+        print(f"Enter prompts to send to model. ")
+        print("Enter '.' on line by itself to end prompt; 'bye' to end session): ")
+        while prompt_again:
+            prompt=input(f"Please Enter Prompt: ")
+            promptlines = []
+            while prompt!='.' and not prompt.lower()[:3]=='bye':
+                promptlines.append(prompt)
+                prompt = input()
+            if prompt.lower()[:3]=='bye':
+                print("Bye!")
+                prompt_again = False
+            else:
+                prompt = "\n".join(promptlines)
+                print(f"You entered the following prompt:\n'{prompt}'.") 
+                ack = input("Is that correct? [Y/n]")
+                ack = "Y"
+                if len(ack)==0 or ack.lower()[0]=='y':
+                    rec = {"prompt": prompt, "sentence_text": prompt}
+                    for newrec in self.preprocess(rec):
+                        yield newrec
+                else:
+                    print("OK, let's try again.")
+
+    def test_mode(self, prompts=samples):
+        for prompt in prompts:
+            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
+                print("Bye!")
+                break
+            else:
+                yield {"prompt": prompt}
+
+class RawPrompter(Prompter):
+    def preprocess(self, source_dict=None, promptcolprefix=None):
+        yield source_dict
+
+class NLPPrompter(Prompter):
+    def initialize(self):
+        self.nlp = spacy.load("en_core_web_trf")
 
     def parse_caption(self, caption):
         doc = self.nlp(caption)
@@ -177,37 +219,6 @@ class Prompter():
             [doc, X, p1, Y, p2, Z, xdt, xv, xv2, xhead, yv, yv2, yhead]))
         return params
 
-    def interactive(self):
-        prompt_again = True
-        examples = []
-        while prompt_again:
-            prompt=input(f"Please Enter Prompt: ")
-            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
-                print("Bye!")
-                prompt_again = False
-
-            else:
-                print(f"You said '{prompt}'.") 
-                ack = input("Is that correct? [Y/n]")
-                ack = "Y"
-                if len(ack)==0 or ack.lower()[0]=='y':
-                    rec = {"prompt": prompt, "sentence_text": prompt}
-                    for newrec in self.preprocess(rec):
-                        yield newrec
-                else:
-                    print("OK, let's try again.")
-
-    def test_mode(self, prompts=samples):
-        for prompt in prompts:
-            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
-                print("Bye!")
-                break
-            else:
-                yield {"prompt": prompt}
-
-class RawPrompter(Prompter):
-    def preprocess(self, source_dict=None, promptcolprefix=None):
-        yield source_dict
 
 class OrigPrompter(Prompter):
 
@@ -432,7 +443,7 @@ class HerePrompter(Prompter):
         rec["class"] = "XpYpZ"
         yield rec
 
-class HereNormPrompter(HerePrompter):
+class HereNormPrompter(NLPPrompter):
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if 'X' not in source_dict or 'Y' not in source_dict:
             if 'sentence_text' not in source_dict:
@@ -453,7 +464,7 @@ class HereNormPrompter(HerePrompter):
         rec["class"] = "Y"
         yield rec
 
-class OldTherePrompter(Prompter):
+class OldTherePrompter(NLPPrompter):
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if source_dict is None or 'sentence_text' not in source_dict:
             raise ValueError("Entry not found: 'sentence_text'")
@@ -488,7 +499,7 @@ class OldTherePrompter(Prompter):
         rec["class"] = "XpYpZ"
         yield rec
 
-class TherePrompter(Prompter):
+class TherePrompter(NLPPrompter):
     def nwords(self, phrase):
         return len([t for t in self.nlp(phrase)])
 
@@ -777,7 +788,7 @@ class MattersPrompter(TherePrompter):
         yield rec
 
 
-class InfoStructPrompter(Prompter):
+class InfoStructPrompter(NLPPrompter):
 
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if source_dict is None or 'sentence_text' not in source_dict:
@@ -902,7 +913,7 @@ class InfoStructPrompter(Prompter):
         rec["class"] = "YpZ"
         yield rec
 
-class ThisIsPrompter(Prompter):
+class ThisIsPrompter(NLPPrompter):
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if source_dict is None or 'sentence_text' not in source_dict:
             raise ValueError("Entry not found: 'sentence_text'")

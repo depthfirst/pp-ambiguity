@@ -10,7 +10,7 @@ import numpy as np
 
 from torch.nn import functional as F
 from tqdm import tqdm as progress_bar
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 
 #from matplotlib import pyplot as plt
 from collections import Counter
@@ -66,11 +66,62 @@ class Llama3Generator(ModelGenerator):
         super().__init__(model_name)
 
     def initialize(self):
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_eos_token=False)
+        self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+
+        # Move the model to GPU
+        device = "cpu"
+        #device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(device)
+
+        # Create a new pipeline with the quantized model
+        self.pipe = pipeline("text-generation", model=self.model, tokenizer=self.tokenizer, device=0 if device == "cuda" else -1)
+
+    def process(self, source_dict={}):
+        if 'prompt' not in source_dict:
+            raise ValueError("'prompt' is required.")
+        prompt = source_dict["prompt"]
+        if 'context' in source_dict:
+            context = source_dict['context']
+        else:
+            context = []
+        if len(context)==0:
+            input_text = f"{prompt}"
+        else:
+            input_text = f"{context} {prompt}"
+
+        output_text = self.pipe(input_text)["generated_text"]
+        anspos  = output_text.find("Answer:")
+        if anspos>=0:
+            return output_text[anspos:]
+        else:
+            return output_text
+
+    def test_mode(self, prompts=samples):
+        prompt_again = True
+        examples = []
+        for prompt in self.samples:
+            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
+                print("Bye!")
+                break
+            else:
+                response = self.generate(prompt, [])
+                print(f"{prompt}: {response}")
+                #print(f"{self.model_name}'s response: '{response}'.")
+                examples.append({"prompt": prompt, "response": response})
+        return examples
+
+class Llama3TokenProbGenerator(Llama3Generator):
+    def initialize(self):
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_eos_token=True)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token_id=self.tokenizer.eos_token_id
-    
+        # Move the model to GPU
+        device = "cpu"
+        #device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(device)
+
     def process(self, source_dict={}):
         if 'prompt' not in source_dict:
             raise ValueError("'prompt' is required.")
@@ -107,21 +158,8 @@ class Llama3Generator(ModelGenerator):
         prob = token_probs[-1].item()
         return prob
 
-    def test_mode(self, prompts=samples):
-        prompt_again = True
-        examples = []
-        for prompt in self.samples:
-            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
-                print("Bye!")
-                break
-            else:
-                response = self.generate(prompt, [])
-                print(f"{prompt}: {response}")
-                #print(f"{self.model_name}'s response: '{response}'.")
-                examples.append({"prompt": prompt, "response": response})
-        return examples
 
-class Llama3P2ZGenerator(Llama3Generator):
+class Llama3P2ZGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         if 'class' in source_dict and source_dict['class']=='XpY':
             offset = len(self.tokenizer(f"{source_dict['P1']} {source_dict['Y']}")['input_ids'])-1
@@ -131,7 +169,7 @@ class Llama3P2ZGenerator(Llama3Generator):
         prob = torch.exp(torch.sum(torch.log(probs))).item()
         return prob
 
-class Llama3ZPeriodGenerator(Llama3Generator):
+class Llama3ZPeriodGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         zlen = len(self.tokenizer(f"{source_dict['Z']}.")['input_ids'])-1
         probs = token_probs[-1-zlen:-1]
@@ -139,7 +177,7 @@ class Llama3ZPeriodGenerator(Llama3Generator):
         return prob
 
 
-class Llama3P2ZLastTokenGenerator(Llama3Generator):
+class Llama3P2ZLastTokenGenerator(Llama3TokenProbGenerator):
 
     def aggregate_token_probs(self, source_dict, token_probs):
         if "class" in source_dict and source_dict["class"] in ["XpZ", "YpZ"]:
@@ -153,7 +191,7 @@ class Llama3P2ZLastTokenGenerator(Llama3Generator):
         #perplexity = float(torch.exp(-loss).numpy())
         return prob
 
-class Llama3P2ZPeriodGenerator(Llama3Generator):
+class Llama3P2ZPeriodGenerator(Llama3TokenProbGenerator):
 
     def aggregate_token_probs(self, source_dict, token_probs):
         if "class" in source_dict and source_dict["class"] in ["XpZ", "YpZ"]:
@@ -166,11 +204,11 @@ class Llama3P2ZPeriodGenerator(Llama3Generator):
             prob = token_probs[-2].item()
         return prob
 
-class Llama3LastTokenGenerator(Llama3Generator):
+class Llama3LastTokenGenerator(Llama3TokenProbGenerator):
     # Identical to base implementation
     pass
 
-class Llama3PadTokenGenerator(Llama3Generator):
+class Llama3PadTokenGenerator(Llama3TokenProbGenerator):
     def process(self, source_dict={}):
         if 'prompt' not in source_dict:
             raise ValueError("'prompt' is required.")
@@ -203,12 +241,12 @@ class Llama3PadTokenGenerator(Llama3Generator):
         # -1 because we're discounting the start token '<|start|>'. 
         return self.aggregate_token_probs(source_dict, token_probs)
 
-class Llama3FirstTokenGenerator(Llama3Generator):
+class Llama3FirstTokenGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         prob = token_probs[0].item()
         return prob
 
-class Llama3PeriodGenerator(Llama3Generator):
+class Llama3PeriodGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         prob = token_probs[-2].item()
         return prob
