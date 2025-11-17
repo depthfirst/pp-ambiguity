@@ -62,12 +62,14 @@ class ModelGenerator(Generator):
 class Llama3Generator(ModelGenerator):
 
     samples = ["There are dogs near the edge.", "There are dogs of water.", "."]
-    def __init__(self, model_name="meta-llama/Meta-Llama-3.1-8B"):
+    def __init__(self, model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"):
         super().__init__(model_name)
 
     def initialize(self):
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_eos_token=False)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_eos_token=True)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token_id=self.tokenizer.eos_token_id
 
         # Move the model to GPU
         device = "cpu"
@@ -75,27 +77,42 @@ class Llama3Generator(ModelGenerator):
         self.model.to(device)
 
         # Create a new pipeline with the quantized model
-        self.pipe = pipeline("text-generation", model=self.model, tokenizer=self.tokenizer, device=0 if device == "cuda" else -1)
+        self.pipe = pipeline("text-generation", model=self.model, tokenizer=self.tokenizer, model_kwargs={"torch_dtype": torch.bfloat16}, 
+            device=0 if device == "cuda" else -1)
 
     def process(self, source_dict={}):
         if 'prompt' not in source_dict:
             raise ValueError("'prompt' is required.")
         prompt = source_dict["prompt"]
+        
         if 'context' in source_dict:
             context = source_dict['context']
         else:
             context = []
+        # BAD HARD-CODING
+            #context = "Choose from the following options. "
         if len(context)==0:
             input_text = f"{prompt}"
         else:
-            input_text = f"{context} {prompt}"
+            #input_text = f"{context} {prompt}"
+            input_text = [{"role": "system", "content": context}, {"role": "user", "content": prompt}]
 
-        output_text = self.pipe(input_text)["generated_text"]
-        anspos  = output_text.find("Answer:")
-        if anspos>=0:
-            return output_text[anspos:]
-        else:
+        output_text = self.pipe(input_text)[0]["generated_text"]
+        if len(output_text)==0:
+            print(f"(No response from {self.model_name})")
             return output_text
+        else:
+            if output_text[:len(input_text)]==input_text:
+                #print("(Input repeated).")
+                output_text = output_text[len(input_text):]
+            anspos  = output_text.find("Answer:")
+            if anspos>=0:
+                answer = output_text[anspos:]
+                #print(answer)
+                return answer
+            else:
+                #print(output_text)
+                return output_text
 
     def test_mode(self, prompts=samples):
         prompt_again = True
@@ -335,6 +352,8 @@ def init_prompter(prompter_name):
         prompter = DualPrompter()
     elif prompter_name=="matters":
         prompter = MattersPrompter()
+    elif prompter_name=="prepsense":
+        prompter = PrepSensePrompter()
     else:
         prompter = Prompter()
     return prompter

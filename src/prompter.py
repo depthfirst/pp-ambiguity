@@ -6,6 +6,8 @@ import spacy
 
 from tqdm import tqdm as progress_bar, trange
 from sklearn.metrics import accuracy_score
+from collections import defaultdict
+
 
 class Prompter(): 
     samples = ["There are dogs near the edge.", "There are dogs of water.", "."]
@@ -86,7 +88,6 @@ class Prompter():
                 promptlines.append(prompt)
                 prompt = input()
             if prompt.lower()[:3]=='bye':
-                print("Bye!")
                 prompt_again = False
             else:
                 prompt = "\n".join(promptlines)
@@ -218,6 +219,39 @@ class NLPPrompter(Prompter):
         params = dict(zip(['doc','X','p1', 'Y', 'p2', 'Z', 'xdt', 'xv', 'xv2', 'xhead', 'yv', 'yv2', 'yhead'],
             [doc, X, p1, Y, p2, Z, xdt, xv, xv2, xhead, yv, yv2, yhead]))
         return params
+
+class PrepSensePrompter(Prompter):
+    def initialize(self):
+        self.prep_senses = defaultdict(list)
+        preps = ["in", "on", "at", "with", "near"]
+        datadir = "../data"
+        for prep in preps: 
+            with open(f"{datadir}/{prep}.txt") as prepin:
+                for line in prepin:
+                    self.prep_senses[prep].append(line.strip())
+
+    def preprocess(self, source_dict=None, promptcolprefix=None):
+        if source_dict is None or 'sentence_text' not in source_dict:
+            raise ValueError("Entry not found: 'sentence_text'")
+        sentence_text = source_dict['sentence_text']
+        X = source_dict['X']
+        p1 = source_dict['P1']
+        Y = source_dict['Y']
+        p2 = source_dict['P2']
+        Z = source_dict['Z']
+        if p2 in self.prep_senses and p1!=p2:
+            rec = self.init_rec(source_dict)
+            senses = self.prep_senses[p2]
+            promptlines = [f"Given the word \"{p2}\" in the input sentence, choose the correct meaning from the following:"] 
+            for i,sense in enumerate(senses):
+                promptlines.append(f"{chr(ord('A')+i)}) {sense}")
+            promptlines.append("Generate only the letter of the correct option.")
+            promptlines.append(f"Input: \"{sentence_text}\"\n")
+            prompt = "\n".join(promptlines)
+            rec['prompt'] = prompt
+            rec['context'] = ""
+            rec['class'] = "P2sense"
+            yield rec
 
 
 class OrigPrompter(Prompter):
