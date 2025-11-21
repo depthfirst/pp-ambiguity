@@ -23,12 +23,17 @@ from evaluator import *
 class Generator():
 
     '''
-    What a mess. I was trying to get a single iterator to keep spitting out prompts
-    and then another generator to spit out results. 
+    The Prompter is an iterator to keep spitting out prompts
+    and then here is the Generator to submit to the model and spit out results. 
     '''
-    def generate(self, inputs, outputfile=None):
+    def generate(self, inputs, outputfile=None, verbose=False):
         if outputfile is not None:
-            output = open(outputfile, "w")
+            # Would be nice if we could resume from where we left off
+            # checking during preprocess if prompt was same? Working from annid? 
+            #if os.path.exists(outputfile):
+
+            with open(outputfile, "w") as output:
+                output.close()
 
         for source_dict in inputs:
             classprefix = "" if "class" not in source_dict else f"{source_dict['class']}: "
@@ -37,8 +42,12 @@ class Generator():
             response = self.process(source_dict)
             self.postprocess(source_dict, response=response)
             if outputfile is not None:
+                output = open(outputfile, "a")
                 json.dump(source_dict, output)
                 output.write("\n")
+                output.close()
+                if verbose:
+                    print(f"{response}")
             elif response is not None:
                 print(f"{response}")
             yield source_dict
@@ -102,18 +111,21 @@ class Llama3Generator(ModelGenerator):
             print(f"(No response from {self.model_name})")
             return output_text
         else:
-            if output_text[:len(input_text)]==input_text:
+            if len(context)==0 and output_text[:len(input_text)]==input_text:
                 #print("(Input repeated).")
                 output_text = output_text[len(input_text):]
-            anspos  = output_text.find("Answer:")
-            if anspos>=0:
-                answer = output_text[anspos:]
-                #print(answer)
+            if type(output_text)==str:
+                anspos  = output_text.find("Answer:")
+                if anspos>=0:
+                    answer = output_text[anspos:]
+                    #print(answer)
+                    return answer
+            elif type(output_text)==list:
+                #print(output_text)
+                answer = output_text[-1]["content"]
                 return answer
             else:
-                #print(output_text)
-                return output_text
-
+                raise ValueError(f"Unexpected return type: {type(output_text)}")
     def test_mode(self, prompts=samples):
         prompt_again = True
         examples = []
@@ -354,6 +366,10 @@ def init_prompter(prompter_name):
         prompter = MattersPrompter()
     elif prompter_name=="prepsense":
         prompter = PrepSensePrompter()
+    elif prompter_name=="preprel":
+        prompter = PrepRelationPrompter()
+    elif prompter_name in ["preprelyesno", "pryn"]:
+        prompter = PrepRelYesNoPrompter()
     else:
         prompter = Prompter()
     return prompter
@@ -445,7 +461,7 @@ def main():
                 overwrite = True
         generator = init_generator(args.model, args.token)
         if args.interactive:
-            journal = list(generator.generate(inputs, outputfile=args.output_file))
+            journal = list(generator.generate(inputs, outputfile=args.output_file, verbose=True))
         else:
             journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
             fig01=plot_results(journal, title="Information Structure vs Plausibility", 

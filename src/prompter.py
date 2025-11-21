@@ -220,6 +220,100 @@ class NLPPrompter(Prompter):
             [doc, X, p1, Y, p2, Z, xdt, xv, xv2, xhead, yv, yv2, yhead]))
         return params
 
+class PrepRelYesNoPrompter(Prompter):
+    def initialize(self):
+        with open("data/preprels.json") as relin:
+            self.preprels = json.load(relin)
+        self.keyrels = ['attribute', 'activity', 'agent', 'participant', 'cause', 'location', 'temporal', 'via']
+
+    def make_prompt(self, sentence_text, prep, ppobj, rel):
+        if rel=='temporal':
+            option = "time period"
+        else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
+            option = rel
+        art = "an" if option[0] in ['a','e','i','o','u'] else "a"
+        prompt = f"""In "{sentence_text}", does "{prep} {ppobj}" specify {art} {option}? Yes or No? """
+        return prompt
+
+    def init_rec(self, source_dict):
+        rec = super().init_rec(source_dict)
+        rec["context"] = "You are a helpful assistant that answers questions with only 'yes' or 'no'."
+        return rec
+
+    def preprocess(self, source_dict=None, promptcolprefix=None):
+        if source_dict is None or 'sentence_text' not in source_dict:
+            raise ValueError("Entry not found: 'sentence_text'")
+        sentence_text = source_dict['sentence_text']
+        X = source_dict['X']
+        p1 = source_dict['P1']
+        Y = source_dict['Y']
+        p2 = source_dict['P2']
+        Z = source_dict['Z']
+
+        if p1 not in self.preprels:
+            self.preprels[p1] = ["other"]
+        for rel in self.preprels[p1]:
+            if rel not in self.keyrels:
+                continue
+            rec = self.init_rec(source_dict)
+            rec['prompt'] = self.make_prompt(sentence_text, p1, Y, rel)
+            rec['class'] = f"p1-{p1}-{rel}"
+            yield rec
+
+        if p2 not in self.preprels:
+            self.preprels[p2] = ["other"]
+        for rel in self.preprels[p2]:
+            if rel not in self.keyrels:
+                continue
+            rec = self.init_rec(source_dict)
+            rec['prompt'] = self.make_prompt(sentence_text, p2, Z, rel)
+            rec['class'] = f"p2-{p2}-{rel}"
+            yield rec
+
+class PrepRelationPrompter(Prompter):
+    def initialize(self):
+        with open("../data/preprels.json") as relin:
+            self.preprels = json.load(relin)
+
+    def make_prompt(self, sentence_text, prep, ppobj):
+        prompt_intro= f"""What is the meaning of the phrase "{prep} {ppobj}" in the following sentence? 
+{sentence_text}
+
+Options:
+"""
+        options = []
+        choice = 'A'
+        for rel in self.preprels(prep):
+            if rel=='temporal':
+                option = f"{choice}) time period. "
+            else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
+                option = f"{choice}) {rel}. "
+            options.append(option)
+            choice = chr(ord(choice) + 1)
+        return "\n".join([prompt_intro] + options)
+
+    def preprocess(self, source_dict=None, promptcolprefix=None):
+        if source_dict is None or 'sentence_text' not in source_dict:
+            raise ValueError("Entry not found: 'sentence_text'")
+        sentence_text = source_dict['sentence_text']
+        X = source_dict['X']
+        p1 = source_dict['P1']
+        Y = source_dict['Y']
+        p2 = source_dict['P2']
+        Z = source_dict['Z']
+
+        rec = self.init_rec(source_dict)
+        rec['prompt'] = self.make_prompt(sentence_text, p1, Y)
+        rec['context'] = ""
+        rec['class'] = "p1rel"
+        yield rec
+
+        rec = self.init_rec(source_dict)
+        rec['prompt'] = self.make_prompt(sentence_text, p2, Z)
+        rec['context'] = ""
+        rec['class'] = "p2rel"
+        yield rec
+
 class PrepSensePrompter(Prompter):
     def initialize(self):
         self.prep_senses = defaultdict(list)
