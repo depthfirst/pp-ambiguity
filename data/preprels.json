@@ -1,0 +1,267 @@
+{
+  "into": [
+    "endstate",
+    "destination",
+    "temporal",
+    "topic",
+    "activity",
+    "numeric",
+    "location"
+  ],
+  "to": [
+    "endstate",
+    "destination",
+    "temporal",
+    "objectofverb",
+    "recipient",
+    "beneficiary",
+    "participant",
+    "other",
+    "activity",
+    "numeric",
+    "location"
+  ],
+  "towards": [
+    "endstate",
+    "experiencer",
+    "temporal",
+    "direction",
+    "objectofverb"
+  ],
+  "for": [
+    "destination",
+    "temporal",
+    "objectofverb",
+    "beneficiary",
+    "cause",
+    "other",
+    "numeric",
+    "professionalaspect",
+    "purpose"
+  ],
+  "in": [
+    "destination",
+    "partwhole",
+    "attribute",
+    "medium",
+    "temporal",
+    "manner",
+    "activity",
+    "professionalaspect",
+    "location"
+  ],
+  "inside": [
+    "destination",
+    "temporal",
+    "other",
+    "location"
+  ],
+  "among": [
+    "partwhole",
+    "co-participants",
+    "location"
+  ],
+  "of": [
+    "partwhole",
+    "attribute",
+    "temporal",
+    "objectofverb",
+    "possessor",
+    "cause",
+    "source",
+    "species",
+    "numeric",
+    "location"
+  ],
+  "on": [
+    "experiencer",
+    "medium",
+    "temporal",
+    "objectofverb",
+    "possessor",
+    "topic",
+    "physicalsupport",
+    "instrument",
+    "via",
+    "other",
+    "activity",
+    "numeric",
+    "professionalaspect",
+    "location"
+  ],
+  "as": [
+    "attribute",
+    "other"
+  ],
+  "at": [
+    "attribute",
+    "temporal",
+    "objectofverb",
+    "cause",
+    "instrument",
+    "activity",
+    "numeric",
+    "professionalaspect",
+    "location"
+  ],
+  "by": [
+    "attribute",
+    "temporal",
+    "direction",
+    "agent",
+    "possessor",
+    "source",
+    "instrument",
+    "participant",
+    "via",
+    "other",
+    "numeric",
+    "location"
+  ],
+  "from": [
+    "attribute",
+    "temporal",
+    "objectofverb",
+    "startstate",
+    "agent",
+    "cause",
+    "source",
+    "opponent",
+    "separation",
+    "location"
+  ],
+  "with": [
+    "attribute",
+    "direction",
+    "objectofverb",
+    "cause",
+    "instrument",
+    "opponent",
+    "participant",
+    "manner",
+    "separation",
+    "other",
+    "professionalaspect"
+  ],
+  "across": [
+    "temporal",
+    "location"
+  ],
+  "after": [
+    "temporal",
+    "direction",
+    "objectofverb",
+    "beneficiary",
+    "cause",
+    "other"
+  ],
+  "before": [
+    "temporal",
+    "other",
+    "location"
+  ],
+  "behind": [
+    "temporal",
+    "direction",
+    "beneficiary",
+    "other",
+    "location"
+  ],
+  "between": [
+    "temporal",
+    "co-participants",
+    "opponent",
+    "numeric",
+    "location"
+  ],
+  "down": [
+    "temporal",
+    "direction",
+    "location"
+  ],
+  "during": [
+    "temporal"
+  ],
+  "over": [
+    "temporal",
+    "objectofverb",
+    "topic",
+    "instrument",
+    "other",
+    "location"
+  ],
+  "through": [
+    "temporal",
+    "objectofverb",
+    "instrument",
+    "via",
+    "manner",
+    "activity",
+    "location"
+  ],
+  "along": [
+    "direction",
+    "manner",
+    "other",
+    "location"
+  ],
+  "off": [
+    "direction",
+    "separation",
+    "location"
+  ],
+  "round": [
+    "objectofverb",
+    "topic",
+    "location"
+  ],
+  "about": [
+    "possessor",
+    "topic",
+    "location"
+  ],
+  "around": [
+    "topic",
+    "location"
+  ],
+  "against": [
+    "physicalsupport",
+    "opponent",
+    "other"
+  ],
+  "onto": [
+    "participant",
+    "via",
+    "location"
+  ],
+  "like": [
+    "manner",
+    "other"
+  ],
+  "above": [
+    "other",
+    "location"
+  ],
+  "beneath": [
+    "other",
+    "location"
+  ],
+  "beside": [
+    "other",
+    "location"
+  ],
+  "near": [
+    "direction",
+    "temporal",
+    "location"
+  ],
+  "under": [
+    "other",
+    "location",
+    "topic"
+  ],
+  "underneath": [
+    "other",
+    "location"
+  ]
+}
