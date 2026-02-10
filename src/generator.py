@@ -112,7 +112,6 @@ class Llama3Generator(ModelGenerator):
             return output_text
         else:
             if len(context)==0 and output_text[:len(input_text)]==input_text:
-                #print("(Input repeated).")
                 output_text = output_text[len(input_text):]
             if type(output_text)==str:
                 anspos  = output_text.find("Answer:")
@@ -120,12 +119,16 @@ class Llama3Generator(ModelGenerator):
                     answer = output_text[anspos:]
                     #print(answer)
                     return answer
+                else:
+                    answer = output_text
+                return answer
             elif type(output_text)==list:
                 #print(output_text)
                 answer = output_text[-1]["content"]
                 return answer
             else:
                 raise ValueError(f"Unexpected return type: {type(output_text)}")
+    
     def test_mode(self, prompts=samples):
         prompt_again = True
         examples = []

@@ -77,6 +77,15 @@ class Prompter():
         return rec
 
     def interactive(self):
+        '''
+        Just modified to accept lines of the form
+        #name: value
+        which will have the effect of adding an entry for 'name'
+        to the `source_dict` if it doesn't already exist
+        and setting it to `value`. 
+        Would it be better to do this in preprocess to be more 
+        generally applicable? 
+        '''
         prompt_again = True
         examples = []
         print(f"Enter prompts to send to model. ")
@@ -84,8 +93,14 @@ class Prompter():
         while prompt_again:
             prompt=input(f"Please Enter Prompt: ")
             promptlines = []
+            rec = {}
             while prompt!='.' and not prompt.lower()[:3]=='bye':
-                promptlines.append(prompt)
+                if prompt[0]=='#':
+                    if ':' in prompt:
+                        name, value = prompt[1:].split(":")
+                        rec[name] = value
+                else:
+                    promptlines.append(prompt)
                 prompt = input()
             if prompt.lower()[:3]=='bye':
                 prompt_again = False
@@ -95,7 +110,8 @@ class Prompter():
                 ack = input("Is that correct? [Y/n]")
                 ack = "Y"
                 if len(ack)==0 or ack.lower()[0]=='y':
-                    rec = {"prompt": prompt, "sentence_text": prompt}
+                    rec["prompt"] = prompt
+                    rec["sentence_text"] = prompt
                     for newrec in self.preprocess(rec):
                         yield newrec
                 else:
