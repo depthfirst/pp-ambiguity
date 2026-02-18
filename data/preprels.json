@@ -40,15 +40,13 @@
     "purpose"
   ],
   "in": [
-    "destination",
-    "partwhole",
-    "attribute",
-    "medium",
-    "temporal",
-    "manner",
-    "activity",
-    "professionalaspect",
-    "location"
+    "Agent : Activity", 
+    "Topic : Attribute", 
+    "Person : Clothing", 
+    "Topic : Setting", 
+    "Topic : Spatial Arrangement", 
+    "Topic : Temporal", 
+    "Occupant : Vessel"
   ],
   "inside": [
     "destination",
@@ -62,47 +60,31 @@
     "location"
   ],
   "of": [
-    "partwhole",
-    "attribute",
-    "temporal",
-    "objectofverb",
-    "possessor",
-    "cause",
-    "source",
-    "species",
-    "numeric",
-    "location"
+    "Display : Content",
+    "Group : Members",
+    "Part : Whole"
   ],
   "on": [
-    "experiencer",
-    "medium",
-    "temporal",
-    "objectofverb",
-    "possessor",
-    "topic",
-    "physicalsupport",
-    "instrument",
-    "via",
-    "other",
-    "activity",
-    "numeric",
-    "professionalaspect",
-    "location"
+    "Agent : Activity", 
+    "Topic : Attribute", 
+    "Agent : Instrument", 
+    "Topic : Landmark", 
+    "Display : Medium", 
+    "Agent : PhysicalSupport", 
+    "Topic : Setting", 
+    "Topic : Temporal", 
+    "Occupant : Vessel"
   ],
   "as": [
     "attribute",
     "other"
   ],
   "at": [
-    "attribute",
-    "temporal",
-    "objectofverb",
-    "cause",
-    "instrument",
-    "activity",
-    "numeric",
-    "professionalaspect",
-    "location"
+    "Topic : Activity",
+    "Topic : Landmark",
+    "Topic : Setting",
+    "Topic : Spatial Arrangement",
+    "Topic : Temporal"
   ],
   "by": [
     "attribute",
@@ -131,17 +113,13 @@
     "location"
   ],
   "with": [
-    "attribute",
-    "direction",
-    "objectofverb",
-    "cause",
-    "instrument",
-    "opponent",
-    "participant",
-    "manner",
-    "separation",
-    "other",
-    "professionalaspect"
+    "Topic : Attribute", 
+    "Person : Clothing", 
+    "Agent : Instrument", 
+    "Topic : Landmark", 
+    "Topic : Manner", 
+    "Activity : Participant", 
+    "Topic : Setting"
   ],
   "across": [
     "temporal",

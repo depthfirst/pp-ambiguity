@@ -290,7 +290,7 @@ class PrepRelationPrompter(Prompter):
     def initialize(self):
         with open("data/preprels.json") as relin:
             self.preprels = json.load(relin)
-        self.context = "You are a helpful assistant that answers questions with only the letter of the best option."
+        self.context = "You are a helpful assistant that answers questions with only the letter of the correct choice."
     
     def init_rec(self, source_dict):
         rec = super().init_rec(source_dict)
@@ -298,18 +298,15 @@ class PrepRelationPrompter(Prompter):
         return rec
 
     def make_prompt(self, sentence_text, prep, ppobj):
-        prompt_intro= f"""What is the meaning of the phrase "{prep} {ppobj}" in the following sentence? 
-{sentence_text}
-
-Options:
+        prompt_intro= f"""In the phrase "{sentence_text}", which of the following best describes the role of the relation "{prep} {ppobj}"? 
 """
         options = []
         choice = 'A'
         for rel in self.preprels[prep]:
-            if rel=='temporal':
-                option = f"{choice}) time period. "
-            else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
-                option = f"{choice}) {rel}. "
+            #if rel.lower()=='temporal':
+            #    option = f"{choice}) time period. "
+            #else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
+            option = f"({choice}) {rel}. "
             options.append(option)
             choice = chr(ord(choice) + 1)
         return "\n".join([prompt_intro] + options)
@@ -324,15 +321,17 @@ Options:
         p2 = source_dict['P2']
         Z = source_dict['Z']
 
-        rec = self.init_rec(source_dict)
-        rec['prompt'] = self.make_prompt(sentence_text, p1, Y)
-        rec['class'] = "p1rel"
-        yield rec
+        if p1 in ['at','in','on','of','with']:
+            rec = self.init_rec(source_dict)
+            rec['prompt'] = self.make_prompt(sentence_text, p1, Y)
+            rec['class'] = "p1rel"
+            yield rec
 
-        rec = self.init_rec(source_dict)
-        rec['prompt'] = self.make_prompt(sentence_text, p2, Z)
-        rec['class'] = "p2rel"
-        yield rec
+        if p2 in ['at','in','on','of','with']:
+            rec = self.init_rec(source_dict)
+            rec['prompt'] = self.make_prompt(sentence_text, p2, Z)
+            rec['class'] = "p2rel"
+            yield rec
 
 class PrepSensePrompter(Prompter):
     def initialize(self):
