@@ -274,6 +274,50 @@ def eval_results_nofolds(results, plaus_col='plausibility', struct_col='structur
 
     return clf, clfp, clfs
 
+def get_bucket(df, criteria={}):
+    ''' 
+    Given a dict of name/value pairs, return a slice of the DataFrame
+    matching the criteria given. Each name must match the name of a column. 
+    If the value is a list, `df[name].isin(val)` is used, otherwise `==`. 
+    ''' 
+    filters = []
+    for criterion in criteria:
+        if criterion=="*":
+            continue
+        val = criteria[criterion]
+        if type(val)==list:
+            filters.append(df[criterion].isin(val))    
+        else:
+            filters.append(df[criterion]==val)
+    npfilters = np.array(filters)
+    return df.loc[npfilters.all(axis=0)]
+
+def get_proportion(df, criteria={}, subcrit={}):
+    stuff = get_bucket(df, criteria=criteria).shape[0]
+    criteria.update(subcrit)
+    stuff_sub = get_bucket(df, criteria=criteria).shape[0]
+    return stuff_sub/stuff
+
+def load_results_pprel(f):
+    examples=[]
+    with open(f) as jsonl:
+        for line in jsonl:
+            example = json.loads(line.strip())
+            examples.append(example)
+    adf = results_to_df_pprel(examples) 
+    return adf
+
+def results_to_df_pprel(res):
+    df = pd.DataFrame(res)
+    # Make generic - loop through classes
+    p1rel = df.loc[df['class']=='p1rel'].set_index('annidx')
+    
+    extra_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
+    drop_columns = [col for col in extra_columns if col in df]
+    p2rel = df.loc[df['class']=='p2rel'].drop(columns=drop_columns).set_index('annidx')
+    df = p1rel.join(p2rel, lsuffix='_p1rel', rsuffix='_p2rel', how='inner')
+    return df
+
 def main():
 
     parser = init_parser()

@@ -321,17 +321,23 @@ class PrepRelationPrompter(Prompter):
         p2 = source_dict['P2']
         Z = source_dict['Z']
 
-        if p1 in ['at','in','on','of','with']:
-            rec = self.init_rec(source_dict)
-            rec['prompt'] = self.make_prompt(sentence_text, p1, Y)
-            rec['class'] = "p1rel"
-            yield rec
+        rec = self.init_rec(source_dict)
+        rec['prompt'] = self.make_prompt(sentence_text, p1, Y)
+        rec['class'] = "p1rel"
+        yield rec
 
-        if p2 in ['at','in','on','of','with']:
+        rec = self.init_rec(source_dict)
+        rec['prompt'] = self.make_prompt(sentence_text, p2, Z)
+        rec['class'] = "p2rel"
+        yield rec
+'''
+        if p2 in ['at','in','on','of','with','near']:
+        if p2=="near":
             rec = self.init_rec(source_dict)
             rec['prompt'] = self.make_prompt(sentence_text, p2, Z)
             rec['class'] = "p2rel"
             yield rec
+'''
 
 class PrepSensePrompter(Prompter):
     def initialize(self):

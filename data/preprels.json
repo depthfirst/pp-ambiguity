@@ -49,10 +49,8 @@
     "Occupant : Vessel"
   ],
   "inside": [
-    "destination",
-    "temporal",
-    "other",
-    "location"
+    "Topic : Setting",
+    "Topic : Spatial Arrangement"
   ],
   "among": [
     "partwhole",
@@ -87,18 +85,16 @@
     "Topic : Temporal"
   ],
   "by": [
-    "attribute",
-    "temporal",
-    "direction",
-    "agent",
-    "possessor",
-    "source",
-    "instrument",
-    "participant",
-    "via",
-    "other",
-    "numeric",
-    "location"
+    "Topic : Attribute",
+    "Topic : Temporal",
+    "Topic : Direction",
+    "Activity : Agent",
+    "Topic : Landmark",
+    "Topic : Possessor",
+    "Topic : Source",
+    "Agent : Instrument",
+    "Activity : Participant",
+    "Topic : Via"
   ],
   "from": [
     "attribute",
@@ -139,18 +135,16 @@
     "location"
   ],
   "behind": [
-    "temporal",
-    "direction",
-    "beneficiary",
-    "other",
-    "location"
+    "Topic : Landmark",
+    "Topic : Spatial Arrangement"
   ],
   "between": [
-    "temporal",
-    "co-participants",
-    "opponent",
-    "numeric",
-    "location"
+    "Topic : Temporal",
+    "Agent : Activity",
+    "Activity : Participant",
+    "Activity : Co-Participants",
+    "Topic : Landmark",
+    "Topic : Spatial Arrangement"
   ],
   "down": [
     "temporal",
@@ -199,8 +193,9 @@
     "location"
   ],
   "around": [
-    "topic",
-    "location"
+    "Topic : Landmark",
+    "Topic : Spatial Arrangement",
+    "Activity : Participant"
   ],
   "against": [
     "physicalsupport",
@@ -217,29 +212,33 @@
     "other"
   ],
   "above": [
-    "other",
-    "location"
+    "Topic : Spatial Arrangement",
+    "Occupant : Vessel"
   ],
   "beneath": [
     "other",
     "location"
   ],
   "beside": [
-    "other",
-    "location"
+    "Topic : Landmark",
+    "Topic : Spatial Arrangement"
   ],
   "near": [
-    "direction",
-    "temporal",
-    "location"
+    "Topic : Setting",
+    "Topic : Temporal",
+    "Topic : Landmark",
+    "Activity : Participant"
   ],
   "under": [
-    "other",
-    "location",
-    "topic"
+    "Topic : Temporal",
+    "Topic : Landmark",
+    "Topic : Setting",
+    "Topic : Attribute"
   ],
   "underneath": [
-    "other",
-    "location"
+    "Topic : Temporal",
+    "Topic : Landmark",
+    "Topic : Setting",
+    "Topic : Attribute"
   ]
 }
