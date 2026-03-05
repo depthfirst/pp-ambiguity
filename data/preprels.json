@@ -40,13 +40,13 @@
     "purpose"
   ],
   "in": [
-    "Agent : Activity", 
-    "Topic : Attribute", 
-    "Person : Clothing", 
-    "Topic : Setting", 
-    "Topic : Spatial Arrangement", 
-    "Topic : Temporal", 
-    "Occupant : Vessel"
+    "An activity that {X} may be engaged in. ",
+    "An attribute of {X}. ",
+    "Clothing that may be worn by {X}. ",
+    "A setting that {X} may be situated in. ",
+    "A special kind of spatial arrangement between {X} and {Y}. ",
+    "A temporary condition or time of day", 
+    "A kind of vessel or support that {X} may occupy. "
   ],
   "inside": [
     "Topic : Setting",
@@ -78,11 +78,11 @@
     "other"
   ],
   "at": [
-    "Topic : Activity",
-    "Topic : Landmark",
-    "Topic : Setting",
-    "Topic : Spatial Arrangement",
-    "Topic : Temporal"
+    "An activity at which {X} may be engaged. ",
+    "A landmark at which {X} may be located. ",
+    "The setting at which {X} may be situated. ",
+    "A special kind of spatial arrangement between {X} and {Y}. ",
+    "A temporary condition or time of day" 
   ],
   "by": [
     "Topic : Attribute",

@@ -3,6 +3,7 @@ import sys
 import numpy as np
 import pandas as pd
 import spacy
+import re
 
 from tqdm import tqdm as progress_bar, trange
 from sklearn.metrics import accuracy_score
@@ -95,7 +96,9 @@ class Prompter():
             promptlines = []
             rec = {}
             while prompt!='.' and not prompt.lower()[:3]=='bye':
-                if prompt[0]=='#':
+                if len(prompt)==0:
+                    promptlines.append("\n")
+                elif prompt[0]=='#':
                     if ':' in prompt:
                         name, value = prompt[1:].split(":")
                         rec[name] = value
@@ -286,6 +289,7 @@ class PrepRelYesNoPrompter(Prompter):
             rec['class'] = f"p2-{p2}-{rel}"
             yield rec
 
+
 class PrepRelationPrompter(Prompter):
     def initialize(self):
         with open("data/preprels.json") as relin:
@@ -297,15 +301,20 @@ class PrepRelationPrompter(Prompter):
         rec["context"] = self.context
         return rec
 
-    def make_prompt(self, sentence_text, prep, ppobj):
+    def make_prompt(self, source_dict, prep, ppobj):
+        sentence_text = source_dict["sentence_text"]
         prompt_intro= f"""In the phrase "{sentence_text}", which of the following best describes the role of the relation "{prep} {ppobj}"? 
 """
         options = []
         choice = 'A'
+        varpats = []
+        # Dang. I don't have the source_dict here. 
         for rel in self.preprels[prep]:
             #if rel.lower()=='temporal':
             #    option = f"{choice}) time period. "
             #else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
+            for var in ["X","P1","Y","P2","Z"]:
+                rel = re.sub("{{{0}}}".format(var), source_dict[var], rel)
             option = f"({choice}) {rel}. "
             options.append(option)
             choice = chr(ord(choice) + 1)
@@ -321,15 +330,16 @@ class PrepRelationPrompter(Prompter):
         p2 = source_dict['P2']
         Z = source_dict['Z']
 
-        rec = self.init_rec(source_dict)
-        rec['prompt'] = self.make_prompt(sentence_text, p1, Y)
-        rec['class'] = "p1rel"
-        yield rec
+        if p1=="at":
+            rec = self.init_rec(source_dict)
+            rec['prompt'] = self.make_prompt(source_dict, p1, Y)
+            rec['class'] = "p1rel"
+            yield rec
 
-        rec = self.init_rec(source_dict)
-        rec['prompt'] = self.make_prompt(sentence_text, p2, Z)
-        rec['class'] = "p2rel"
-        yield rec
+            rec = self.init_rec(source_dict)
+            rec['prompt'] = self.make_prompt(source_dict, p2, Z)
+            rec['class'] = "p2rel"
+            yield rec
 '''
         if p2 in ['at','in','on','of','with','near']:
         if p2=="near":
