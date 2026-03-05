@@ -40,13 +40,34 @@
     "purpose"
   ],
   "in": [
-    "An activity that {X} may be engaged in. ",
-    "An attribute of {X}. ",
-    "Clothing that may be worn by {X}. ",
-    "A setting that {X} may be situated in. ",
-    "A special kind of spatial arrangement between {X} and {Y}. ",
-    "A temporary condition or time of day", 
-    "A kind of vessel or support that {X} may occupy. "
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X} {P1} {Y}. "
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X} {P1} {Y}. "
+    }},
+    {"label": "Clothing", "prompts": {
+      "p1rel": "Clothing being worn by {X}. ", 
+      "p2rel": "Clothing being worn by {X} {P1} {Y}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated in. ",
+      "p2rel": "A setting that {X} {P1} {Y} may be situated in. "
+    }}, 
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X} {P1} {Y} and {Z}. "
+    }},
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Vessel", "prompts": {
+      "p1rel": "A kind of vessel or support that {X} may occupy. ",
+      "p2rel": "A kind of vessel or support that {X} {P1} {Y} may occupy. "
+    }}
   ],
   "inside": [
     "Topic : Setting",

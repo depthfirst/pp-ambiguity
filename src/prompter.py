@@ -301,7 +301,7 @@ class PrepRelationPrompter(Prompter):
         rec["context"] = self.context
         return rec
 
-    def make_prompt(self, source_dict, prep, ppobj):
+    def make_prompt(self, source_dict, prep, ppobj, pclass="p1rel"):
         sentence_text = source_dict["sentence_text"]
         prompt_intro= f"""In the phrase "{sentence_text}", which of the following best describes the role of the relation "{prep} {ppobj}"? 
 """
@@ -313,9 +313,23 @@ class PrepRelationPrompter(Prompter):
             #if rel.lower()=='temporal':
             #    option = f"{choice}) time period. "
             #else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
+            if type(rel)==dict: 
+                rellab = rel["label"]
+                prompt = rel["prompts"][pclass]
+            elif type(rel)==str:
+                rellab = rel
+                prompt = rel
+            else:
+                raise TypeError
             for var in ["X","P1","Y","P2","Z"]:
-                rel = re.sub("{{{0}}}".format(var), source_dict[var], rel)
-            option = f"({choice}) {rel}. "
+                # Replaces occurrences of "{X}"" with value of X, etc.
+                if var=="X":
+                    srcvar = source_dict[var].lower()
+                else:
+                    srcvar = source_dict[var]
+
+                prompt = re.sub("{{{}}}".format(var), srcvar, prompt)
+            option = f"({choice}) {prompt}"
             options.append(option)
             choice = chr(ord(choice) + 1)
         return "\n".join([prompt_intro] + options)
@@ -330,17 +344,19 @@ class PrepRelationPrompter(Prompter):
         p2 = source_dict['P2']
         Z = source_dict['Z']
 
-        if p1=="at":
+        # Hacky way - don't filter by preposition here
+        if p1=="in":
             rec = self.init_rec(source_dict)
             rec['prompt'] = self.make_prompt(source_dict, p1, Y)
             rec['class'] = "p1rel"
             yield rec
 
+'''
             rec = self.init_rec(source_dict)
             rec['prompt'] = self.make_prompt(source_dict, p2, Z)
             rec['class'] = "p2rel"
             yield rec
-'''
+
         if p2 in ['at','in','on','of','with','near']:
         if p2=="near":
             rec = self.init_rec(source_dict)
