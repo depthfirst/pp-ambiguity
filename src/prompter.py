@@ -345,7 +345,7 @@ class PrepRelationPrompter(Prompter):
         Z = source_dict['Z']
 
         # Hacky way - don't filter by preposition here
-        if p1=="in":
+        if p1=="of":
             rec = self.init_rec(source_dict)
             rec['prompt'] = self.make_prompt(source_dict, p1, Y)
             rec['class'] = "p1rel"

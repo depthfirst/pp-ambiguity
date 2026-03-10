@@ -79,6 +79,17 @@
     "location"
   ],
   "of": [
+    {"label": "Activity", "prompts": {
+      "p1rel": "{X} is a kind of activity being done by {Y}. "
+    }},
+    {"label": "Group", "prompts": {
+      "p1rel": "{X} is a kind of group with {Y} as its member{s}. "
+    }},
+    {"label": "PartWhole", "prompts": {
+      "p1rel": "{X} is part of {Y} as a whole"
+    }}
+  ],
+  "mof": [
     "Display : Content",
     "Group : Members",
     "Part : Whole"
