@@ -307,12 +307,7 @@ class PrepRelationPrompter(Prompter):
 """
         options = []
         choice = 'A'
-        varpats = []
-        # Dang. I don't have the source_dict here. 
         for rel in self.preprels[prep]:
-            #if rel.lower()=='temporal':
-            #    option = f"{choice}) time period. "
-            #else: # if rel in ['location', 'attribute', 'activity', 'destination', 'numeric']:
             if type(rel)==dict: 
                 rellab = rel["label"]
                 prompt = rel["prompts"][pclass]
@@ -345,17 +340,17 @@ class PrepRelationPrompter(Prompter):
         Z = source_dict['Z']
 
         # Hacky way - don't filter by preposition here
-        if p1=="of":
-            rec = self.init_rec(source_dict)
-            rec['prompt'] = self.make_prompt(source_dict, p1, Y)
-            rec['class'] = "p1rel"
-            yield rec
+        #if p1=="of":
+        rec = self.init_rec(source_dict)
+        rec['prompt'] = self.make_prompt(source_dict, p1, Y)
+        rec['class'] = "p1rel"
+        yield rec
 
+        rec = self.init_rec(source_dict)
+        rec['prompt'] = self.make_prompt(source_dict, p2, Z)
+        rec['class'] = "p2rel"
+        yield rec
 '''
-            rec = self.init_rec(source_dict)
-            rec['prompt'] = self.make_prompt(source_dict, p2, Z)
-            rec['class'] = "p2rel"
-            yield rec
 
         if p2 in ['at','in','on','of','with','near']:
         if p2=="near":

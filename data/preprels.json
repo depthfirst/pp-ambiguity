@@ -86,7 +86,10 @@
       "p1rel": "{X} is a kind of group with {Y} as its member{s}. "
     }},
     {"label": "PartWhole", "prompts": {
-      "p1rel": "{X} is part of {Y} as a whole"
+      "p1rel": "{X} is part of {Y} as a whole. "
+    }},
+    {"label": "Display", "prompts": {
+      "p1rel": "{X} is a presentation or display showing {Y}. "
     }}
   ],
   "mof": [
