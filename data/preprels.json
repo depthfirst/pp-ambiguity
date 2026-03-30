@@ -39,26 +39,56 @@
     "professionalaspect",
     "purpose"
   ],
-  "in": [
-    {"label": "Activity", "prompts": {
-      "p1rel": "Some kind of activity being engaged in by {X}. ",
-      "p2rel": "Some kind of activity being engaged in by {X} {P1} {Y}. "
-    }},
+  "with": [
     {"label": "Attribute", "prompts": {
       "p1rel": "Some kind of attribute of {X}. ",
-      "p2rel": "Some kind of attribute of {X} {P1} {Y}. "
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Clothing", "prompts": {
       "p1rel": "Clothing being worn by {X}. ", 
-      "p2rel": "Clothing being worn by {X} {P1} {Y}. "
+      "p2rel": "Clothing being worn by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Instrument", "prompts": {
+      "p1rel": "Some kind of instrument being used by {X}. ",
+      "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen with. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+    }},
+    {"label": "Manner", "prompts": {
+      "p1rel": "The manner in which {X} appears. ", 
+      "p2rel": "The manner in which {X}, {Y}, or {X} {P1} {Y} appears. "
+    }},
+    {"label": "Participant", "prompts": {
+      "p1rel": "That {Y} may be participating in the same activity as {X}. ",
+      "p2rel": "That {Z} is participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Setting", "prompts": {
       "p1rel": "A setting that {X} may be situated in. ",
-      "p2rel": "A setting that {X} {P1} {Y} may be situated in. "
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "      
+    }}
+  ], 
+  "in": [
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Clothing", "prompts": {
+      "p1rel": "Clothing being worn by {X}. ", 
+      "p2rel": "Clothing being worn by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated in. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "
     }}, 
     {"label": "Spatial", "prompts": {
       "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
-      "p2rel": "A special kind of spatial arrangement between {X} {P1} {Y} and {Z}. "
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
     }},
     {"label": "Temporal", "prompts": {
       "p1rel": "A temporary condition or time of day", 
@@ -66,7 +96,7 @@
     }},
     {"label": "Vessel", "prompts": {
       "p1rel": "A kind of vessel or support that {X} may occupy. ",
-      "p2rel": "A kind of vessel or support that {X} {P1} {Y} may occupy. "
+      "p2rel": "A kind of vessel or support that {X}, {Y}, or {X} {P1} {Y} may occupy. "
     }}
   ],
   "inside": [
@@ -98,15 +128,42 @@
     "Part : Whole"
   ],
   "on": [
-    "Agent : Activity", 
-    "Topic : Attribute", 
-    "Agent : Instrument", 
-    "Topic : Landmark", 
-    "Display : Medium", 
-    "Agent : PhysicalSupport", 
-    "Topic : Setting", 
-    "Topic : Temporal", 
-    "Occupant : Vessel"
+    {"label": "Activity", "prompts": {
+      "p1rel": "Agent : Activity", 
+      "p2rel": "Agent : Activity"
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "    
+    }},
+    {"label": "Instrument", "prompts": {
+      "p1rel": "Some kind of instrument being used by {X}. ",
+      "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen with. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+    }},
+    {"label": "Medium", "prompts": {
+      "p1rel": "Display : Medium",
+      "p2rel": "Display : Medium"
+    }},
+    {"label": "Physical Support", "prompts": {
+      "p1rel": "Agent : PhysicalSupport", 
+      "p2rel": "Agent : PhysicalSupport"
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated in. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "
+    }}, 
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Vessel", "prompts": {
+      "p1rel": "A kind of vessel or support that {X} may occupy. ",
+      "p2rel": "A kind of vessel or support that {X}, {Y}, or {X} {P1} {Y} may occupy. "
+    }}
   ],
   "as": [
     "attribute",
@@ -142,15 +199,6 @@
     "opponent",
     "separation",
     "location"
-  ],
-  "with": [
-    "Topic : Attribute", 
-    "Person : Clothing", 
-    "Agent : Instrument", 
-    "Topic : Landmark", 
-    "Topic : Manner", 
-    "Activity : Participant", 
-    "Topic : Setting"
   ],
   "across": [
     "temporal",
