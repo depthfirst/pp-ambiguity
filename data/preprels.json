@@ -125,7 +125,7 @@
     }},
     {"label": "PartWhole", "prompts": {
       "p1rel": "{X} is part of {Y} as a whole. ",
-      "p1rel": "{Y} is part of {Z} as a whole. "
+      "p2rel": "{Y} is part of {Z} as a whole. "
     }},
     {"label": "Display", "prompts": {
       "p1rel": "{X} is a presentation or display showing {Y}. ", 
@@ -146,16 +146,12 @@
       "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Medium", "prompts": {
-      "p1rel": "Display : Medium",
-      "p2rel": "Display : Medium"
-    }},
-    {"label": "Physical Support", "prompts": {
-      "p1rel": "Agent : PhysicalSupport", 
-      "p2rel": "Agent : PhysicalSupport"
+      "p1rel": "Indicates the medium, language, or canvas ({Y}) of some form of communication or artwork ({X}). ",
+      "p2rel": "Indicates the medium, language, or canvas ({Z}) of some form of communication or artwork ({X}, {Y}, or {X} {P1} {Y}). ",
     }},
     {"label": "Setting", "prompts": {
       "p1rel": "A setting that {X} may be situated in. ",
@@ -275,10 +271,9 @@
       "p1rel": "That {Y} may be participating in the same activity as {X}. ",
       "p2rel": "That {Z} is participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
     }},
-    "Activity : Co-Participants",
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Spatial", "prompts": {
       "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
@@ -343,7 +338,7 @@
   "around": [
     {"label": "Landmark", "prompts": {
       "p1rel": "A landmark that {X} may be seen {P1}. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P1}. "
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Spatial", "prompts": {
       "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
@@ -351,7 +346,7 @@
     }},
     {"label": "Participant", "prompts": {
       "p1rel": "That {Y} may be participating in the same activity as {X}. ",
-      "p2rel": "That {Z} is participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
+      "p2rel": "That {Z} may be participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
     }}
   ],
   "against": [
@@ -373,7 +368,10 @@
       "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
       "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
     }},
-    "Occupant : Vessel"
+    {"label": "Vessel", "prompts": {
+      "p1rel": "A kind of vessel or support that {X} may occupy. ",
+      "p2rel": "A kind of vessel or support that {X}, {Y}, or {X} {P1} {Y} may occupy. "
+    }}
   ],
   "beneath": [
     "other",
@@ -381,8 +379,8 @@
   ],
   "beside": [
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Spatial", "prompts": {
       "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
@@ -391,16 +389,16 @@
   ],
   "near": [
     {"label": "Setting", "prompts": {
-      "p1rel": "A setting that {X} may be situated in. ",
-      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "      
+      "p1rel": "A setting that {X} may be situated {P1}. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated {P2}. "      
     }},
     {"label": "Temporal", "prompts": {
       "p1rel": "A temporary condition or time of day", 
       "p2rel": "A temporary condition or time of day"
     }},
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Participant", "prompts": {
       "p1rel": "That {Y} may be participating in the same activity as {X}. ",
@@ -413,12 +411,12 @@
       "p2rel": "A temporary condition or time of day"
     }},
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Setting", "prompts": {
-      "p1rel": "A setting that {X} may be situated in. ",
-      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "      
+      "p1rel": "A setting that {X} may be situated {P1}. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated {P2}. "      
     }},
     {"label": "Attribute", "prompts": {
       "p1rel": "Some kind of attribute of {X}. ",
@@ -431,12 +429,12 @@
       "p2rel": "A temporary condition or time of day"
     }},
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Setting", "prompts": {
-      "p1rel": "A setting that {X} may be situated in. ",
-      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "      
+      "p1rel": "A setting that {X} may be situated {P1}. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated {P2}. "      
     }},
     {"label": "Attribute", "prompts": {
       "p1rel": "Some kind of attribute of {X}. ",
