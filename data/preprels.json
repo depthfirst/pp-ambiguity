@@ -61,8 +61,8 @@
       "p2rel": "The manner in which {X}, {Y}, or {X} {P1} {Y} appears. "
     }},
     {"label": "Participant", "prompts": {
-      "p1rel": "That {Y} may be participating in the same activity as {X}. ",
-      "p2rel": "That {Z} may be participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "That {Y} may be participating in the same activity {P1} {X}. ",
+      "p2rel": "That {Z} may be participating in the same activity {P2} {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Setting", "prompts": {
       "p1rel": "A setting that {X} may be situated in. ",
@@ -151,7 +151,7 @@
     }},
     {"label": "Medium", "prompts": {
       "p1rel": "Indicates the medium, language, or canvas ({Y}) of some form of communication or artwork ({X}). ",
-      "p2rel": "Indicates the medium, language, or canvas ({Z}) of some form of communication or artwork ({X}, {Y}, or {X} {P1} {Y}). ",
+      "p2rel": "Indicates the medium, language, or canvas ({Z}) of some form of communication or artwork ({X}, {Y}, or {X} {P1} {Y}). "
     }},
     {"label": "Setting", "prompts": {
       "p1rel": "A setting that {X} may be situated in. ",
