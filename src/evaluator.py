@@ -31,37 +31,17 @@ from plotly.offline import iplot
 
 #prels   = json.load(open("../data/preprels.json"))
 
-def results_to_dataframe(res, index="annidx", 
-    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment'],
-    response_mapper={}):
+def results_to_dataframe(
+    results, 
+    index="annidx", 
+    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
+):
     
-    df = pd.DataFrame(res).set_index(index)
-    df["predrel"] = fetch_labels(df, prels=response_mapper)
-    df = clean_predrels(df)
+    df = pd.DataFrame(results)
+    if index is not None:
+        df = df.set_index(index)
     cols2drop = [col for col in drop_columns if col in df]
     df = df.drop(columns=cols2drop)
-
-    # Make generic - loop through classes
-    if "class" not in df:
-        return df
-    classes = set(df["class"].values.tolist())
-    if len(classes)==1:
-        return df
-    
-    clsdfs = []
-    for c in classes: 
-        clsdf = df.loc[df['class']==c]
-        clsdfs.append({"class": c, "data": clsdf})
-    df = clsdfs[0]["data"].drop(columns=["class"])
-    c  = clsdfs[0]["class"]
-    clsdf = clsdfs[1]["data"]
-    c2 = clsdfs[1]["class"]
-    df = df.join(clsdf.drop(columns=["class"]), lsuffix=f"_{c}", rsuffix=f"_{c2}", how="inner")
-    for i in range(2,len(clsdfs)):
-        clsd = clsdfs[i]
-        clsdf = clsd["data"]
-        c    = clsd["class"]
-        df = df.join(clsdf.drop(columns=["class"]), rsuffix=f"_{c}", how="inner")
     return df
 
 def fetch_labels(dev, prels={}): 
@@ -119,15 +99,52 @@ def clean_predrels(dev):
     dev.loc[dev["predrel"]=="An activity at which {X} may be engaged. ", "predrel"] = "Activity"    
     return dev
 
-def load_results(f, drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment'], 
-    response_mapper={}):
+def load_results(
+    f, 
+    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment'], 
+    index="annidx"
+):
     examples=[]
     with open(f) as jsonl:
         for line in jsonl:
             example = json.loads(line.strip())
             examples.append(example)
-    adf = results_to_dataframe(examples, drop_columns=drop_columns, response_mapper=response_mapper) 
+    adf = results_to_dataframe(
+        examples, 
+        drop_columns=drop_columns, 
+        index=index
+    )
     return adf
+
+def fill_choices(adf, response_mapper={}):
+    adf["predrel"] = fetch_labels(adf, prels=response_mapper)
+    adf = clean_predrels(adf)
+    return adf
+
+def collate_results(df):
+    # Make generic - loop through classes
+    if "class" not in df:
+        return df
+    classes = set(df["class"].values.tolist())
+    if len(classes)==1:
+        return df
+    
+    clsdfs = []
+    for c in classes: 
+        clsdf = df.loc[df['class']==c]
+        clsdfs.append({"class": c, "data": clsdf})
+    df = clsdfs[0]["data"].drop(columns=["class"])
+    c  = clsdfs[0]["class"]
+    clsdf = clsdfs[1]["data"]
+    c2 = clsdfs[1]["class"]
+    df = df.join(clsdf.drop(columns=["class"]), lsuffix=f"_{c}", rsuffix=f"_{c2}", how="inner")
+    for i in range(2,len(clsdfs)):
+        clsd = clsdfs[i]
+        clsdf = clsd["data"]
+        c    = clsd["class"]
+        df = df.join(clsdf.drop(columns=["class"]), rsuffix=f"_{c}", how="inner")
+
+    return df
 
 def load_relations(f):
     prels   = json.load(open("../pp-ambiguity/data/preprels.json"))

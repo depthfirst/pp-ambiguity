@@ -57,8 +57,8 @@
       "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
     }},
     {"label": "Manner", "prompts": {
-      "p1rel": "The manner in which {X} appears. ", 
-      "p2rel": "The manner in which {X}, {Y}, or {X} {P1} {Y} appears. "
+      "p1rel": "The manner in which {X} appear(s). ", 
+      "p2rel": "The manner in which {X}, {Y}, or {X} {P1} {Y} appear(s). "
     }},
     {"label": "Participant", "prompts": {
       "p1rel": "That {Y} may be participating in the same activity {P1} {X}. ",
