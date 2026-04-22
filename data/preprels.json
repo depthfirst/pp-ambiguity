@@ -41,8 +41,8 @@
   ],
   "with": [
     {"label": "Attribute", "prompts": {
-      "p1rel": "Some kind of attribute of {X}. ",
-      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "Some attribute of {X}. ",
+      "p2rel": "Some attribute of {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Clothing", "prompts": {
       "p1rel": "Clothing being worn by {X}. ", 
@@ -53,20 +53,20 @@
       "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen with. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Manner", "prompts": {
       "p1rel": "The manner in which {X} appear(s). ", 
       "p2rel": "The manner in which {X}, {Y}, or {X} {P1} {Y} appear(s). "
     }},
     {"label": "Participant", "prompts": {
-      "p1rel": "That {Y} may be participating in the same activity {P1} {X}. ",
-      "p2rel": "That {Z} may be participating in the same activity {P2} {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "That {Y} appear(s) to be participating in the same activity {P1} {X}. ",
+      "p2rel": "That {Z} appear(s) to be participating in the same activity {P2} {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Setting", "prompts": {
-      "p1rel": "A setting that {X} may be situated in. ",
-      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "      
+      "p1rel": "The setting that {X} appear(s) to be situated in. ",
+      "p2rel": "The setting that {X}, {Y}, or {X} {P1} {Y} appear(s) to be situated in. "      
     }}
   ], 
   "in": [
