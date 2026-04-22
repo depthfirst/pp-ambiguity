@@ -111,7 +111,6 @@ class Prompter():
                 prompt = "\n".join(promptlines)
                 print(f"You entered the following prompt:\n'{prompt}'.") 
                 ack = input("Is that correct? [Y/n]")
-                ack = "Y"
                 if len(ack)==0 or ack.lower()[0]=='y':
                     rec["prompt"] = prompt
                     rec["sentence_text"] = prompt
