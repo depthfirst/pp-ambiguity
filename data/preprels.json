@@ -56,10 +56,6 @@
       "p1rel": "A landmark that {X} may be seen {P1}. ", 
       "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
-    {"label": "Manner", "prompts": {
-      "p1rel": "The manner in which {X} appear(s). ", 
-      "p2rel": "The manner in which {X}, {Y}, or {X} {P1} {Y} appear(s). "
-    }},
     {"label": "Participant", "prompts": {
       "p1rel": "That {Y} appear(s) to be participating in the same activity {P1} {X}. ",
       "p2rel": "That {Z} appear(s) to be participating in the same activity {P2} {X}, {Y}, or {X} {P1} {Y}. "
@@ -120,8 +116,8 @@
       "p2rel": "Some kind of activity being engaged in by {Y}. "
     }},
     {"label": "Group", "prompts": {
-      "p1rel": "{X} is a kind of group with {Y} as its member{s}. ",
-      "p2rel": "{Y} is a kind of group with {Z} as its member{s}. "
+      "p1rel": "{X} is a kind of group or enumeration with {Y} as its member(s). ",
+      "p2rel": "{Y} is a kind of group or enumeration with {Z} as its member(s). "
     }},
     {"label": "PartWhole", "prompts": {
       "p1rel": "{X} is part of {Y} as a whole. ",
