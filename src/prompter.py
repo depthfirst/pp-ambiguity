@@ -341,12 +341,12 @@ class PrepRelationPrompter(Prompter):
         # Hacky way - don't filter by preposition here
         #if p1=="of":
         rec = self.init_rec(source_dict)
-        rec['prompt'] = self.make_prompt(source_dict, p1, Y)
+        rec['prompt'] = self.make_prompt(source_dict, p1, Y, pclass="p1rel")
         rec['class'] = "p1rel"
         yield rec
 
         rec = self.init_rec(source_dict)
-        rec['prompt'] = self.make_prompt(source_dict, p2, Z)
+        rec['prompt'] = self.make_prompt(source_dict, p2, Z, pclass="p2rel")
         rec['class'] = "p2rel"
         yield rec
 '''
