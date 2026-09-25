@@ -16,7 +16,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from matplotlib import pyplot as plt
 from collections import Counter
 
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn import svm
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
@@ -103,6 +103,27 @@ def clean_predrels(dev):
     dev.loc[dev["predrel"]=="Activity : Co-Participants", "predrel"] = "Co-Participants"
     dev.loc[dev["predrel"]=="An activity at which {X} may be engaged. ", "predrel"] = "Activity"    
     return dev
+
+def confusion_for_prep(df, poi, pcols=["P1","P2"], truth=["p1_relation", "p2_relation"], pred=["predrel_p1rel", "predrel_p2rel"]):
+    dev = df
+    if type(pcols)==str and type(truth)==str and type(pred)==str:
+        pairs = dev.loc[(dev[pcols]==poi)][[truth, pred]]
+    elif type(pcols)==list and type(truth)==list and type(pred)==list:
+        pairs = []
+        for i in range(len(truth)):
+            pairs += dev.loc[dev[pcols[i]]==poi][[truth[i], pred[i]]].values.tolist()
+    else:
+        raise TypeError("Columns must all be `str` or `list`. ")        
+    gold  = [r[0] for r in pairs]
+    preds = [r[1] for r in pairs]
+    cm = confusion_matrix(gold, preds)
+    disp = ConfusionMatrixDisplay.from_predictions(gold, preds, cmap=plt.cm.Blues, xticks_rotation='vertical')
+    im = disp.im_ # image of confusion matrix
+    ax = disp.ax_ # matplotlib Axes
+    fig = disp.figure_ # matplotlib Figure
+    ax.set_title(f"Predictions of PP Relation Categories (prep={poi};N={len(pairs)})")
+    plt.show()
+    return disp
 
 def load_results(
     f, 
