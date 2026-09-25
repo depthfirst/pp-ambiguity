@@ -16,7 +16,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from matplotlib import pyplot as plt
 from collections import Counter
 
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn import svm
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
@@ -29,14 +29,166 @@ from plotly import graph_objects as go
 from plotly.io import to_html as fig_to_html
 from plotly.offline import iplot
 
-def load_results(f):
+#prels   = json.load(open("../data/preprels.json"))
+
+def results_to_dataframe(
+    results, 
+    index="annidx", 
+    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
+):
+    
+    df = pd.DataFrame(results)
+    if index is not None:
+        df = df.set_index(index)
+    cols2drop = [col for col in drop_columns if col in df]
+    df = df.drop(columns=cols2drop)
+    return df
+
+def fetch_labels(dev, prels={}): 
+    labels = []
+    for i in range(dev.shape[0]):
+        di = dev.iloc[i]
+        # Expand the choice that corresponds to p1 
+        # and the response (letter of the choice)
+        
+        #p1_predrel = [None]*dev.shape[0]
+    
+        c = di["response"]
+        if len(c)!=1:
+            c = c[1]
+        cd = ord(c)-ord('A')
+        if cd<0:
+            raise ValueError(f"Invalid choice '{c}'.")
+        if di["class"]=="p1rel":
+            pp = di["P1"]
+        elif di["class"]=="p2rel":
+            pp = di["P2"]
+        plist = prels[pp]
+        if type(plist)!=list:
+            raise TypeError(f"prels[{pp}] is not a list.")
+        if cd>=len(plist):
+            raise KeyError(f"r={c};class={di['class']};pp={pp}")
+        try:
+            csel = prels[pp][cd]
+        except IndexError:
+            raise ValueError(f"r={c};class={di['class']};pp={pp};cd={cd}")
+        if type(csel)==dict:
+            if not csel["choice"]==c:
+                raise KeyError
+            label = csel["label"]
+        else:
+            label = csel
+        labels.append(label)
+    return labels
+
+
+def clean_predrels(dev):
+    if "predrel" not in dev.columns:
+        return dev
+    dev.loc[dev["predrel"]=="Topic : Attribute", "predrel"] = "Attribute"
+    dev.loc[dev["predrel"]=="Topic : Setting", "predrel"] = "Setting"
+    dev.loc[dev["predrel"]=="The setting at which {X} may be situated. ", "predrel"] = "Setting"
+    dev.loc[dev["predrel"]=="Occupant : Vessel", "predrel"] = "Vessel"
+    dev.loc[dev["predrel"]=="Agent : PhysicalSupport", "predrel"] = "Physical Support"
+    dev.loc[dev["predrel"]=="Topic : Landmark", "predrel"] = "Landmark"
+    dev.loc[dev["predrel"]=="Agent : Instrument", "predrel"] = "Instrument"
+    dev.loc[dev["predrel"]=="Display : Medium", "predrel"] = "Medium"
+    dev.loc[dev["predrel"]=="Activity : Participant", "predrel"] = "Participant"
+    dev.loc[dev["predrel"]=="Topic : Spatial Arrangment", "predrel"] = "Spatial"
+    dev.loc[dev["predrel"]=="A temporary condition or time of day", "predrel"] = "Temporal"
+    dev.loc[dev["predrel"]=="Topic : Manner", "predrel"] = "Manner"
+    dev.loc[dev["predrel"]=="Person : Clothing", "predrel"] = "Clothing"
+    dev.loc[dev["predrel"]=="Topic : Source", "predrel"] = "Source"
+    dev.loc[dev["predrel"]=="A special kind of spatial arrangement between {X} and {Y}. ", "predrel"] = "Spatial"
+    dev.loc[dev["predrel"]=="Activity : Co-Participants", "predrel"] = "Co-Participants"
+    dev.loc[dev["predrel"]=="An activity at which {X} may be engaged. ", "predrel"] = "Activity"    
+    return dev
+
+def confusion_for_prep(df, poi, pcols=["P1","P2"], truth=["p1_relation", "p2_relation"], pred=["predrel_p1rel", "predrel_p2rel"]):
+    dev = df
+    if type(pcols)==str and type(truth)==str and type(pred)==str:
+        pairs = dev.loc[(dev[pcols]==poi)][[truth, pred]]
+    elif type(pcols)==list and type(truth)==list and type(pred)==list:
+        pairs = []
+        for i in range(len(truth)):
+            pairs += dev.loc[dev[pcols[i]]==poi][[truth[i], pred[i]]].values.tolist()
+    else:
+        raise TypeError("Columns must all be `str` or `list`. ")        
+    gold  = [r[0] for r in pairs]
+    preds = [r[1] for r in pairs]
+    cm = confusion_matrix(gold, preds)
+    disp = ConfusionMatrixDisplay.from_predictions(gold, preds, cmap=plt.cm.Blues, xticks_rotation='vertical')
+    im = disp.im_ # image of confusion matrix
+    ax = disp.ax_ # matplotlib Axes
+    fig = disp.figure_ # matplotlib Figure
+    ax.set_title(f"Predictions of PP Relation Categories (prep={poi};N={len(pairs)})")
+    plt.show()
+    return disp
+
+def load_results(
+    f, 
+    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment'], 
+    index="annidx"
+):
     examples=[]
     with open(f) as jsonl:
         for line in jsonl:
             example = json.loads(line.strip())
             examples.append(example)
-    adf = results_to_dataframe(examples) 
+    adf = results_to_dataframe(
+        examples, 
+        drop_columns=drop_columns, 
+        index=index
+    )
     return adf
+
+def fill_choices(adf, response_mapper={}):
+    adf["predrel"] = fetch_labels(adf, prels=response_mapper)
+    adf = clean_predrels(adf)
+    return adf
+
+def collate_results(df):
+    # Make generic - loop through classes
+    if "class" not in df:
+        return df
+    classes = set(df["class"].values.tolist())
+    if len(classes)==1:
+        return df
+    
+    clsdfs = []
+    for c in classes: 
+        clsdf = df.loc[df['class']==c]
+        clsdfs.append({"class": c, "data": clsdf})
+    df = clsdfs[0]["data"].drop(columns=["class"])
+    c  = clsdfs[0]["class"]
+    clsdf = clsdfs[1]["data"]
+    c2 = clsdfs[1]["class"]
+    df = df.join(clsdf.drop(columns=["class"]), lsuffix=f"_{c}", rsuffix=f"_{c2}", how="inner")
+    for i in range(2,len(clsdfs)):
+        clsd = clsdfs[i]
+        clsdf = clsd["data"]
+        c    = clsd["class"]
+        df = df.join(clsdf.drop(columns=["class"]), rsuffix=f"_{c}", how="inner")
+
+    return df
+
+def load_relations(f):
+    prels   = json.load(open("../pp-ambiguity/data/preprels.json"))
+    # Derive the choices from enumeration ('A', 'B', 'C', ...)
+    # for each preposition in our inventory. 
+    for prep,rels in prels.items():
+        #print(f"prels[{prep}]  = {rels}")
+        c = 'A'
+        newrels = []
+        for rel in rels:
+            if type(rel)==str:
+                newrel = {"label": rel}
+                newrels.append(newrel)
+                rel = newrel
+                
+            rel["choice"] = c
+            c = chr(ord(c)+1)
+    return prels
 
 def plot_results(results, title="Information Structure vs Plausibility", 
     xcol="plausibility", ycol="structure",
@@ -119,19 +271,7 @@ def plot_dataframe(df, title="Information Structure vs Plausibility",
         fig01.add_shape(type="line", x0=hxmin, y0=y_int, x1=hxmax, y1=y_int, line=dict(color="purple", dash="dash", width=1))
     return fig01
 
-
-def results_to_dataframe(res):
-    df = pd.DataFrame(res)
-    # Make generic - loop through classes
-    xpydf = df.loc[df['class']=='XpY'].set_index('annidx')
-    
-    drop_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
-    xpypzdf = df.loc[df['class']=='XpYpZ'].drop(columns=drop_columns).set_index('annidx')
-    xpzdf = df.loc[df['class']=='XpZ'].drop(columns=drop_columns).set_index('annidx')
-    ypzdf = df.loc[df['class']=='YpZ'].drop(columns=drop_columns).set_index('annidx')    
-    df1 = xpydf.join(xpypzdf, lsuffix='_xpy', rsuffix='_xpypz', how='inner')
-    df2 = xpzdf.join(ypzdf, lsuffix='_xpz', rsuffix='_ypz', how='inner')
-    df = df1.join(df2, how='inner')
+def compute_metrics(df):
     df['structure'] = np.log(df['response_xpy']/df['response_xpypz'])
     df['plausibility'] = np.log(df['response_xpz']/df['response_ypz'])
     df['neg_log_xpy'] = -np.log(df['response_xpy'].values)
@@ -186,9 +326,9 @@ def compute_accuracy(X_train, X_test, y_train, y_test):
     acc = accuracy_score(y_test, preds)
     return preds, acc, m, b
 
-def eval_results(results, plaus_col='plausibility', struct_col='structure', folds=5):
+def eval_results(results, plaus_col='plausibility', struct_col='structure', y_col='attachment', folds=5):
     X = results[[plaus_col, struct_col]].values
-    y = results.attachment.values
+    y = results[y_col].values
 
     X_plaus = X[:,:1]
     X_info = X[:,1:]
@@ -273,6 +413,70 @@ def eval_results_nofolds(results, plaus_col='plausibility', struct_col='structur
 
     return clf, clfp, clfs
 
+def get_bucket(df, criteria={}):
+    ''' 
+    Given a dict of name/value pairs, return a slice of the DataFrame
+    matching the criteria given. Each name must match the name of a column. 
+    If the value is a list, `df[name].isin(val)` is used, otherwise `==`. 
+    ''' 
+    filters = []
+    for criterion in criteria:
+        if criterion=="*":
+            continue
+        val = criteria[criterion]
+        if type(val)==list:
+            filters.append(df[criterion].isin(val))    
+        else:
+            filters.append(df[criterion]==val)
+    npfilters = np.array(filters)
+    return df.loc[npfilters.all(axis=0)]
+
+def get_proportion(df, criteria={}, subcrit={}):
+    stuff = get_bucket(df, criteria=criteria).shape[0]
+    criteria.update(subcrit)
+    stuff_sub = get_bucket(df, criteria=criteria).shape[0]
+    return stuff_sub/stuff
+
+def load_results_pprel(f):
+    examples=[]
+    with open(f) as jsonl:
+        for line in jsonl:
+            example = json.loads(line.strip())
+            examples.append(example)
+    adf = results_to_df_pprel(examples) 
+    return adf
+
+def results_to_df_pprel(res):
+    df = pd.DataFrame(res)
+    # Make generic - loop through classes
+    p1rel = df.loc[df['class']=='p1rel'].set_index('annidx')
+    
+    extra_columns=['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'attachment']
+    drop_columns = [col for col in extra_columns if col in df]
+    p2rel = df.loc[df['class']=='p2rel'].drop(columns=drop_columns).set_index('annidx')
+    df = p1rel.join(p2rel, lsuffix='_p1rel', rsuffix='_p2rel', how='inner')
+    return df
+
+def compute_acc(df, col1="p1_relation", col2="predrel_p1rel", label="overall"):
+    if df.shape[0]==0:
+        return 0, 0
+    acc1 = accuracy_score(df[col1], df[col2])
+    n1 = df.shape[0]
+    return acc1, n1
+
+def summarize_results(df, prep=None):
+    if prep is None:
+        acc1, n1 = compute_acc(df, col1="p1_relation", col2="predrel_p1rel")
+        acc2, n2 = compute_acc(df, col1="p2_relation", col2="predrel_p2rel")
+        label = "overall"
+    else:        
+        acc1, n1 = compute_acc(df.loc[df["P1"]==prep], col1="p1_relation", col2="predrel_p1rel")
+        acc2, n2 = compute_acc(df.loc[df["P2"]==prep], col1="p2_relation", col2="predrel_p2rel")
+        label = prep
+    if (n1+n2)==0:
+        return
+    oacc = ((n1*acc1)+(n2*acc2))/(n1+n2)
+    print(f"{label}: acc={oacc*100.0:.1f}% (N={n1+n2}); acc={acc1*100.0:.2f}% (P1;N={n1}); acc={acc2*100.0:.2f}% (P2;N={n2}); ")
 def main():
 
     parser = init_parser()

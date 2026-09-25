@@ -10,7 +10,7 @@ import numpy as np
 
 from torch.nn import functional as F
 from tqdm import tqdm as progress_bar
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 
 #from matplotlib import pyplot as plt
 from collections import Counter
@@ -23,22 +23,32 @@ from evaluator import *
 class Generator():
 
     '''
-    What a mess. I was trying to get a single iterator to keep spitting out prompts
-    and then another generator to spit out results. 
+    The Prompter is an iterator to keep spitting out prompts
+    and then here is the Generator to submit to the model and spit out results. 
     '''
-    def generate(self, inputs, outputfile=None):
+    def generate(self, inputs, outputfile=None, verbose=False):
         if outputfile is not None:
-            output = open(outputfile, "w")
+            # Would be nice if we could resume from where we left off
+            # checking during preprocess if prompt was same? Working from annid? 
+            #if os.path.exists(outputfile):
+
+            with open(outputfile, "w") as output:
+                output.close()
 
         for source_dict in inputs:
+            classprefix = "" if "class" not in source_dict else f"{source_dict['class']}: "
             if outputfile is None:
-                print(f"{source_dict['prompt']}")
+                print(f"{classprefix}{source_dict['prompt']}")
             response = self.process(source_dict)
             self.postprocess(source_dict, response=response)
             if outputfile is not None:
+                output = open(outputfile, "a")
                 json.dump(source_dict, output)
                 output.write("\n")
-            else:
+                output.close()
+                if verbose:
+                    print(f"{response}")
+            elif response is not None:
                 print(f"{response}")
             yield source_dict
 
@@ -61,7 +71,7 @@ class ModelGenerator(Generator):
 class Llama3Generator(ModelGenerator):
 
     samples = ["There are dogs near the edge.", "There are dogs of water.", "."]
-    def __init__(self, model_name="meta-llama/Meta-Llama-3.1-8B"):
+    def __init__(self, model_name="meta-llama/Meta-Llama-3.1-8B-Instruct"):
         super().__init__(model_name)
 
     def initialize(self):
@@ -69,7 +79,81 @@ class Llama3Generator(ModelGenerator):
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token_id=self.tokenizer.eos_token_id
+
+        # Move the model to GPU
+        device = "cpu"
+        #device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(device)
+
+        # Create a new pipeline with the quantized model
+        self.pipe = pipeline("text-generation", model=self.model, tokenizer=self.tokenizer, model_kwargs={"torch_dtype": torch.bfloat16}, 
+            device=0 if device == "cuda" else -1)
+
+    def process(self, source_dict={}):
+        if 'prompt' not in source_dict:
+            raise ValueError("'prompt' is required.")
+        prompt = source_dict["prompt"]
+        
+        if 'context' in source_dict:
+            context = source_dict['context']
+        else:
+            context = []
+        # BAD HARD-CODING
+            #context = "Choose from the following options. "
+        if len(context)==0:
+            input_text = f"{prompt}"
+        else:
+            #input_text = f"{context} {prompt}"
+            input_text = [{"role": "system", "content": context}, {"role": "user", "content": prompt}]
+
+        output_text = self.pipe(input_text)[0]["generated_text"]
+        if len(output_text)==0:
+            print(f"(No response from {self.model_name})")
+            return output_text
+        else:
+            if len(context)==0 and output_text[:len(input_text)]==input_text:
+                output_text = output_text[len(input_text):]
+            if type(output_text)==str:
+                anspos  = output_text.find("Answer:")
+                if anspos>=0:
+                    answer = output_text[anspos:]
+                    #print(answer)
+                    return answer
+                else:
+                    answer = output_text
+                return answer
+            elif type(output_text)==list:
+                #print(output_text)
+                answer = output_text[-1]["content"]
+                return answer
+            else:
+                raise ValueError(f"Unexpected return type: {type(output_text)}")
     
+    def test_mode(self, prompts=samples):
+        prompt_again = True
+        examples = []
+        for prompt in self.samples:
+            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
+                print("Bye!")
+                break
+            else:
+                response = self.generate(prompt, [])
+                print(f"{prompt}: {response}")
+                #print(f"{self.model_name}'s response: '{response}'.")
+                examples.append({"prompt": prompt, "response": response})
+        return examples
+
+class Llama3TokenProbGenerator(Llama3Generator):
+    def initialize(self):
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, add_eos_token=True)
+        self.model = AutoModelForCausalLM.from_pretrained(self.model_name)
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token_id=self.tokenizer.eos_token_id
+        # Move the model to GPU
+        device = "cpu"
+        #device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(device)
+
     def process(self, source_dict={}):
         if 'prompt' not in source_dict:
             raise ValueError("'prompt' is required.")
@@ -106,21 +190,8 @@ class Llama3Generator(ModelGenerator):
         prob = token_probs[-1].item()
         return prob
 
-    def test_mode(self, prompts=samples):
-        prompt_again = True
-        examples = []
-        for prompt in self.samples:
-            if len(prompt)<=1 or prompt.lower()[:3]=='bye':
-                print("Bye!")
-                break
-            else:
-                response = self.generate(prompt, [])
-                print(f"{prompt}: {response}")
-                #print(f"{self.model_name}'s response: '{response}'.")
-                examples.append({"prompt": prompt, "response": response})
-        return examples
 
-class Llama3P2ZGenerator(Llama3Generator):
+class Llama3P2ZGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         if 'class' in source_dict and source_dict['class']=='XpY':
             offset = len(self.tokenizer(f"{source_dict['P1']} {source_dict['Y']}")['input_ids'])-1
@@ -130,7 +201,7 @@ class Llama3P2ZGenerator(Llama3Generator):
         prob = torch.exp(torch.sum(torch.log(probs))).item()
         return prob
 
-class Llama3ZPeriodGenerator(Llama3Generator):
+class Llama3ZPeriodGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         zlen = len(self.tokenizer(f"{source_dict['Z']}.")['input_ids'])-1
         probs = token_probs[-1-zlen:-1]
@@ -138,7 +209,7 @@ class Llama3ZPeriodGenerator(Llama3Generator):
         return prob
 
 
-class Llama3P2ZLastTokenGenerator(Llama3Generator):
+class Llama3P2ZLastTokenGenerator(Llama3TokenProbGenerator):
 
     def aggregate_token_probs(self, source_dict, token_probs):
         if "class" in source_dict and source_dict["class"] in ["XpZ", "YpZ"]:
@@ -152,7 +223,7 @@ class Llama3P2ZLastTokenGenerator(Llama3Generator):
         #perplexity = float(torch.exp(-loss).numpy())
         return prob
 
-class Llama3P2ZPeriodGenerator(Llama3Generator):
+class Llama3P2ZPeriodGenerator(Llama3TokenProbGenerator):
 
     def aggregate_token_probs(self, source_dict, token_probs):
         if "class" in source_dict and source_dict["class"] in ["XpZ", "YpZ"]:
@@ -165,11 +236,11 @@ class Llama3P2ZPeriodGenerator(Llama3Generator):
             prob = token_probs[-2].item()
         return prob
 
-class Llama3LastTokenGenerator(Llama3Generator):
+class Llama3LastTokenGenerator(Llama3TokenProbGenerator):
     # Identical to base implementation
     pass
 
-class Llama3PadTokenGenerator(Llama3Generator):
+class Llama3PadTokenGenerator(Llama3TokenProbGenerator):
     def process(self, source_dict={}):
         if 'prompt' not in source_dict:
             raise ValueError("'prompt' is required.")
@@ -202,12 +273,12 @@ class Llama3PadTokenGenerator(Llama3Generator):
         # -1 because we're discounting the start token '<|start|>'. 
         return self.aggregate_token_probs(source_dict, token_probs)
 
-class Llama3FirstTokenGenerator(Llama3Generator):
+class Llama3FirstTokenGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         prob = token_probs[0].item()
         return prob
 
-class Llama3PeriodGenerator(Llama3Generator):
+class Llama3PeriodGenerator(Llama3TokenProbGenerator):
     def aggregate_token_probs(self, source_dict, token_probs):
         prob = token_probs[-2].item()
         return prob
@@ -266,7 +337,7 @@ def init_parser():
     parser.add_argument("-o", '--output-file', metavar="<file>", help="Output file", 
         default=None, required=False)
     parser.add_argument("-m", "--model", metavar="<model>", help="Model to use (llama3, vera)", 
-        default="llama3", required=True)
+        default=None, required=False)
     parser.add_argument("-p", '--prompter', metavar="<prompter>", help="Prompter to use (raw, here, herenorm, there, this, orig)", default="raw", required=True)
     parser.add_argument("-r", "--results_dir", metavar="<results_dir>", help="Directory for results files (jsonlines and html)", default="results")
     parser.add_argument("-t", '--token', metavar="<token>", help="Which token to use for probabilities (first,last, period, p2z)", required=False)
@@ -294,6 +365,14 @@ def init_prompter(prompter_name):
         prompter = OrigPrompter()
     elif prompter_name=="dual":
         prompter = DualPrompter()
+    elif prompter_name=="matters":
+        prompter = MattersPrompter()
+    elif prompter_name=="prepsense":
+        prompter = PrepSensePrompter()
+    elif prompter_name=="preprel":
+        prompter = PrepRelationPrompter()
+    elif prompter_name in ["preprelyesno", "pryn"]:
+        prompter = PrepRelYesNoPrompter()
     else:
         prompter = Prompter()
     return prompter
@@ -323,6 +402,8 @@ def init_generator(model_name, prob_token="last"):
             generator = Llama3Generator()
     elif model_name=="vera":
         generator = VeraGenerator()
+    elif model_name is None:
+        generator = Generator()
     else:
         raise IllegalArgument(f"Unknown model: '{model_name}'")
     return generator
@@ -350,54 +431,60 @@ def main():
 
     parser = init_parser()
     args = parser.parse_args()
-    plot_prefix = f"{args.results_dir}/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
-    overwrite = False
-    while args.output_file is not None and os.path.exists(args.output_file) and not overwrite:
-        print(f"Output file {args.output_file} exists. ")
-        print("What do you want to do?")
-        print("(P)lot the results")
-        print("(O)verwrite")
-        print("(R)ename")
-        print("(Q)uit")
-        choice = input("Enter choice ([P]ORQ): ").strip()
-        if choice is None or len(choice)==0:
-            choice = "P"
-        choice = choice[0].lower()
-        if choice=='q':
-            sys.exit(0)
-        elif choice=='p':
-            print("Plotting results.")
-            with open(args.output_file) as jsonlines:
-                journal = [json.loads(line.strip()) for line in jsonlines]
-                fig01=plot_results(journal, 
-                    model=args.model, prompter=args.prompter, token=args.token, boundary=args.boundary)
-                fig01.write_html(f"{plot_prefix}.html")
-                fig01.write_image(f"{plot_prefix}.png")        
-            sys.exit(0)
-        elif choice=='r':
-            args.output_file = input("Enter new output_file: ").strip()
-        elif choice=='o':
-            overwrite = True
     prompter = init_prompter(args.prompter)
-    generator = init_generator(args.model, args.token)
     inputs = collect_inputs(args, prompter)
-    if args.interactive:
-        journal = list(generator.generate(inputs, outputfile=args.output_file))
-    else:
-        journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
-        fig01=plot_results(journal, title="Information Structure vs Plausibility", 
-            model=args.model.lower(), prompter=args.prompter, token=args.token,
-            boundary=args.boundary)
-        fig01.write_html(f"{plot_prefix}.html")
-        fig01.write_image(f"{plot_prefix}.png")        
-        if args.model.lower()=='vera':
-            fig02=plot_results(journal, title="Information Structure vs Plausibility", 
+    if args.model is not None:
+        plot_prefix = f"{args.results_dir}/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
+        overwrite = False
+        while args.output_file is not None and os.path.exists(args.output_file) and not overwrite:
+            print(f"Output file {args.output_file} exists. ")
+            print("What do you want to do?")
+            print("(P)lot the results")
+            print("(O)verwrite")
+            print("(R)ename")
+            print("(Q)uit")
+            choice = input("Enter choice ([P]ORQ): ").strip()
+            if choice is None or len(choice)==0:
+                choice = "P"
+            choice = choice[0].lower()
+            if choice=='q':
+                sys.exit(0)
+            elif choice=='p':
+                print("Plotting results.")
+                with open(args.output_file) as jsonlines:
+                    journal = [json.loads(line.strip()) for line in jsonlines]
+                    fig01=plot_results(journal, 
+                        model=args.model, prompter=args.prompter, token=args.token, boundary=args.boundary)
+                    fig01.write_html(f"{plot_prefix}.html")
+                    fig01.write_image(f"{plot_prefix}.png")        
+                sys.exit(0)
+            elif choice=='r':
+                args.output_file = input("Enter new output_file: ").strip()
+            elif choice=='o':
+                overwrite = True
+        generator = init_generator(args.model, args.token)
+        if args.interactive:
+            journal = list(generator.generate(inputs, outputfile=args.output_file, verbose=True))
+        else:
+            journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
+            fig01=plot_results(journal, title="Information Structure vs Plausibility", 
                 model=args.model.lower(), prompter=args.prompter, token=args.token,
-                xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
                 boundary=args.boundary)
-            plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
-            fig02.write_html(f"{plot_prefix}.html")
-            fig02.write_image(f"{plot_prefix}.png")        
-
+            fig01.write_html(f"{plot_prefix}.html")
+            fig01.write_image(f"{plot_prefix}.png")        
+            if args.model.lower()=='vera':
+                fig02=plot_results(journal, title="Information Structure vs Plausibility", 
+                    model=args.model.lower(), prompter=args.prompter, token=args.token,
+                    xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
+                    boundary=args.boundary)
+                plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
+                fig02.write_html(f"{plot_prefix}.html")
+                fig02.write_image(f"{plot_prefix}.png")        
+    else:
+        print("Generating prompts without a model.")
+        generator = Generator()
+        journal = list(generator.generate(inputs, outputfile=args.output_file))
+    print(f"Finished generating {len(journal)} prompts. ")
+    print("Bye!")
 if __name__ == "__main__":
     main()
