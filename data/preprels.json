@@ -1,0 +1,440 @@
+{
+  "into": [
+    "endstate",
+    "destination",
+    "temporal",
+    "topic",
+    "activity",
+    "numeric",
+    "location"
+  ],
+  "to": [
+    "endstate",
+    "destination",
+    "temporal",
+    "objectofverb",
+    "recipient",
+    "beneficiary",
+    "participant",
+    "other",
+    "activity",
+    "numeric",
+    "location"
+  ],
+  "towards": [
+    "endstate",
+    "experiencer",
+    "temporal",
+    "direction",
+    "objectofverb"
+  ],
+  "for": [
+    "destination",
+    "temporal",
+    "objectofverb",
+    "beneficiary",
+    "cause",
+    "other",
+    "numeric",
+    "professionalaspect",
+    "purpose"
+  ],
+  "with": [
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some attribute of {X}. ",
+      "p2rel": "Some attribute of {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Clothing", "prompts": {
+      "p1rel": "Clothing being worn by {X}. ", 
+      "p2rel": "Clothing being worn by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Instrument", "prompts": {
+      "p1rel": "Some kind of instrument being used by {X}. ",
+      "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Participant", "prompts": {
+      "p1rel": "That {Y} appear(s) to be participating in the same activity {P1} {X}. ",
+      "p2rel": "That {Z} appear(s) to be participating in the same activity {P2} {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "The setting that {X} appear(s) to be situated in. ",
+      "p2rel": "The setting that {X}, {Y}, or {X} {P1} {Y} appear(s) to be situated in. "      
+    }}
+  ], 
+  "in": [
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Clothing", "prompts": {
+      "p1rel": "Clothing being worn by {X}. ", 
+      "p2rel": "Clothing being worn by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated in. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "
+    }}, 
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }},
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Vessel", "prompts": {
+      "p1rel": "A kind of vessel or support that {X} may occupy. ",
+      "p2rel": "A kind of vessel or support that {X}, {Y}, or {X} {P1} {Y} may occupy. "
+    }}
+  ],
+  "inside": [
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated in. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "      
+    }},
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }}
+  ],
+  "among": [
+    "partwhole",
+    "co-participants",
+    "location"
+  ],
+  "of": [
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {Y}. "
+    }},
+    {"label": "Group", "prompts": {
+      "p1rel": "{X} is a kind of group or enumeration with {Y} as its member(s). ",
+      "p2rel": "{Y} is a kind of group or enumeration with {Z} as its member(s). "
+    }},
+    {"label": "PartWhole", "prompts": {
+      "p1rel": "{X} is part of {Y} as a whole. ",
+      "p2rel": "{Y} is part of {Z} as a whole. "
+    }},
+    {"label": "Display", "prompts": {
+      "p1rel": "{X} is a presentation or display showing {Y}. ", 
+      "p2rel": "{Y} is a presentation or display showing {Z}. " 
+    }}
+  ],
+  "on": [
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "    
+    }},
+    {"label": "Instrument", "prompts": {
+      "p1rel": "Some kind of instrument being used by {X}. ",
+      "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Medium", "prompts": {
+      "p1rel": "Indicates the medium, language, or canvas ({Y}) of some form of communication or artwork ({X}). ",
+      "p2rel": "Indicates the medium, language, or canvas ({Z}) of some form of communication or artwork ({X}, {Y}, or {X} {P1} {Y}). "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated in. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated in. "
+    }}, 
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Vessel", "prompts": {
+      "p1rel": "A kind of vessel or support that {X} may occupy. ",
+      "p2rel": "A kind of vessel or support that {X}, {Y}, or {X} {P1} {Y} may occupy. "
+    }}
+  ],
+  "as": [
+    "attribute",
+    "other"
+  ],
+  "at": [
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X}, {Y}, or {X} {P1} {Y}. "
+    }}, 
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen at. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen at. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "The setting at which {X} may be situated. ",
+      "p2rel": "The setting at which {X}, {Y}, or {X} {P1} {Y} may be situated. "      
+    }},
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }},
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }}
+  ],
+  "by": [
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    "Topic : Direction",
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen with. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+    }},
+    "Topic : Possessor",
+    "Topic : Source",
+    "Agent : Instrument",
+    {"label": "Participant", "prompts": {
+      "p1rel": "That {Y} may be participating in the same activity as {X}. ",
+      "p2rel": "That {Z} is participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    "Topic : Via"
+  ],
+  "from": [
+    "attribute",
+    "temporal",
+    "objectofverb",
+    "startstate",
+    "agent",
+    "cause",
+    "source",
+    "opponent",
+    "separation",
+    "location"
+  ],
+  "across": [
+    "temporal",
+    "location"
+  ],
+  "after": [
+    "temporal",
+    "direction",
+    "objectofverb",
+    "beneficiary",
+    "cause",
+    "other"
+  ],
+  "before": [
+    "temporal",
+    "other",
+    "location"
+  ],
+  "behind": [
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen with. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen with. "
+    }},
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }}
+  ],
+  "between": [
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Activity", "prompts": {
+      "p1rel": "Some kind of activity being engaged in by {X}. ",
+      "p2rel": "Some kind of activity being engaged in by {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Participant", "prompts": {
+      "p1rel": "That {Y} may be participating in the same activity as {X}. ",
+      "p2rel": "That {Z} is participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }}
+  ],
+  "down": [
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    "direction",
+    "location"
+  ],
+  "during": [
+    "temporal"
+  ],
+  "over": [
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    "objectofverb",
+    "topic",
+    "instrument",
+    "other",
+    "location"
+  ],
+  "through": [
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    "objectofverb",
+    "instrument",
+    "via",
+    "manner",
+    "activity",
+    "location"
+  ],
+  "along": [
+    "direction",
+    "manner",
+    "other",
+    "location"
+  ],
+  "off": [
+    "direction",
+    "separation",
+    "location"
+  ],
+  "round": [
+    "objectofverb",
+    "topic",
+    "location"
+  ],
+  "about": [
+    "possessor",
+    "topic",
+    "location"
+  ],
+  "around": [
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }},
+    {"label": "Participant", "prompts": {
+      "p1rel": "That {Y} may be participating in the same activity as {X}. ",
+      "p2rel": "That {Z} may be participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
+    }}
+  ],
+  "against": [
+    "physicalsupport",
+    "opponent",
+    "other"
+  ],
+  "onto": [
+    "participant",
+    "via",
+    "location"
+  ],
+  "like": [
+    "manner",
+    "other"
+  ],
+  "above": [
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }},
+    {"label": "Vessel", "prompts": {
+      "p1rel": "A kind of vessel or support that {X} may occupy. ",
+      "p2rel": "A kind of vessel or support that {X}, {Y}, or {X} {P1} {Y} may occupy. "
+    }}
+  ],
+  "beneath": [
+    "other",
+    "location"
+  ],
+  "beside": [
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Spatial", "prompts": {
+      "p1rel": "A special kind of spatial arrangement between {X} and {Y}. ",
+      "p2rel": "A special kind of spatial arrangement between {X}, {Y}, or {X} {P1} {Y} and {Z}. "
+    }}
+  ],
+  "near": [
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated {P1}. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated {P2}. "      
+    }},
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Participant", "prompts": {
+      "p1rel": "That {Y} may be participating in the same activity as {X}. ",
+      "p2rel": "That {Z} is participating in the same activity as {X}, {Y}, or {X} {P1} {Y}. "
+    }}
+  ],
+  "under": [
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated {P1}. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated {P2}. "      
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
+    }}
+  ],
+  "underneath": [
+    {"label": "Temporal", "prompts": {
+      "p1rel": "A temporary condition or time of day", 
+      "p2rel": "A temporary condition or time of day"
+    }},
+    {"label": "Landmark", "prompts": {
+      "p1rel": "A landmark that {X} may be seen {P1}. ", 
+      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A setting that {X} may be situated {P1}. ",
+      "p2rel": "A setting that {X}, {Y}, or {X} {P1} {Y} may be situated {P2}. "      
+    }},
+    {"label": "Attribute", "prompts": {
+      "p1rel": "Some kind of attribute of {X}. ",
+      "p2rel": "Some kind of attribute of {X}, {Y}, or {X} {P1} {Y}. "
+    }}
+  ]
+}
