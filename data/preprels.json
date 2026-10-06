@@ -41,8 +41,8 @@
   ],
   "with": [
     {"label": "Attribute", "prompts": {
-      "p1rel": "Some attribute of {X}. ",
-      "p2rel": "Some attribute of {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "Some item or feature that {X} may possess. ",
+      "p2rel": "Some item or feature that {X}, {Y}, or {X} {P1} {Y} may possess. "
     }},
     {"label": "Clothing", "prompts": {
       "p1rel": "Clothing being worn by {X}. ", 
@@ -57,8 +57,8 @@
       "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
     }},
     {"label": "Participant", "prompts": {
-      "p1rel": "That {Y} appear(s) to be participating in the same activity {P1} {X}. ",
-      "p2rel": "That {Z} appear(s) to be participating in the same activity {P2} {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "That {Y} is an entity or entities that accompany {X}. ",
+      "p2rel": "That {Z} is an entity or entities that accompany {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Setting", "prompts": {
       "p1rel": "The setting that {X} appear(s) to be situated in. ",
