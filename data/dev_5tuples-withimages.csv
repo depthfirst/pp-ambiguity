@@ -1,0 +1,731 @@
+annidx,X,P1,Y,P2,Z,matters,attachment_or_justification,sem_frame,need_pic,sentence_text,p1_relation,p2_relation,image_filename
+0,A man,in,a suit jacket,with,a ” free word ” sign,Y,X,X (p Y) (p Z),FALSE,"A man in a suit jacket with a ""free word"" sign.",Clothing,Attribute,5016890643.jpg
+1,A game,of,rug bee,between,the black and white jersey players,Y,X,X (p Y) (p Z),FALSE,A game of rug bee between the black and white jersey players.,Species,Co-Participants,6536482681.jpg
+2,A musical act,on,stage,in,the Good Morning America concert series,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A musical act on stage in the Good Morning America concert series.,Setting,Activity,4648495016.jpg
+3,A group,of,people,at,a J.P. Morgan Corporate Challenge event,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a J.P. Morgan Corporate Challenge event.,Group,Activity,4688204116.jpg
+4,A little girl,in,a red and pink floral shirt,at,an outdoor water fountain,Y,X,X (p Y) (p Z),FALSE,A little girl in a red and pink floral shirt at an outdoor water fountain.,Clothing,Landmark,3963770900.jpg
+5,A BMX bike rider,in,a black and red uniform,on,a dirt bike,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A BMX bike rider in a black and red uniform on a dirt bike.,Clothing,Via,3415003392.jpg
+6,What a bad call,at,the sports bar,by,the baseball umpire,Y,X,X (p Y) (p Z),FALSE,What a bad call at the sports bar by the baseball umpire.,Setting,Agent,2340774655.jpg
+7,Two brown and white dogs,in,the grass,near,a stone structure,N,Commonsense Transitive,Not Sure,FALSE,Two brown and white dogs in the grass near a stone structure.,Setting,Landmark,432490118.jpg
+8,A tourist boat,on,a river,by,a fake old building,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A tourist boat on a river by a fake old building.,Setting,Landmark,4946877047.jpg
+9,A large group,of,people,underneath,a large red tent,N,Group of Things,(X p Y) p Z,FALSE,A large group of people underneath a large red tent.,Group,Landmark,4649427913.jpg
+10,A large white cruise ship,in,the background,behind,a black gate,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A large white cruise ship in the background behind a black gate.,Spatial,Spatial,66452145.jpg
+11,A young Muslim woman,on,the street,of,an American city,N,Commonsense Transitive,X p (Y p Z),FALSE,A young Muslim woman on the street of an American city.,Setting,PartWhole,2523934341.jpg
+12,A young man,on,a bed,in,a small boat cabin,N,Commonsense Transitive,Not Sure,FALSE,A young man on a bed in a small boat cabin.,Landmark,Setting,405117798.jpg
+13,A large basket,of,dumplings,in,an asian cafeteria setting,N,Group of Things,(X p Y) p Z,FALSE,A large basket of dumplings in an asian cafeteria setting.,PartWhole,Setting,4857278968.jpg
+14,An Asian band,in,a parade,with,a female band majorette,N,Commonsense Transitive,Not Sure,TRUE,An Asian band in a parade with a female band majorette.,Activity,Participant,2340467281.jpg
+15,A little dark-haired boy,on,a chair,in,his white bathrobe,Y,X,X (p Y) (p Z),FALSE,A little dark-haired boy on a chair in his white bathrobe.,Physical Support,Clothing,2556392380.jpg
+16,A large black dog,in,the dirt,with,a small brown dog,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A large black dog in the dirt with a small brown dog.,Setting,Participant,3101796900.jpg
+17,A man,on,stilts,in,"a purple , yellow and white costume",Y,X,X (p Y) (p Z),FALSE,"A man on stilts in a purple, yellow and white costume.",Attribute,Clothing,168728234.jpg
+18,A crowd scene,with,people,in,yellow and white native clothing,Y,Y,X p (Y p Z),FALSE,A crowd scene with people in yellow and white native clothing.,Participant,Clothing,3583516290.jpg
+19,"A large , brown , fluffy dog",with,a small white and brown dog,on,a dirt surface,N,Commonsense Transitive,Not Sure,TRUE,"A large, brown, fluffy dog with a small white and brown dog on a dirt surface.",Participant,Setting,453756106.jpg
+20,A young man,in,"a "" GIGOLO "" shirt",at,a reception desk,Y,X,X (p Y) (p Z),FALSE,"A young man in a "" GIGOLO "" shirt at a reception desk.",Clothing,Landmark,2697909987.jpg
+21,A little girl,in,a red flowered dress,with,a tennis racket,Y,X,X (p Y) (p Z),FALSE,A little girl in a red flowered dress with a tennis racket.,Clothing,Attribute,3447155358.jpg
+22,People,on,a street corner,by,a bright yellow car,Y,X,X (p Y) (p Z),FALSE,People on a street corner by a bright yellow car.,Setting,Landmark,4503931941.jpg
+23,A small child,on,a rotary swing ride,at,an amusement park,N,Commonsense Transitive,(X p Y) p Z,FALSE,A small child on a rotary swing ride at an amusement park.,Vessel,Setting,7090197245.jpg
+24,A child,in,a white shirt,in,a train passenger car,Y,X,(X p Y) p Z,FALSE,A child in a white shirt in a train passenger car.,Clothing,Setting,2634334121.jpg
+25,A statue,of,an athletic man,on,a large stone staircase,Y,X,(X p Y) p Z,TRUE,A statue of an athletic man on a large stone staircase.,Display,Landmark,4695471709.jpg
+26,A man,in,a tan jacket,with,a rather intense stare,Y,X,X (p Y) (p Z),FALSE,A man in a tan jacket with a rather intense stare.,Clothing,Manner,4198940125.jpg
+27,A man,in,a dark shirt,with,a conductor 's baton,Y,X,(X p Y) p Z,FALSE,A man in a dark shirt with a conductor 's baton.,Clothing,Attribute,4484143736.jpg
+28,three men,at,a washington mutual atm machine,in,the evening hours,N,Commonsense Transitive,X (p Y) (p Z),FALSE,three men at a washington mutual atm machine in the evening hours.,Landmark,Temporal,78879869.jpg
+29,A child,in,red short and orange cap,in,a parking lot,Y,X,X (p Y) (p Z),FALSE,A child in red short and orange cap in a parking lot.,Clothing,Setting,2828583747.jpg
+30,A snowboarder,on,a wide plain,of,snow,Y,Y,X p (Y p Z),FALSE,A snowboarder on a wide plain of snow.,Setting,PartWhole,3364026240.jpg
+31,A child,on,the bungee ride,at,Brighton Pier,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A child on the bungee ride at Brighton Pier.,Vessel,Setting,56659639.jpg
+32,A group,of,people,at,an outdoor fruit market,N,Group of Things,(X p Y) p Z,FALSE,A group of people at an outdoor fruit market.,Group,Setting,4892698507.jpg
+33,A group,of,people,on,laptops,N,Group of Things,(X p Y) p Z,FALSE,A group of people on laptops.,Group,Instrument,2309649133.jpg
+34,A crowd,of,people,at,a show,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people at a show.,Group,Setting,372559387.jpg
+35,Two young military men,in,camouflage,with,automatic weapons,Y,X,X (p Y) (p Z),FALSE,Two young military men in camouflage with automatic weapons.,Clothing,Instrument,4685060982.jpg
+36,People,in,the water,with,surfboards,N,Commonsense Transitive,X (p Y) (p Z),FALSE,People in the water with surfboards.,Setting,Vessel,4974671375.jpg
+37,Man,with,poultry,on,a table,Y,Y,X p (Y p Z),FALSE,Man with poultry on a table.,Landmark,Physical Support,3463067753.jpg
+38,little kid,in,red snowsuit,with,hello kitty mittens,N,Commonsense Transitive,X (p Y) (p Z),FALSE,little kid in red snowsuit with hello kitty mittens.,Clothing,Clothing,3320032226.jpg
+39,brown and white dog,with,a baseball,in,its mouth,Y,Y,Not Sure,FALSE,brown and white dog with a baseball in its mouth.,Landmark,Spatial,390671130.jpg
+40,A mother,with,a kid,on,a bicycle,Y,X,(X p Y) p Z,TRUE,A mother with a kid on a bicycle.,Participant,Activity,2295920018.jpg
+41,A man,on,a motorbike,in,midair,N,Commonsense Transitive,Not Sure,FALSE,A man on a motorbike in midair.,Vessel,Spatial,2992614450.jpg
+42,Many people,at,a dog show,in,a stadium,N,Commonsense Transitive,,FALSE,Many people at a dog show in a stadium.,Activity,Setting,4361532957.jpg
+43,One man,in,the distance,on,a bicycle,Y,X,X (p Y) (p Z),FALSE,One man in the distance on a bicycle.,Spatial,Activity,7357208586.jpg
+44,two men,on,motorcycles,near,a building,N,Commonsense Transitive,,FALSE,two men on motorcycles near a building.,Vessel,Landmark,343830875.jpg
+45,A man,on,a BMX bike,in,midair,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A man on a BMX bike in midair.,Vessel,Spatial,3470129475.jpg
+46,Photo,of,a red light,on,Hollywood Blvd,Y,Y,X p (Y p Z),FALSE,Photo of a red light on Hollywood Blvd.,Display,Setting,4663465317.jpg
+47,A blond woman,with,a red backpack,in,the snow,Y,X,(X p Y) p Z,TRUE,A blond woman with a red backpack in the snow.,Landmark,Setting,369360998.jpg
+48,Bagpiper,on,the street,of,a city,Y,Y,X p (Y p Z),FALSE,Bagpiper on the street of a city.,Setting,PartWhole,98438433.jpg
+49,A dog,with,big ears,in,the street,Y,X,(X p Y) p Z,FALSE,A dog with big ears in the street.,Attribute,Setting,4972988789.jpg
+50,Members,of,a fraternal organization,in,a graveyard,N,Group of Things,(X p Y) p Z,FALSE,Members of a fraternal organization in a graveyard.,PartWhole,Setting,3561543598.jpg
+51,Two guys,with,a siberian huskie,on,a couch,Y,Y,Not Sure,TRUE,Two guys with a siberian huskie on a couch.,Participant,Landmark,4661178321.jpg
+52,Children,at,the park,with,their parents,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Children at the park with their parents.,Setting,Participant,2346772831.jpg
+53,People,under,a tent,at,a reception,N,Commonsense Transitive,X (p Y) (p Z),FALSE,People under a tent at a reception.,Landmark,Activity,1409731198.jpg
+54,A couple,in,old clothing,at,an outdoor table,Y,X,X (p Y) (p Z),FALSE,A couple in old clothing at an outdoor table.,Clothing,Landmark,3088922727.jpg
+55,A man,on,a cellphone,at,a table,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A man on a cellphone at a table.,Activity,Landmark,4905858282.jpg
+56,A large group,of,young children,with,basketballs,N,Group of Things,(X p Y) p Z,FALSE,A large group of young children with basketballs.,Group,Attribute,32627994.jpg
+57,Racks,of,plants,at,the farm products store,N,Group of Things,(X p Y) p Z,FALSE,Racks of plants at the farm products store.,Group,Setting,3600403707.jpg
+58,People,on,a ride,at,a fair,N,Commonsense Transitive,Not Sure,FALSE,People on a ride at a fair.,Vessel,Activity,1417031097.jpg
+59,Two bicyclists,in,a race,with,helmets,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Two bicyclists in a race with helmets.,Activity,Clothing,7914604678.jpg
+60,Woman,in,white dress,with,flowers,Y,X,Not Sure,TRUE,Woman in white dress with flowers.,Clothing,Attribute,2817414272.jpg
+61,A woman,with,feathers,in,her hair,Y,Y,Not Sure,FALSE,A woman with feathers in her hair.,Clothing,Spatial,4970631613.jpg
+62,two kids,with,adults,at,a table,Y,X,Not Sure,TRUE,two kids with adults at a table.,Participant,Landmark,4556218676.jpg
+63,A child,at,an amusement park,with,a Disney character,N,Commonsense Transitive,X (p Y) (p Z),TRUE,A child at an amusement park with a Disney character.,Setting,Participant,3179230430.jpg
+64,A nighttime scene,of,a busy brick road,in,England,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A nighttime scene of a busy brick road in England.,Setting,Setting,6994642420.jpg
+65,A snowboarder,with,a colorful board,in,the air,N,Commonsense Transitive,(X p Y) p Z,TRUE,A snowboarder with a colorful board in the air.,Instrument,Spatial,6493407251.jpg
+66,A security guard,on,watch duty,at,the museum,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A security guard on watch duty at the museum.,Activity,Setting,105077209.jpg
+67,An older woman,with,a small dog,in,the snow,N,Commonsense Transitive,(X p Y) p Z,TRUE,An older woman with a small dog in the snow.,Participant,Spatial,3393446245.jpg
+68,a girl,in,a red skirt,with,some hula hoops,Y,X,(X p Y) p Z,TRUE,a girl in a red skirt with some hula hoops.,Clothing,Attribute,2522467011.jpg
+69,Three people,on,a ski trail,on,a sunny day,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Three people on a ski trail on a sunny day.,Setting,Temporal,3291979978.jpg
+70,A storefront,with,poor artist rendition,of,street art,Y,Y,X p (Y p Z),FALSE,A storefront with poor artist rendition of street art.,Attribute,Species,2400461120.jpg
+71,Four swimmers,in,the crystal blue ocean,with,yellow surfboards,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Four swimmers in the crystal blue ocean with yellow surfboards.,Setting,Vessel,1998457059.jpg
+72,A gathering,of,people,in,Birmingham,N,Group of Things,(X p Y) p Z,FALSE,A gathering of people in Birmingham.,Group,Setting,468610158.jpg
+73,An outdoor market,with,lots,of,vegetables,N,Group of Things,X p (Y p Z),FALSE,An outdoor market with lots of vegetables.,Attribute,Group,450746926.jpg
+74,Woman,in,black graduation gown,with,red flower,Y,X,X (p Y) (p Z),TRUE,Woman in black graduation gown with red flower.,Clothing,Attribute,4610973875.jpg
+75,A little girl,on,a piece,of,playground equipment,Y,Y,X p (Y p Z),FALSE,A little girl on a piece of playground equipment.,Landmark,PartWhole,444057017.jpg
+76,Six people,at,some sort,of,a conference,Y,Y,X p (Y p Z),FALSE,Six people at some sort of a conference.,Activity,Species,4862709647.jpg
+77,A group,of,people,on,a boat,N,Group of Things,(X p Y) p Z,FALSE,A group of people on a boat.,Group,Landmark,2460797929.jpg
+78,somebody,in,the air,on,a board,N,Commonsense Transitive,X (p Y) (p Z),FALSE,somebody in the air on a board.,Spatial,Instrument,2971431335.jpg
+79,A child,in,a red coat,in,a snow fort,Y,X,(X p Y) p Z,FALSE,A child in a red coat in a snow fort.,Clothing,Landmark,6625916149.jpg
+80,A bird,with,a bug,in,its mouth,Y,Y,Not Sure,FALSE,A bird with a bug in its mouth.,Participant,Spatial,3547600292.jpg
+81,A person,above,their surfboard,on,the water,N,Semantic Transitive,X (p Y) (p Z),FALSE,A person above their surfboard on the water.,Vessel,Setting,2952141476.jpg
+82,Young girl ballerinas,in,white tutus,on,a stage,Y,X,X (p Y) (p Z),FALSE,Young girl ballerinas in white tutus on a stage.,Clothing,Landmark,632608471.jpg
+83,A woman,in,black hula hoops,in,a park,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A woman in black hula hoops in a park.,Activity,Landmark,2772532341.jpg
+84,A girl,on,a swing,in,the park,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A girl on a swing in the park.,Vessel,Landmark,544122267.jpg
+85,Some patrons,at,a some sort,of,diner,Y,Y,,FALSE,Some patrons at a some sort of diner.,Setting,Species,265561932.jpg
+86,young boy,in,orange sweatshirt,on,a log,Y,X,X (p Y) (p Z),FALSE,young boy in orange sweatshirt on a log.,Clothing,Landmark,3177914410.jpg
+87,Obese women,at,public showers,on,sand,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Obese women at public showers on sand.,Landmark,Setting,4820007869.jpg
+88,Young musicians,in,concert,at,night,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Young musicians in concert at night.,Activity,Temporal,3232734391.jpg
+89,A person,on,a boat,in,a canal,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A person on a boat in a canal.,Activity,Setting,326585030.jpg
+90,Bird 's eye view,of,a driver,in,his car,Y,Y,X p (Y p Z),FALSE,Bird 's eye view of a driver in his car.,Spatial,Landmark,3171347658.jpg
+91,Man,with,gray shirt,with,a white name badge,N,Commonsense Transitive,X (p Y) (p Z),TRUE,Man with gray shirt with a white name badge.,Clothing,Attribute,3532192208.jpg
+92,A group,of,people,in,various costumes,N,Group of Things,(X p Y) p Z,FALSE,A group of people in various costumes.,Group,Clothing,2282098850.jpg
+93,a concert,with,big crowd,on,a stage,Y,X,X p (Y p Z),TRUE,a concert with big crowd on a stage.,Participant,Setting,2592821012.jpg
+94,Two men,with,children,on,their shoulders,Y,Y,Not Sure,FALSE,Two men with children on their shoulders.,Participant,Spatial,4644598327.jpg
+95,A man,on,a white waterskiing ramp,on,a lake,N,Semantic Transitive,(X p Y) p Z,FALSE,A man on a white waterskiing ramp on a lake.,Activity,Setting,2899622876.jpg
+96,A young boy,with,a race tag,on,his shirt,Y,Y,Not Sure,FALSE,A young boy with a race tag on his shirt.,Attribute,Spatial,4954088684.jpg
+97,Dogs,near,the edge,of,water,Y,Y,X p (Y p Z),FALSE,Dogs near the edge of water.,Landmark,Aspect,2384401298.jpg
+98,A man,in,a sweatshirt,in,the woods,Y,X,X (p Y) (p Z),FALSE,A man in a sweatshirt in the woods.,Clothing,Setting,2930318834.jpg
+99,A group,of,Asian students,in,their uniforms,N,Group of Things,(X p Y) p Z,FALSE,A group of Asian students in their uniforms.,Group,Clothing,4869914617.jpg
+100,A person,with,a straw hat,in,the brush,Y,X,(X p Y) p Z,FALSE,A person with a straw hat in the brush.,Clothing,Setting,61745811.jpg
+101,Several police officers,in,yellow circle,around,a young woman,Error,Error,Not Sure,TRUE,Several police officers in yellow circle around a young woman.,Error,Participant,226539844.jpg
+102,A girl,with,a bike,under,a tent,N,Commonsense Transitive,Not Sure,TRUE,A girl with a bike under a tent.,Landmark,Landmark,4978967141.jpg
+103,People,in,a shop,under,a tent,N,Commonsense Transitive,Not Sure,TRUE,People in a shop under a tent.,Setting,Landmark,501520507.jpg
+104,A few people,on,a canoe,in,the water,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A few people on a canoe in the water.,Vessel,Setting,27683428.jpg
+105,A woman,in,a skirt,in,a city area,Y,X,X (p Y) (p Z),FALSE,A woman in a skirt in a city area.,Clothing,Setting,4751205553.jpg
+106,Three people,on,comfortable seating,in,a waiting room,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Three people on comfortable seating in a waiting room.,Landmark,Setting,4093460759.jpg
+107,Three women,in,white hats,in,a line,Y,X,X (p Y) (p Z),FALSE,Three women in white hats in a line.,Clothing,Spatial,3249062399.jpg
+108,Two boys,with,blue swim caps,in,the murky water,Y,X,(X p Y) p Z,FALSE,Two boys with blue swim caps in the murky water.,Clothing,Spatial,2866529477.jpg
+109,Children,in,a field,at,dusk,N,Commonsense Transitive,(X p Y) p Z,FALSE,Children in a field at dusk.,Setting,Temporal,2064780645.jpg
+110,An aerial shot,of,a big crowd,of,people,N,Group of Things,X p (Y p Z),FALSE,An aerial shot of a big crowd of people.,Display,Group,488545333.jpg
+111,Two dancers,on,stage,in,a club,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Two dancers on stage in a club.,Activity,Setting,141364977.jpg
+112,A crowded city street,with,lots,of,pedestrians,N,Group of Things,X p (Y p Z),FALSE,A crowded city street with lots of pedestrians.,Participant,Group,4477683613.jpg
+113,Two jockeys,on,their horses,on,a racetrack,N,Semantic Transitive,(X p Y) p Z,FALSE,Two jockeys on their horses on a racetrack.,Vessel,Setting,6944127567.jpg
+114,Three men,in,reflective suits,in,a field,Y,X,(X p Y) p Z,FALSE,Three men in reflective suits in a field.,Clothing,Setting,1873704867.jpg
+115,People,in,strange costumes,in,a play,Y,X,(X p Y) p Z,FALSE,People in strange costumes in a play.,Clothing,Activity,2979997455.jpg
+116,A young boy,in,a small canoe,on,a lake,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A young boy in a small canoe on a lake.,Vessel,Setting,194702176.jpg
+117,Protest,in,the streets,of,Dominican Republic,Y,Y,X p (Y p Z),FALSE,Protest in the streets of Dominican Republic.,Setting,PartWhole,4706466713.jpg
+118,A crowd scene,with,pigeons,in,a plaza,N,Commonsense Transitive,(X p Y) p Z,FALSE,A crowd scene with pigeons in a plaza.,Participant,Setting,3492734013.jpg
+119,A dog,with,a baseball,in,his mouth,Y,Y,Not Sure,FALSE,A dog with a baseball in his mouth.,Attribute,Spatial,3622929632.jpg
+120,A group,of,girls,in,leotards,N,Group of Things,(X p Y) p Z,FALSE,A group of girls in leotards.,Group,Clothing,5949695639.jpg
+121,Two boys,in,the mid-distance play,in,the sea,Error,Error,,FALSE,Two boys in the mid-distance play in the sea.,Error,Setting,4793108729.jpg
+122,Children,in,boats,in,the water,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Children in boats in the water.,Landmark,Setting,445259867.jpg
+123,Group,of,workers,at,the olympics,N,Group of Things,(X p Y) p Z,FALSE,Group of workers at the olympics.,Group,Activity,7700377542.jpg
+124,A person,on,a boat,by,the shore,N,Commonsense Transitive,Not Sure,FALSE,A person on a boat by the shore.,Landmark,Setting,3376435746.jpg
+125,A catcher,in,a baseball game,in,ready position,Y,X,X (p Y) (p Z),FALSE,A catcher in a baseball game in ready position.,Activity,Spatial,6161755456.jpg
+126,A photo,of,four people,in,a kitchen,Y,Y,X p (Y p Z),FALSE,A photo of four people in a kitchen.,Display,Setting,3158680604.jpg
+127,A boy,on,a bicycle,in,midair,N,Commonsense Transitive,Not Sure,FALSE,A boy on a bicycle in midair.,Activity,Spatial,3470129475.jpg
+128,A group,of,kids,on,stage,N,Group of Things,(X p Y) p Z,FALSE,A group of kids on stage.,Group,Setting,2046778775.jpg
+129,Man,in,black leather,on,a motorcycle,Y,X,X (p Y) (p Z),FALSE,Man in black leather on a motorcycle.,Clothing,Activity,3530502404.jpg
+130,Crowd,of,people,near,the water,N,Group of Things,(X p Y) p Z,FALSE,Crowd of people near the water.,Group,Landmark,1962729184.jpg
+131,Dirty car,in,body,of,water,Y,Y,X p (Y p Z),FALSE,Dirty car in body of water.,Setting,PartWhole,211981411.jpg
+132,Dog,in,field,with,yellow posts,N,Commonsense Transitive,X p (Y p Z),FALSE,Dog in field with yellow posts.,Setting,Landmark,2935703360.jpg
+133,Three young men,on,a boat,with,no life jackets,N,Commonsense Transitive,Not Sure,FALSE,Three young men on a boat with no life jackets.,Activity,Attribute,5761270577.jpg
+134,A white jeep,in,the dirt,in,the woods,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A white jeep in the dirt in the woods.,Setting,Setting,508432819.jpg
+135,A fisherman,in,a field,near,a lake,N,Commonsense Transitive,Not Sure,FALSE,A fisherman in a field near a lake.,Setting,Landmark,2337757064.jpg
+136,A brown dog,with,a purple Frisbee,in,its mouth,Y,Y,Adjunct Clause,FALSE,A brown dog with a purple Frisbee in its mouth.,Attribute,Spatial,430173345.jpg
+137,Two women,with,their dogs,on,a forest path,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Two women with their dogs on a forest path.,Participant,Setting,3356494271.jpg
+138,A brunette,with,a lei,around,her head,Y,Y,Adjunct Clause,FALSE,A brunette with a lei around her head.,Attribute,Spatial,4590153852.jpg
+139,A singer,of,a band,on,stage,N,Commonsense Transitive,Not Sure,TRUE,A singer of a band on stage.,PartWhole,Setting,4107979730.jpg
+140,A DJ,at,a public gathering,with,his equipment,Y,X,X (p Y) (p Z),FALSE,A DJ at a public gathering with his equipment.,Setting,Attribute,1225687681.jpg
+141,Toddler,with,milk,around,his mouth,Y,Y,Adjunct Clause,FALSE,Toddler with milk around his mouth.,Attribute,Spatial,2644916196.jpg
+142,Rollerblader,in,the air,above,a ramp,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Rollerblader in the air above a ramp.,Spatial,Spatial,2876494009.jpg
+143,A young blond girl,with,a red and blue mark,on,her cheek,Y,Y,Not Sure,FALSE,A young blond girl with a red and blue mark on her cheek.,Attribute,Spatial,4785970716.jpg
+144,Two cowboys,on,horseback,in,a rodeo,Y,X,(X p Y) p Z,FALSE,Two cowboys on horseback in a rodeo.,Vessel,Activity,732446750.jpg
+145,A Jewish boy,behind,the Star,of,David,Y,Group of Things,,FALSE,A Jewish boy behind the Star of David.,Landmark,Attribute,209274114.jpg
+146,A team,of,women rollerbladers,in,black uniforms,N,Group of Things,(X p Y) p Z,FALSE,A team of women rollerbladers in black uniforms.,Group,Clothing,2339533906.jpg
+147,Beautiful scenery,with,a boat,on,the lake,N,Commonsense Transitive,Not Sure,FALSE,Beautiful scenery with a boat on the lake.,Landmark,Setting,2057160636.jpg
+148,A crowd,of,people,in,a parade,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people in a parade.,Group,Activity,1732047510.jpg
+149,Man,with,a polaroid camera,in,the woods,Y,X,(X p Y) p Z,FALSE,Man with a polaroid camera in the woods.,Attribute,Setting,2173828253.jpg
+150,people,at,an outdoor restaurant,on,the sidewalk,N,Commonsense Transitive,X (p Y) (p Z),FALSE,people at an outdoor restaurant on the sidewalk.,Setting,Setting,4755080891.jpg
+151,two men,in,a fight,in,a ring,N,Commonsense Transitive,X (p Y) (p Z),FALSE,two men in a fight in a ring.,Activity,Setting,3181599388.jpg
+152,Four men,with,a sunset,in,background,Y,Y,X p (Y p Z),FALSE,Four men with a sunset in background.,Setting,Spatial,3306212559.jpg
+153,A group,of,people,at,a rodeo,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a rodeo.,Group,Activity,2956697221.jpg
+154,People,in,the water,at,the beach,N,Commonsense Transitive,X (p Y) (p Z),FALSE,People in the water at the beach.,Setting,Setting,4653320440.jpg
+155,A beautiful view,of,the mountains,on,a snowy day,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A beautiful view of the mountains on a snowy day.,Display,Temporal,224273695.jpg
+156,An image,of,a city street,with,several vehicles,N,Commonsense Transitive,X (p Y) (p Z),FALSE,An image of a city street with several vehicles.,Display,Landmark,4433634883.jpg
+157,A woman,with,her arm,around,another woman 's shoulders,Y,Y,Adjunct Clause,FALSE,A woman with her arm around another woman 's shoulders.,Attribute,Spatial,4379578964.jpg
+158,Two young girls,with,exaggerated expressions,on,their faces,Y,Y,Adjunct Clause,FALSE,Two young girls with exaggerated expressions on their faces.,Attribute,Spatial,2175631995.jpg
+159,A gambling game,between,several people,at,a casino,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A gambling game between several people at a casino.,Participant,Setting,3486869248.jpg
+160,Three people,on,a city beach,with,two little dogs,N,Commonsense Transitive,X (p Y) (p Z),TRUE,Three people on a city beach with two little dogs.,Setting,Participant,3280173193.jpg
+161,A group,of,police officers,in,riot gear,N,Group of Things,(X p Y) p Z,FALSE,A group of police officers in riot gear.,Group,Clothing,4616045208.jpg
+162,man,in,blue shirt,on,street,Y,X,(X p Y) p Z,FALSE,man in blue shirt on street.,Clothing,Setting,330353975.jpg
+163,A group,of,gay men,at,a event,N,Group of Things,(X p Y) p Z,FALSE,A group of gay men at a event.,Group,Activity,21833287.jpg
+164,African-American man,with,a poster,in,Times Square,N,Commonsense Transitive,(X p Y) p Z,FALSE,African-American man with a poster in Times Square.,Attribute,Setting,4754633621.jpg
+165,A child,with,his mouth,on,a red plastic toy,Y,Y,Adjunct Clause,FALSE,A child with his mouth on a red plastic toy.,Attribute,Spatial,964197865.jpg
+166,Women skaters,on,a skating rink,in,athletic equipment,Y,X,X (p Y) (p Z),FALSE,Women skaters on a skating rink in athletic equipment.,Setting,Clothing,2866093652.jpg
+167,A wedding,in,a church,with,wooden cathedral ceilings,Y,Y,X p (Y p Z),FALSE,A wedding in a church with wooden cathedral ceilings.,Setting,Attribute,2954840987.jpg
+168,A young boy,on,his knees,with,a hammer,Y,X,X (p Y) (p Z),FALSE,A young boy on his knees with a hammer.,Spatial,Attribute,3449891876.jpg
+169,A child,with,ice cream,on,his face,Y,Y,Adjunct Clause,FALSE,A child with ice cream on his face.,Attribute,Spatial,4475326892.jpg
+170,Woman,with,yellow flower,in,hair,Y,Y,Not Sure,FALSE,Woman with yellow flower in hair.,Attribute,Spatial,4616068657.jpg
+171,Three people,at,a library,with,computers,Y,X,(X p Y) p Z,TRUE,Three people at a library with computers.,Setting,Attribute,3945005060.jpg
+172,A child,at,the height,of,a swing,Y,Y,X p (Y p Z),FALSE,A child at the height of a swing.,Spatial,Aspect,3638688673.jpg
+173,Bearded man,with,sunglasses,in,the mountains,Y,X,(X p Y) p Z,FALSE,Bearded man with sunglasses in the mountains.,Attribute,Setting,265528702.jpg
+174,A line,of,spectators,at,a race,N,Group of Things,,FALSE,A line of spectators at a race.,Group,Activity,3458211052.jpg
+175,A girl,in,yellow dress,near,a restaurant,Y,X,(X p Y) p Z,FALSE,A girl in yellow dress near a restaurant.,Clothing,Landmark,2545363449.jpg
+176,A young female,in,the air,with,rollerskates,Y,X,(X p Y) p Z,FALSE,A young female in the air with rollerskates.,Spatial,Attribute,5392145976.jpg
+177,A group,of,asian children,at,school,N,Group of Things,(X p Y) p Z,FALSE,A group of asian children at school.,Group,Setting,2101756743.jpg
+178,A woman,with,a toddler,in,a striped dress,Y,Y,Not Sure,TRUE,A woman with a toddler in a striped dress.,Participant,Clothing,3250593457.jpg
+179,boys,in,a marketplace,in,india,N,Commonsense Transitive,X (p Y) (p Z),FALSE,boys in a marketplace in india.,Setting,Setting,559852881.jpg
+180,A dog,in,the air,above,the swimming pool,N,Commonsense Transitive,(X p Y) p Z,FALSE,A dog in the air above the swimming pool.,Spatial,Spatial,1178705300.jpg
+181,Dark image,of,two people,inside,a fish market,N,Commonsense Transitive,X p (Y p Z),FALSE,Dark image of two people inside a fish market.,Display,Setting,4027325112.jpg
+182,War protesters,at,a rally,with,a sign,Y,X,X (p Y) (p Z),TRUE,War protesters at a rally with a sign.,Activity,Attribute,137431253.jpg
+183,Little girl,with,pigtails,on,the beach,Y,X,X (p Y) (p Z),FALSE,Little girl with pigtails on the beach.,Attribute,Setting,421648862.jpg
+184,A snowboarder,on,a mountaintop,in,a bright green jacket,Y,X,X (p Y) (p Z),FALSE,A snowboarder on a mountaintop in a bright green jacket.,Setting,Clothing,4511353486.jpg
+185,A black poodle,with,a rope toy,in,its mouth,Y,Y,Adjunct Clause,FALSE,A black poodle with a rope toy in its mouth.,Attribute,Spatial,3317145805.jpg
+186,A bunch,of,asian children,on,steps,N,Group of Things,(X p Y) p Z,FALSE,A bunch of asian children on steps.,Group,Setting,2228022180.jpg
+187,A group,of,people,at,a parade,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a parade.,Group,Activity,23775702.jpg
+188,a little boy,at,the beach,with,a surfboard,N,Commonsense Transitive,X (p Y) (p Z),FALSE,a little boy at the beach with a surfboard.,Setting,Vessel,2559921948.jpg
+189,People,with,camping equipment,on,rocky ground,N,Commonsense Transitive,Not Sure,TRUE,People with camping equipment on rocky ground.,Attribute,Setting,413737417.jpg
+190,Group,of,kids,in,the park,N,Group of Things,(X p Y) p Z,FALSE,Group of kids in the park.,Group,Setting,270419656.jpg
+191,A woman,with,a feather,on,her hat,Y,Y,Not Sure,FALSE,A woman with a feather on her hat.,Clothing,Spatial,3072730593.jpg
+192,A boat,with,a roof,on,green water,Y,X,(X p Y) p Z,TRUE,A boat with a roof on green water.,Attribute,Setting,3356369156.jpg
+193,A group,of,men,in,the water,N,Group of Things,(X p Y) p Z,FALSE,A group of men in the water.,Group,Setting,8156520592.jpg
+194,A dog,on,the heels,of,a man,N,Commonsense Transitive,X p (Y p Z),FALSE,A dog on the heels of a man.,Spatial,Possessor,763577068.jpg
+195,Two children,in,a field,of,red flowers,Y,Y,X p (Y p Z),FALSE,Two children in a field of red flowers.,Setting,PartWhole,3478877323.jpg
+196,A crowd,of,people,underneath,a Hi-Pointe neon sign,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people underneath a Hi-Pointe neon sign.,Group,Landmark,525338588.jpg
+197,A little girl,in,a dress,on,a playground,Y,X,(X p Y) p Z,FALSE,A little girl in a dress on a playground.,Clothing,Setting,432945206.jpg
+198,Kids,at,a water park,on,steps,Y,X,X (p Y) (p Z),FALSE,Kids at a water park on steps.,Setting,Setting,4806313842.jpg
+199,The outside,of,a fashion store,beside,a road,N,Semantic Transitive,Not Sure,FALSE,The outside of a fashion store beside a road.,Attribute,Landmark,3677656080.jpg
+200,Many people,at,a rally,on,a sunny day,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Many people at a rally on a sunny day.,Activity,Temporal,5851970989.jpg
+201,Two young women,with,a large piece,of,paper,Y,Y,X p (Y p Z),FALSE,Two young women with a large piece of paper.,Landmark,PartWhole,3497485793.jpg
+202,Two girls,on,a ride,at,an amusement park,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Two girls on a ride at an amusement park.,Vessel,Setting,511282305.jpg
+203,Two children,at,a medieval picture,with,face cutouts,Y,Y,X p (Y p Z),TRUE,Two children at a medieval picture with face cutouts.,Landmark,Attribute,3498240367.jpg
+204,Two people,on,a surfboard,in,the water,N,Commonsense Transitive,(X p Y) p Z,FALSE,Two people on a surfboard in the water.,Vessel,Setting,2696060728.jpg
+205,A man,on,a cellphone,by,the fountain,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A man on a cellphone by the fountain.,Activity,Landmark,4691807711.jpg
+206,A group,of,kids,in,a yard,N,Group of Things,(X p Y) p Z,FALSE,A group of kids in a yard.,Group,Setting,3039099054.jpg
+207,person,on,a wakeboard,in,the air,N,Commonsense Transitive,X (p Y) (p Z),FALSE,person on a wakeboard in the air.,Vessel,Spatial,2473689180.jpg
+208,A little boy,at,the steering wheel,of,a vehicle,Y,Y,X p (Y p Z),FALSE,A little boy at the steering wheel of a vehicle.,Landmark,PartWhole,2755053974.jpg
+209,Two Japanese ladies,with,colorful kimonos,on,them,Y,Y,Adjunct Clause,FALSE,Two Japanese ladies with colorful kimonos on them.,Clothing,Spatial,308014594.jpg
+210,An Asian woman,with,her luggage,in,a train station,Y,X,Not Sure,FALSE,An Asian woman with her luggage in a train station.,Attribute,Setting,4247623205.jpg
+211,An elderly person,with,a brick wall,in,the background,Y,Y,X p (Y p Z),FALSE,An elderly person with a brick wall in the background.,Landmark,Spatial,2950393735.jpg
+212,A child,with,his hands,on,his head,Y,Y,Not Sure,FALSE,A child with his hands on his head.,Attribute,Spatial,1363924449.jpg
+213,A man,in,a white outfit,on,a bench,Y,X,X (p Y) (p Z),FALSE,A man in a white outfit on a bench.,Clothing,Physical Support,540873795.jpg
+214,Two men,in,a room,with,many beds,N,Commonsense Transitive,X p (Y p Z),FALSE,Two men in a room with many beds.,Setting,Attribute,2391883944.jpg
+215,A couple,of,officers,on,a scene,N,Group of Things,(X p Y) p Z,FALSE,A couple of officers on a scene.,Group,Setting,404591372.jpg
+216,Women workers,in,a produce market,in,a foreign land,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Women workers in a produce market in a foreign land.,Setting,Setting,4200405484.jpg
+217,A snowboarder,in,the air,above,snow,N,Commonsense Transitive,Not Sure,FALSE,A snowboarder in the air above snow.,Spatial,Spatial,3474958471.jpg
+218,A man,in,an american flag costume,at,a fair,Y,X,(X p Y) p Z,FALSE,A man in an american flag costume at a fair.,Clothing,Setting,5902806140.jpg
+219,Race cars,at,night,in,the rain,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Race cars at night in the rain.,Temporal,Temporal,2978271431.jpg
+220,A snowy city,with,an advertisement,of,a shirtless man,Y,Y,X p (Y p Z),FALSE,A snowy city with an advertisement of a shirtless man.,Landmark,Display,2039918946.jpg
+221,A man,with,a tennis racket,in,a field,Y,X,X (p Y) (p Z),FALSE,A man with a tennis racket in a field.,Attribute,Setting,3235616503.jpg
+222,Crowd,of,people,at,the beach,N,Group of Things,(X p Y) p Z,FALSE,Crowd of people at the beach.,Group,Setting,1048710776.jpg
+223,Chevrolet car,on,display,at,a convention,N,Commonsense Transitive,(X p Y) p Z,FALSE,Chevrolet car on display at a convention.,Attribute,Setting,144571886.jpg
+224,Baby,with,his dads glasses,in,his mouth,Y,Y,Adjunct Clause,FALSE,Baby with his dads glasses in his mouth.,Attribute,Spatial,3262760716.jpg
+225,blond child,with,white long-sleeve shirt,with,static hair,Y,X,X (p Y) (p Z),FALSE,blond child with white long-sleeve shirt with static hair.,Clothing,Attribute,2211495714.jpg
+226,Group,of,male and female singers,on,stage,N,Group of Things,(X p Y) p Z,FALSE,Group of male and female singers on stage.,Group,Setting,24183660.jpg
+227,A silhouette,of,a skateboarder,in,the air,N,Commonsense Transitive,X p (Y p Z),FALSE,A silhouette of a skateboarder in the air.,Display,Spatial,3629492654.jpg
+228,A group,of,young ladies,in,bikinis,N,Group of Things,(X p Y) p Z,FALSE,A group of young ladies in bikinis.,Group,Clothing,1244306891.jpg
+229,a statue,of,a woman,with,long hair,N,Commonsense Transitive,X p (Y p Z),FALSE,a statue of a woman with long hair.,Display,Attribute,4615629011.jpg
+230,A man,in,a blue and black helmet,on,a bicycle,Y,X,X (p Y) (p Z),FALSE,A man in a blue and black helmet on a bicycle.,Clothing,Vessel,3503414651.jpg
+231,three men,in,a crevice,in,a street,N,Commonsense Transitive,Not Sure,FALSE,three men in a crevice in a street.,Spatial,Setting,422737954.jpg
+232,A man,with,a red helmet,in,the mountains,Y,X,(X p Y) p Z,FALSE,A man with a red helmet in the mountains.,Clothing,Setting,319694602.jpg
+233,Children,on,an observation deck,at,a park,N,Commonsense Transitive,Not Sure,FALSE,Children on an observation deck at a park.,Setting,Setting,2916012955.jpg
+234,A vast ocean,with,surfers,in,it,Y,Y,Adjunct Clause,FALSE,A vast ocean with surfers in it.,Participant,Spatial,4974671375.jpg
+235,the young boy,in,red jumpos,in,the puddle,Error,Error,,FALSE,the young boy in red jumpos in the puddle.,Error,Landmark,539801139.jpg
+236,Group,of,women,with,headscarves,N,Group of Things,(X p Y) p Z,FALSE,Group of women with headscarves.,Group,Clothing,2680418020.jpg
+237,Black poodle,with,toy,in,mouth,Y,Y,Adjunct Clause,FALSE,Black poodle with toy in mouth.,Attribute,Spatial,2842032768.jpg
+238,Three young boys,with,their arms,around,eachothers shoulders,Y,Y,Not Sure,FALSE,Three young boys with their arms around eachothers shoulders.,Attribute,Spatial,2075493556.jpg
+239,Many people,near,a crosswalk,in,a busy city,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Many people near a crosswalk in a busy city.,Landmark,Setting,2326294409.jpg
+240,A man,with,a large hat,in,the bushes,Y,X,(X p Y) p Z,TRUE,A man with a large hat in the bushes.,Clothing,Setting,61745811.jpg
+241,Man,at,the beach,with,two dogs,Y,X,X (p Y) (p Z),TRUE,Man at the beach with two dogs.,Setting,Participant,1075867198.jpg
+242,A busy downtown New York City,with,a taxi,in,the foreground,Y,Y,X p (Y p Z),FALSE,A busy downtown New York City with a taxi in the foreground.,Landmark,Spatial,4922420794.jpg
+243,Snowboarder,in,midair,above,snowy hill,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Snowboarder in midair above snowy hill.,Spatial,Spatial,3380364224.jpg
+244,A man,on,inline skates,in,midair,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A man on inline skates in midair.,Vessel,Spatial,3728015645.jpg
+245,A man,with,a camera,on,a crane,Y,Y,Not Sure,TRUE,A man with a camera on a crane.,Attribute,Landmark,243728508.jpg
+246,A group,of,people,in,a lake,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a lake.,Group,Setting,4777162945.jpg
+247,A man,in,a black wetsuit,on,a surfboard,Y,X,(X p Y) p Z,FALSE,A man in a black wetsuit on a surfboard.,Clothing,Vessel,3481884992.jpg
+248,A man,in,a black shirt,in,motion,Y,X,(X p Y) p Z,FALSE,A man in a black shirt in motion.,Clothing,Spatial,4346515394.jpg
+249,A volleyball player,in,a competition,in,France,N,Commonsense Transitive,X p (Y p Z),FALSE,A volleyball player in a competition in France.,Activity,Setting,7001163737.jpg
+250,A group,of,people,in,a building,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a building.,Group,Setting,207958110.jpg
+251,A group,of,women,with,black shirts,N,Group of Things,(X p Y) p Z,FALSE,A group of women with black shirts.,Group,Clothing,3002448718.jpg
+252,two soccer team,on,a soccer field,with,the referee,N,Commonsense Transitive,X (p Y) (p Z),FALSE,two soccer team on a soccer field with the referee.,Setting,Participant,1771353346.jpg
+253,Two people,in,life jackets,in,a rowboat,Y,X,(X p Y) p Z,FALSE,Two people in life jackets in a rowboat.,Clothing,Vessel,3560977956.jpg
+254,Three friends,on,a stroll,in,the forest,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Three friends on a stroll in the forest.,Activity,Setting,3414734842.jpg
+255,A girl,in,a field,with,a yellow scarf,Y,X,X (p Y) (p Z),FALSE,A girl in a field with a yellow scarf.,Setting,Clothing,2909875716.jpg
+256,A man,in,a green shirt,inside,a large building,Y,X,X (p Y) (p Z),FALSE,A man in a green shirt inside a large building.,Clothing,Setting,4980149155.jpg
+257,Four people,at,a holiday party,at,night,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Four people at a holiday party at night.,Setting,Temporal,74641706.jpg
+258,children,in,colorful outfits,on,a stage,Y,X,(X p Y) p Z,FALSE,children in colorful outfits on a stage.,Clothing,Setting,3514044432.jpg
+259,Dog,on,the beach,at,sunset,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Dog on the beach at sunset.,Setting,Temporal,2281006675.jpg
+260,Two men,with,a dolly,on,an escalator,N,Commonsense Transitive,(X p Y) p Z,FALSE,Two men with a dolly on an escalator.,Attribute,Landmark,2536965203.jpg
+261,A woman,in,a yellow shirt,at,a train station,Y,X,X (p Y) (p Z),FALSE,A woman in a yellow shirt at a train station.,Clothing,Setting,4429770139.jpg
+262,Little kids,with,their hands,in,the air,Y,Y,Not Sure,FALSE,Little kids with their hands in the air.,Attribute,Spatial,3108197858.jpg
+263,Little boy,in,red oversized coat,in,a forrest clearing,Y,X,X (p Y) (p Z),FALSE,Little boy in red oversized coat in a forrest clearing.,Clothing,Setting,5152534735.jpg
+264,A girl,with,a newspaper,in,a cafe,Y,X,X (p Y) (p Z),FALSE,A girl with a newspaper in a cafe.,Attribute,Setting,2684323357.jpg
+265,Two field hockey players,with,their sticks,in,the air,Y,Y,Not Sure,FALSE,Two field hockey players with their sticks in the air.,Attribute,Spatial,3556485995.jpg
+266,A large tent,with,a green cover,at,a campground,Y,X,(X p Y) p Z,FALSE,A large tent with a green cover at a campground.,Attribute,Setting,958326692.jpg
+267,Male long jumper,in,the sand,at,a meet,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Male long jumper in the sand at a meet.,Setting,Activity,460007281.jpg
+268,A man,in,a blue shirt,at,a restaurant,Y,X,(X p Y) p Z,FALSE,A man in a blue shirt at a restaurant.,Clothing,Setting,3670987768.jpg
+269,A meeting,in,a room,with,six people,N,Commonsense Transitive,Not Sure,FALSE,A meeting in a room with six people.,Setting,Participant,6555213067.jpg
+270,Graffiti,of,a weasel,on,a wall,Y,X,(X p Y) p Z,FALSE,Graffiti of a weasel on a wall.,Display,Medium,4719228856.jpg
+271,Two younger men,on,the roof,of,a building,Y,Y,X p (Y p Z),FALSE,Two younger men on the roof of a building.,Setting,PartWhole,2705103507.jpg
+272,A group,of,musicians,with,instruments,N,Group of Things,(X p Y) p Z,FALSE,A group of musicians with instruments.,Group,Instrument,3208553539.jpg
+273,A man,on,a motorcycle,with,a cigarette,Y,X,X (p Y) (p Z),FALSE,A man on a motorcycle with a cigarette.,Vessel,Attribute,196176872.jpg
+274,A top view,of,a road,with,pedestrians,N,Commonsense Transitive,X p (Y p Z),FALSE,A top view of a road with pedestrians.,Display,Participant,2319389144.jpg
+275,Woman,at,kite festival,on,boardwalk,Y,X,X (p Y) (p Z),TRUE,Woman at kite festival on boardwalk.,Setting,Setting,162152393.jpg
+276,Three kids,on,a scooter,with,three wheels,Y,Y,X p (Y p Z),FALSE,Three kids on a scooter with three wheels.,Vessel,Attribute,4907832234.jpg
+277,A shaggy dog,with,a toy,in,its mouth,Y,Y,Adjunct Clause,FALSE,A shaggy dog with a toy in its mouth.,Attribute,Spatial,2267682214.jpg
+278,A curly redheaded girl,with,a large headband,in,her hair,Y,Y,Adjunct Clause,FALSE,A curly redheaded girl with a large headband in her hair.,Attribute,Spatial,536828916.jpg
+279,two children,in,a field,of,red poppies,Y,Group of Things,X p (Y p Z),FALSE,two children in a field of red poppies.,Setting,Group,3478877323.jpg
+280,Two men,in,their vehicles,on,a race car track,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Two men in their vehicles on a race car track.,Vessel,Setting,6924508104.jpg
+281,Woman,by,green bananas,at,an open air market,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Woman by green bananas at an open air market.,Landmark,Setting,3429351964.jpg
+282,Black cat,with,mouse,in,mouth,Y,Y,Adjunct Clause,FALSE,Black cat with mouse in mouth.,Participant,Spatial,3947306345.jpg
+283,A hockey goalie,in,a game,on,the ice,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A hockey goalie in a game on the ice.,Activity,Setting,3342822192.jpg
+284,A group,of,guys,on,the beach,N,Group of Things,(X p Y) p Z,FALSE,A group of guys on the beach.,Group,Setting,2316682128.jpg
+285,A whole bunch,of,people,in,church,N,Group of Things,(X p Y) p Z,FALSE,A whole bunch of people in church.,Group,Setting,374538975.jpg
+286,A child,in,an orange shirt,with,a book,Y,X,(X p Y) p Z,FALSE,A child in an orange shirt with a book.,Clothing,Attribute,2667015110.jpg
+287,A lady,in,a beautiful outfit,with,a name tag,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A lady in a beautiful outfit with a name tag.,Clothing,Attribute,2572710697.jpg
+288,A small boat,in,the reflection,of,a large building,Y,Y,X p (Y p Z),FALSE,A small boat in the reflection of a large building.,Display,Display,2382000085.jpg
+289,A large group,of,people,at,a protest,N,Group of Things,(X p Y) p Z,FALSE,A large group of people at a protest.,Group,Activity,3094302882.jpg
+290,a bunch,of,people,at,sewing competition,N,Group of Things,(X p Y) p Z,FALSE,a bunch of people at sewing competition.,Group,Activity,7024547933.jpg
+291,A group,of,pugs,in,a lawn,N,Group of Things,(X p Y) p Z,FALSE,A group of pugs in a lawn.,Group,Setting,3246804978.jpg
+292,a train engine,with,a water tower,in,the background,Y,Y,X p (Y p Z),FALSE,a train engine with a water tower in the background.,Landmark,Spatial,2228329399.jpg
+293,various elevators,with,people,inside,a hotel,N,Commonsense Transitive,(X p Y) p Z,FALSE,various elevators with people inside a hotel.,Participant,Setting,2308491551.jpg
+294,People,in,a shopping center,in,Asia,N,Commonsense Transitive,X (p Y) (p Z),FALSE,People in a shopping center in Asia.,Setting,Setting,3524817073.jpg
+295,A small gathering,of,people,on,a street,N,Group of Things,Not Sure,FALSE,A small gathering of people on a street.,Group,Setting,4826604964.jpg
+296,Group,of,people,in,a cafe,N,Group of Things,(X p Y) p Z,FALSE,Group of people in a cafe.,Group,Setting,2249784123.jpg
+297,A small girl,in,a tub,of,water,Y,Y,X p (Y p Z),FALSE,A small girl in a tub of water.,Landmark,PartWhole,519228867.jpg
+298,A child,in,a pink hat,on,a pink surfboard,Y,X,X (p Y) (p Z),FALSE,A child in a pink hat on a pink surfboard.,Clothing,Vessel,515702827.jpg
+299,a photo shoot,of,a swimsuit model,on,the beach,N,Commonsense Transitive,X (p Y) (p Z),FALSE,a photo shoot of a swimsuit model on the beach.,Group,Setting,4890064956.jpg
+300,Street art scribe,on,a wall,in,the city,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Street art scribe on a wall in the city.,Medium,Setting,4858721754.jpg
+301,A picture,of,white female statues,in,sunlight,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A picture of white female statues in sunlight.,Display,Temporal,4615629011.jpg
+302,Six men,in,a large canoe-type boat,on,calm waters,N,Commonsense Transitive,(X p Y) p Z,FALSE,Six men in a large canoe-type boat on calm waters.,Vessel,Setting,800173989.jpg
+303,Man,in,scottish garb,in,a parade,Y,X,X p (Y p Z),FALSE,Man in scottish garb in a parade.,Clothing,Activity,416272701.jpg
+304,A man,in,midair,on,a skateboard,N,Commonsense Transitive,,FALSE,A man in midair on a skateboard.,Spatial,Vessel,2893476169.jpg
+305,A quiet marina,with,a handful,of,people,N,Group of Things,X p (Y p Z),FALSE,A quiet marina with a handful of people.,Participant,Group,4951841137.jpg
+306,A girl,in,a pink swimsuit,in,a pool,Y,X,(X p Y) p Z,FALSE,A girl in a pink swimsuit in a pool.,Clothing,Setting,1119463452.jpg
+307,Two kids,in,a toy car,at,a gas station,N,Commonsense Transitive,(X p Y) p Z,FALSE,Two kids in a toy car at a gas station.,Vessel,Setting,1787222774.jpg
+308,Dog,with,a toy,in,the snow,N,Commonsense Transitive,,FALSE,Dog with a toy in the snow.,Instrument,Setting,384577800.jpg
+309,Protesters,with,""" NO NEW COAL "" signs",in,urban area,N,Commonsense Transitive,,FALSE,"Protesters with "" NO NEW COAL "" signs in urban area.",Instrument,Setting,3099091086.jpg
+310,A dog,with,a frisbee,in,its mouth,Y,Y,Adjunct Clause,FALSE,A dog with a frisbee in its mouth.,Instrument,Spatial,4985525121.jpg
+311,a lone bodyboarder,with,an older man,in,the background,Y,Y,Not Sure,TRUE,a lone bodyboarder with an older man in the background.,Participant,Spatial,526955751.jpg
+312,A picture,of,somebody,under,blue water,Y,Y,X p (Y p Z),FALSE,A picture of somebody under blue water.,Display,Setting,3683644335.jpg
+313,A street,with,a church,in,the background,Y,Y,Not Sure,TRUE,A street with a church in the background.,Landmark,Spatial,4446887023.jpg
+314,Two workers,on,the 4th floor,of,a glass room,Y,Y,X p (Y p Z),FALSE,Two workers on the 4th floor of a glass room.,Setting,PartWhole,2427840554.jpg
+315,Two children,by,a tree,near,some water,N,Semantic Transitive,Not Sure,FALSE,Two children by a tree near some water.,Landmark,Setting,164048211.jpg
+316,A young woman,in,a fashionable tennis outfit,between,volleys,Y,X,(X p Y) p Z,FALSE,A young woman in a fashionable tennis outfit between volleys.,Clothing,Activity,23018702.jpg
+317,A baby,in,a cart,on,a sidewalk,N,Commonsense Transitive,,FALSE,A baby in a cart on a sidewalk.,Vessel,Setting,4865409871.jpg
+318,Crowd,at,a soccer match,in,the Netherlands,N,Commonsense Transitive,,FALSE,Crowd at a soccer match in the Netherlands.,Activity,Setting,611301340.jpg
+319,A person,in,a black and white shirt,on,a bicycle,Y,X,(X p Y) p Z,FALSE,A person in a black and white shirt on a bicycle.,Clothing,Vessel,3341117695.jpg
+320,A group,of,bicycle riders,on,street corner,N,Group of Things,(X p Y) p Z,FALSE,A group of bicycle riders on street corner.,Group,Setting,506442511.jpg
+321,A shirtless man,with,a Pharaoh hat,on,his head,Y,Y,Adjunct Clause,FALSE,A shirtless man with a Pharaoh hat on his head.,Clothing,Spatial,4713458862.jpg
+322,Two young girls,in,the tree,with,their dog,Y,X,Not Sure,TRUE,Two young girls in the tree with their dog.,Spatial,Participant,4656225038.jpg
+323,A pilot,at,the window,of,a British Airways plane,N,Semantic Transitive,,FALSE,A pilot at the window of a British Airways plane.,Landmark,PartWhole,3035057.jpg
+324,three men,with,football,in,air,Y,Y,X p (Y p Z),TRUE,three men with football in air.,Instrument,Spatial,2955099064.jpg
+325,two men,with,a bike,on,a stand,Y,Y,X p (Y p Z),TRUE,two men with a bike on a stand.,Landmark,Spatial,4920897810.jpg
+326,A man,with,his hand,around,a woman 's throat,Y,Y,Adjunct Clause,FALSE,A man with his hand around a woman 's throat.,Attribute,Spatial,2204677106.jpg
+327,A beaver,on,the shore,of,a stream,N,Semantic Transitive,X p (Y p Z),FALSE,A beaver on the shore of a stream.,Setting,PartWhole,3422394336.jpg
+328,Two women,at,a food bank,in,Central Illinois,N,Commonsense Transitive,,FALSE,Two women at a food bank in Central Illinois.,Setting,Setting,3085594016.jpg
+329,Men,on,a soccer field,with,balls,Y,X,X p (Y p Z),TRUE,Men on a soccer field with balls.,Setting,Attribute,4160956997.jpg
+330,Construction,in,the city,at,night,N,Commonsense Transitive,,FALSE,Construction in the city at night.,Setting,Temporal,23473996.jpg
+331,a crowd,of,people,in,a subway,N,Group of Things,(X p Y) p Z,FALSE,a crowd of people in a subway.,Group,Setting,235074044.jpg
+332,A man,on,a bike,in,midair,N,Commonsense Transitive,(X p Y) p Z,FALSE,A man on a bike in midair.,Vessel,Spatial,3355827928.jpg
+333,A winter landscape,with,two people,in,the foreground,Y,Y,X p (Y p Z),FALSE,A winter landscape with two people in the foreground.,Participant,Spatial,5293036215.jpg
+334,A little girl,on,a blue slide,at,a playground,N,Commonsense Transitive,,FALSE,A little girl on a blue slide at a playground.,Activity,Setting,640409060.jpg
+335,Old ruins,in,the background,of,a city street,Y,Y,X p (Y p Z),FALSE,Old ruins in the background of a city street.,Setting,Spatial,4690414746.jpg
+336,A person,underneath,a car,with,a jack,N,Commonsense Transitive,,FALSE,A person underneath a car with a jack.,Spatial,Instrument,2092870249.jpg
+337,A broad shot,of,a busy street,in,a lull,Y,Y,X p (Y p Z),FALSE,A broad shot of a busy street in a lull.,Display,Temporal,3341920567.jpg
+338,A woman,on,a city street,on,a sunny day,N,Commonsense Transitive,,FALSE,A woman on a city street on a sunny day.,Setting,Temporal,4548216727.jpg
+339,A guy,on,a bike,in,the forest,N,Commonsense Transitive,(X p Y) p Z,FALSE,A guy on a bike in the forest.,Vessel,Setting,3330019493.jpg
+340,One young blond female,on,an old ATV,by,a pond,N,Commonsense Transitive,(X p Y) p Z,FALSE,One young blond female on an old ATV by a pond.,Vessel,Setting,128479785.jpg
+341,Juggler,on,beach,in,blue swimsuit,Y,X,X (p Y) (p Z),FALSE,Juggler on beach in blue swimsuit.,Setting,Clothing,2318502106.jpg
+342,Walkers,at,an event,in,a park,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Walkers at an event in a park.,Activity,Setting,3498192512.jpg
+343,A boy,with,a metal colander,on,his head,Y,Y,Not Sure,FALSE,A boy with a metal colander on his head.,Attribute,Spatial,2423292784.jpg
+344,A girl,in,colorful clothes,on,the beach,Y,X,(X p Y) p Z,FALSE,A girl in colorful clothes on the beach.,Clothing,Setting,318070878.jpg
+345,Six children,in,a row,with,small musical instruments,N,Commonsense Transitive,,FALSE,Six children in a row with small musical instruments.,Spatial,Instrument,2650485780.jpg
+346,Silhouettes,of,people,at,the ocean,N,Commonsense Transitive,,FALSE,Silhouettes of people at the ocean.,Display,Setting,4846892973.jpg
+347,Oriental people,on,small boats,in,water,N,Commonsense Transitive,,FALSE,Oriental people on small boats in water.,Vessel,Setting,2042765371.jpg
+348,A man,on,a jet ski,in,the water,N,Commonsense Transitive,,FALSE,A man on a jet ski in the water.,Vessel,Setting,4680389936.jpg
+349,Two people,in,hockey uniforms,on,the ice,Y,X,(X p Y) p Z,FALSE,Two people in hockey uniforms on the ice.,Clothing,Setting,3373481779.jpg
+350,A white woman,in,the field,with,two llamas,N,Commonsense Transitive,,FALSE,A white woman in the field with two llamas.,Setting,Participant,5004301175.jpg
+351,Black dog,with,blue string,in,its mouth,Y,Y,Adjunct Clause,FALSE,Black dog with blue string in its mouth.,Attribute,Spatial,1562392511.jpg
+352,two white geese,on,the surface,of,the ocean,Y,Y,X p (Y p Z),FALSE,two white geese on the surface of the ocean.,Setting,PartWhole,3014773357.jpg
+353,Black dog,in,the yard,at,night,N,Commonsense Transitive,,FALSE,Black dog in the yard at night.,Setting,Temporal,2218334049.jpg
+354,Person,on,a Polaris ski mobile,in,the snow,N,Commonsense Transitive,,FALSE,Person on a Polaris ski mobile in the snow.,Vessel,Setting,437527058.jpg
+355,The front,of,a very small eatery,at,night,N,Commonsense Transitive,,FALSE,The front of a very small eatery at night.,Attribute,Temporal,3749974168.jpg
+356,group,of,people,in,a circle,N,Group of Things,(X p Y) p Z,FALSE,group of people in a circle.,Group,Spatial,238964239.jpg
+357,A motorcyclist,in,a blue motorbike,in,a racing track,N,Commonsense Transitive,,FALSE,A motorcyclist in a blue motorbike in a racing track.,Vessel,Setting,6440454931.jpg
+358,Family,in,the kitchen,around,the counter,Y,X,X (p Y) (p Z),FALSE,Family in the kitchen around the counter.,Setting,Spatial,1477503966.jpg
+359,A gathering,of,young women,in,an oriental market,N,Group of Things,(X p Y) p Z,FALSE,A gathering of young women in an oriental market.,Group,Setting,4690244023.jpg
+360,Members,of,a strike,at,Yale University,N,Group of Things,(X p Y) p Z,FALSE,Members of a strike at Yale University.,PartWhole,Setting,9950913.jpg
+361,A woman,with,a cart,of,vegetables,Y,Y,X p (Y p Z),FALSE,A woman with a cart of vegetables.,Landmark,PartWhole,439823342.jpg
+362,A small baby,at,a park,in,a tube,Y,X,X (p Y) (p Z),FALSE,A small baby at a park in a tube.,Setting,Landmark,3387630781.jpg
+363,Older man,in,woods,with,plants,N,Commonsense Transitive,,FALSE,Older man in woods with plants.,Setting,Landmark,2010898020.jpg
+364,Three men,in,a field,with,model airplanes,Y,X,,FALSE,Three men in a field with model airplanes.,Setting,Landmark,4758626595.jpg
+365,No male construction workers,in,a work area,in,a city,Y,Y,X p (Y p Z),FALSE,No male construction workers in a work area in a city.,Setting,Setting,6789373753.jpg
+366,A gathering,of,young African males,under,a thatched roof,N,Group of Things,(X p Y) p Z,FALSE,A gathering of young African males under a thatched roof.,Group,Landmark,3222142529.jpg
+367,Little child,with,blue shirt,in,tree,Y,X,(X p Y) p Z,TRUE,Little child with blue shirt in tree.,Clothing,Setting,724530150.jpg
+368,A man,on,a bike,with,a dog,Y,X,Not Sure,TRUE,A man on a bike with a dog.,Vessel,Participant,4303789445.jpg
+369,A woman,with,her nose,in,a book,Y,Y,Adjunct Clause,FALSE,A woman with her nose in a book.,Attribute,Landmark,497374910.jpg
+370,Window,of,the fancy store,on,the corner,N,Commonsense Transitive,,FALSE,Window of the fancy store on the corner.,Attribute,Setting,4833518473.jpg
+371,Two ladies,at,workout,in,mother nature,N,Commonsense Transitive,,FALSE,Two ladies at workout in mother nature.,Activity,Setting,5001895034.jpg
+372,A people,in,the top,of,mountain,Y,Y,X p (Y p Z),FALSE,A people in the top of mountain.,Setting,Attribute,3827185640.jpg
+373,Man,in,kayak,with,large dog,N,X,(X p Y) p Z,TRUE,Man in kayak with large dog.,Vessel,Participant,515335111.jpg
+374,Two people,in,a tent,near,a rock wall,N,Commonsense Transitive,(X p Y) p Z,TRUE,Two people in a tent near a rock wall.,Setting,Landmark,3044745642.jpg
+375,A baby girl,with,a mouthful,of,cereal,Y,Y,Adjunct Clause,FALSE,A baby girl with a mouthful of cereal.,Attribute,PartWhole,3246505968.jpg
+376,Cyclist,in,snowy forest,at,night,N,Commonsense Transitive,,FALSE,Cyclist in snowy forest at night.,Setting,Temporal,3242808166.jpg
+377,A guy,on,a motorcycle,at,a streetlight,N,Commonsense Transitive,,FALSE,A guy on a motorcycle at a streetlight.,Vessel,Landmark,4954417902.jpg
+378,A boy,with,rope,in,the woods,N,Commonsense Transitive,,FALSE,A boy with rope in the woods.,Instrument,Setting,3697153626.jpg
+379,A large construction site,with,many vehicles,in,a city,Y,X,(X p Y) p Z,FALSE,A large construction site with many vehicles in a city.,Landmark,Setting,2961004039.jpg
+380,Silhouettes,of,people,in,dark place,N,Commonsense Transitive,,FALSE,Silhouettes of people in dark place.,Display,Setting,472298482.jpg
+381,A street view,of,runners,in,a race,Y,Y,X p (Y p Z),FALSE,A street view of runners in a race.,Display,Activity,263491786.jpg
+382,A woman,in,a dress,with,two children,Y,X,(X p Y) p Z,FALSE,A woman in a dress with two children.,Clothing,Participant,1184910489.jpg
+383,A group,of,people,at,a festival,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a festival.,Group,Activity,2508837436.jpg
+384,A pale boy,in,a swimming pool,with,a plastic bottle,Y,X,X (p Y) (p Z),TRUE,A pale boy in a swimming pool with a plastic bottle.,Setting,Landmark,300175582.jpg
+385,A man,in,a red kayak,in,the water,N,Commonsense Transitive,,FALSE,A man in a red kayak in the water.,Vessel,Setting,3563673070.jpg
+386,A group,of,men,on,an active construction site,N,Group of Things,(X p Y) p Z,FALSE,A group of men on an active construction site.,Group,Setting,2778965398.jpg
+387,A man,on,a ladder,in,tall grass,N,Commonsense Transitive,,FALSE,A man on a ladder in tall grass.,Landmark,Setting,51900751.jpg
+388,Reflection,of,an elderly woman,in,a street,N,Commonsense Transitive,,FALSE,Reflection of an elderly woman in a street.,Display,Setting,4955299042.jpg
+389,A man,in,a colorful costume,with,a trumpet,Y,X,X (p Y) (p Z),FALSE,A man in a colorful costume with a trumpet.,Clothing,Instrument,4588353079.jpg
+390,Girl,with,blue shirt,at,a protest,Y,X,(X p Y) p Z,FALSE,Girl with blue shirt at a protest.,Clothing,Activity,3474912569.jpg
+391,A bunch,of,people,near,a christmas type tree,N,Group of Things,(X p Y) p Z,FALSE,A bunch of people near a christmas type tree.,Group,Landmark,3104182973.jpg
+392,A picture,of,the clarinet section,of,a band,Y,Y,X p (Y p Z),FALSE,A picture of the clarinet section of a band.,Display,PartWhole,218556922.jpg
+393,A group,of,people,in,an outdoor exercise class,N,Group of Things,(X p Y) p Z,FALSE,A group of people in an outdoor exercise class.,Group,Activity,2546110019.jpg
+394,A group,of,people,in,a conference,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a conference.,Group,Activity,5062544126.jpg
+395,A shopping center,with,a few people,in,it,Y,Y,Adjunct Clause,FALSE,A shopping center with a few people in it.,Participant,Spatial,4756001299.jpg
+396,A young boy,in,a pile,of,leaves,Y,Y,X p (Y p Z),FALSE,A young boy in a pile of leaves.,Landmark,PartWhole,5043444080.jpg
+397,Three boys,on,a platform,in,the forest,N,Commonsense Transitive,,FALSE,Three boys on a platform in the forest.,Setting,Setting,2705947033.jpg
+398,A brown dog,with,a baseball,in,its mouth,Y,Y,Adjunct Clause,FALSE,A brown dog with a baseball in its mouth.,Instrument,Spatial,3622929632.jpg
+399,A man,on,a bike,in,midair,N,Commonsense Transitive,,FALSE,A man on a bike in midair.,Vessel,Spatial,3355827928.jpg
+400,A game,on,women volleyball,in,a gymnasium,N,Commonsense Transitive,,FALSE,A game on women volleyball in a gymnasium.,Species,Setting,6638041153.jpg
+401,Five military personnel,in,blue pants,with,brass instruments,Y,X,X (p Y) (p Z),FALSE,Five military personnel in blue pants with brass instruments.,Clothing,Instrument,3653385929.jpg
+402,Two rock climbers,near,the base,of,a rock face,Y,Y,X p (Y p Z),FALSE,Two rock climbers near the base of a rock face.,Landmark,PartWhole,3537218226.jpg
+403,Three dogs,in,the snow,by,a fence,N,Commonsense Transitive,,FALSE,Three dogs in the snow by a fence.,Setting,Landmark,369186134.jpg
+404,A baby,in,a life jacket,on,a raft,Y,X,,FALSE,A baby in a life jacket on a raft.,Clothing,Vessel,2615811117.jpg
+405,Person,on,beach,with,an umbrella,Y,X,,TRUE,Person on beach with an umbrella.,Setting,Landmark,2230260635.jpg
+406,A group,of,football players,in,red and white uniforms,N,Group of Things,(X p Y) p Z,FALSE,A group of football players in red and white uniforms.,Group,Clothing,241347689.jpg
+407,A group,of,people,in,protective gear,N,Group of Things,(X p Y) p Z,FALSE,A group of people in protective gear.,Group,Clothing,207930963.jpg
+408,Child,with,a toy,in,his hand,Y,Y,Adjunct Clause,FALSE,Child with a toy in his hand.,Instrument,Spatial,2366020313.jpg
+409,Dog,with,head,in,snow,Y,Y,Adjunct Clause,FALSE,Dog with head in snow.,Attribute,Spatial,413231421.jpg
+410,A person,in,a red shirt,on,a skateboard,Y,X,(X p Y) p Z,FALSE,A person in a red shirt on a skateboard.,Clothing,Vessel,3240090389.jpg
+411,A little boy,with,baby food,on,his face,Y,Y,Adjunct Clause,FALSE,A little boy with baby food on his face.,Attribute,Spatial,2144846312.jpg
+412,A front view shot,of,a tourist information center,at,night,N,Commonsense Transitive,,FALSE,A front view shot of a tourist information center at night.,Display,Temporal,2217903873.jpg
+413,A lady,in,a sequined hat,with,red face paint,Y,X,X (p Y) (p Z),FALSE,A lady in a sequined hat with red face paint.,Clothing,Attribute,3503624011.jpg
+414,A man,in,sunglasses,on,an overpass,Y,X,(X p Y) p Z,FALSE,A man in sunglasses on an overpass.,Clothing,Setting,1235685934.jpg
+415,Woman,on,an elliptical machine,at,a gym,N,Commonsense Transitive,,FALSE,Woman on an elliptical machine at a gym.,Vessel,Setting,6307273092.jpg
+416,Two young boys,in,the water,with,small surfboards,N,Commonsense Transitive,,FALSE,Two young boys in the water with small surfboards.,Setting,Vessel,3328247381.jpg
+417,Asian crowd,with,attractive woman,in,foreground,Y,Y,X p (Y p Z),FALSE,Asian crowd with attractive woman in foreground.,Participant,Spatial,3545793128.jpg
+418,A couple,on,the beach,with,their child,Y,X,,FALSE,A couple on the beach with their child.,Setting,Participant,1534613774.jpg
+419,A man,with,a slide,in,the background,Y,Y,X p (Y p Z),FALSE,A man with a slide in the background.,Landmark,Spatial,4845708873.jpg
+420,A group,of,girls,on,a beach,N,Group of Things,(X p Y) p Z,FALSE,A group of girls on a beach.,Group,Setting,2723929323.jpg
+421,Three climbers,on,rocks,near,waterfall,N,Commonsense Transitive,,FALSE,Three climbers on rocks near waterfall.,Landmark,Landmark,697778778.jpg
+422,Heavy machinery,in,use,at,a factory,Y,X,,FALSE,Heavy machinery in use at a factory.,Activity,Setting,200553102.jpg
+423,Boys,in,uniform,behind,a ball,Y,X,(X p Y) p Z,FALSE,Boys in uniform behind a ball.,Clothing,Landmark,2678612999.jpg
+424,Performers,in,vintage clothing,on,a stage,Y,X,,FALSE,Performers in vintage clothing on a stage.,Clothing,Setting,4564468036.jpg
+425,A man,in,a suit,by,a stoplight,Y,X,,FALSE,A man in a suit by a stoplight.,Clothing,Landmark,2411585767.jpg
+426,The outside,of,a Asian building,at,night,N,Commonsense Transitive,,FALSE,The outside of a Asian building at night.,Attribute,Temporal,4922687043.jpg
+427,A group,of,ducks,in,a field,N,Group of Things,(X p Y) p Z,FALSE,A group of ducks in a field.,Group,Setting,824923476.jpg
+428,A woman,in,a black shirt,on,a bungee cord,Y,X,X (p Y) (p Z),FALSE,A woman in a black shirt on a bungee cord.,Clothing,Activity,3801083035.jpg
+429,Two people,in,animal suits,in,a square,Y,X,,FALSE,Two people in animal suits in a square.,Clothing,Setting,537225246.jpg
+430,A birds-eye view,of,a sidewalk,with,many people,N,Commonsense Transitive,,FALSE,A birds-eye view of a sidewalk with many people.,Display,Participant,4948910881.jpg
+431,A marathon runner,with,a dinosaur,in,the middle,Y,Y,X p (Y p Z),TRUE,A marathon runner with a dinosaur in the middle.,Landmark,Spatial,4591476340.jpg
+432,Man,with,a slight grin,on,his face,Y,Y,Adjunct Clause,FALSE,Man with a slight grin on his face.,Attribute,Attribute,4767349301.jpg
+433,A busy oriental street,with,a camera,on,a poll,Y,Y,X p (Y p Z),FALSE,A busy oriental street with a camera on a poll.,Landmark,Spatial,4152801351.jpg
+434,A boy,in,a hat,on,a swing,Y,X,X (p Y) (p Z),FALSE,A boy in a hat on a swing.,Clothing,Vessel,2777021428.jpg
+435,A man,in,a red cap,with,a nose ring,Y,X,X (p Y) (p Z),FALSE,A man in a red cap with a nose ring.,Clothing,Attribute,1167662968.jpg
+436,A group,of,teenagers,near,Simpsons characters,N,Group of Things,(X p Y) p Z,FALSE,A group of teenagers near Simpsons characters.,Group,Participant,782401952.jpg
+437,dog,with,a red collar,on,a trampoline,Y,X,,FALSE,dog with a red collar on a trampoline.,Attribute,Landmark,3396157719.jpg
+438,hockey player,in,white uniform,with,stick,Y,X,X (p Y) (p Z),FALSE,hockey player in white uniform with stick.,Clothing,Instrument,3373481779.jpg
+439,A few umbrellas,on,a rainy day,in,a crowded area,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A few umbrellas on a rainy day in a crowded area.,Temporal,Setting,4567985212.jpg
+440,The shadow,of,two men,on,rigging,Y,Y,Not Sure,TRUE,The shadow of two men on rigging.,Display,Physical Support,34988312.jpg
+441,Two men,on,a street,underneath,an umbrella,Y,X,,FALSE,Two men on a street underneath an umbrella.,Setting,Landmark,4882700736.jpg
+442,Old man,in,red shirt,with,silver umbrella,Y,X,X (p Y) (p Z),FALSE,Old man in red shirt with silver umbrella.,Clothing,Landmark,2341850464.jpg
+443,A silver statue,of,men,on,bikes,Y,Y,Not Sure,TRUE,A silver statue of men on bikes.,Display,Via,204886976.jpg
+444,Two families,on,a picnic,with,green grass,N,Commonsense Transitive,,FALSE,Two families on a picnic with green grass.,Activity,Setting,5721468367.jpg
+445,an old woman,in,a blue plaid shirt,at,an event,Y,X,(X p Y) p Z,FALSE,an old woman in a blue plaid shirt at an event.,Clothing,Setting,3003936696.jpg
+446,People,in,a crowd,behind,a yellow metal gate,N,Commonsense Transitive,,FALSE,People in a crowd behind a yellow metal gate.,PartWhole,Landmark,2370275359.jpg
+447,A brown building,with,graffiti,on,it,Y,Y,Adjunct Clause,FALSE,A brown building with graffiti on it.,Attribute,Spatial,2838612066.jpg
+448,Man,in,overalls,with,two horses,N,Commonsense Transitive,,FALSE,Man in overalls with two horses.,Clothing,Participant,6164855846.jpg
+449,An elderly person,in,a field,of,hay,Y,Y,X p (Y p Z),FALSE,An elderly person in a field of hay.,Setting,PartWhole,3826504213.jpg
+450,Three boys,in,a building,under,construction,Y,Y,X p (Y p Z),FALSE,Three boys in a building under construction.,Setting,Attribute,2844018783.jpg
+451,A man,in,a paddle boat,on,a lake,N,Commonsense Transitive,,FALSE,A man in a paddle boat on a lake.,Activity,Setting,217838128.jpg
+452,A car,with,large full bags,on,its top,Y,Y,Adjunct Clause,FALSE,A car with large full bags on its top.,Attribute,Spatial,4680280693.jpg
+453,A Norfolk Race car,with,flames,on,the hood,Y,Y,Adjunct Clause,FALSE,A Norfolk Race car with flames on the hood.,Attribute,Medium,3815669424.jpg
+454,a lone swinger,on,a swing ride,at,the fair,N,Commonsense Transitive,,FALSE,a lone swinger on a swing ride at the fair.,Vessel,Setting,2604305843.jpg
+455,A man,in,a wetsuit,on,a surfboard,Y,X,,FALSE,A man in a wetsuit on a surfboard.,Clothing,Vessel,3494723363.jpg
+456,A man,on,a horse,with,a lasso,Y,X,(X p Y) p Z,FALSE,A man on a horse with a lasso.,Vessel,Instrument,4931370200.jpg
+457,Police,in,yellow jackets,at,a protest,Y,X,(X p Y) p Z,FALSE,Police in yellow jackets at a protest.,Clothing,Setting,3504479370.jpg
+458,A group,of,girls,in,blue outfits,N,Group of Things,(X p Y) p Z,FALSE,A group of girls in blue outfits.,Group,Clothing,2872815538.jpg
+459,A child,on,a rock,in,a stream,N,Y,X p (Y p Z),FALSE,A child on a rock in a stream.,Landmark,Setting,2218843713.jpg
+460,A man,in,a green shirt,in,a hair salon,Y,X,(X p Y) p Z,FALSE,A man in a green shirt in a hair salon.,Clothing,Setting,2279894890.jpg
+461,A person,on,a blue bench,under,a blue blanket,Y,X,Not Sure,TRUE,A person on a blue bench under a blue blanket.,Landmark,Landmark,325576658.jpg
+462,A redheaded woman,with,a baby,in,a harness,N,Semantic Transitive,(X p Y) p Z,FALSE,A redheaded woman with a baby in a harness.,Participant,Spatial,3274375509.jpg
+463,a man,by,himself,in,a building,Y,X,Adjunct Clause,FALSE,a man by himself in a building.,Attribute,Setting,2837480448.jpg
+464,A little boy,on,a green sled,at,night,N,Commonsense Transitive,,FALSE,A little boy on a green sled at night.,Vessel,Temporal,3401548798.jpg
+465,Man,on,four wheeler,in,the air,N,Commonsense Transitive,,FALSE,Man on four wheeler in the air.,Vessel,Spatial,109823397.jpg
+466,Four people,in,red vests,on,an orange boat,Y,X,,FALSE,Four people in red vests on an orange boat.,Clothing,Vessel,4751592213.jpg
+467,A small child,on,a tire swing,in,a forested field,N,Commonsense Transitive,,FALSE,A small child on a tire swing in a forested field.,Vessel,Setting,2313822078.jpg
+468,A dog,with,a ball,in,a grassy field,N,Commonsense Transitive,,FALSE,A dog with a ball in a grassy field.,Attribute,Setting,3185695861.jpg
+469,An empty street,with,stores,with,french names,Y,Y,Not Sure,TRUE,An empty street with stores with french names.,Landmark,Attribute,4442931243.jpg
+470,Two people,at,the base,of,a waterfall,Y,Y,X p (Y p Z),FALSE,Two people at the base of a waterfall.,Landmark,PartWhole,2793597468.jpg
+471,Two men,with,paddles,in,the water,Y,Y,Not Sure,TRUE,Two men with paddles in the water.,Instrument,Spatial,2892177947.jpg
+472,A young child,in,a wagon,on,a sunny day,N,Commonsense Transitive,,FALSE,A young child in a wagon on a sunny day.,Vessel,Temporal,487652642.jpg
+473,A man,with,a yellow balloon,with,his family,Y,X,Adjunct Clause,FALSE,A man with a yellow balloon with his family.,Attribute,Participant,4161413089.jpg
+474,Group,of,people,by,a lake,N,Group of Things,(X p Y) p Z,FALSE,Group of people by a lake.,Group,Landmark,4113033557.jpg
+475,a toddler,with,eggs,in,a bowl,Y,Y,Not Sure,FALSE,a toddler with eggs in a bowl.,Landmark,Spatial,135200870.jpg
+476,A busy street,with,a lot,of,houses,N,Group of Things,X p (Y p Z),FALSE,A busy street with a lot of houses.,Attribute,Group,4689831601.jpg
+477,A young women,in,a bright blue dress,on,a stage,Y,X,X (p Y) (p Z),FALSE,A young women in a bright blue dress on a stage.,Clothing,Setting,7426852574.jpg
+478,A group,of,people,behind,yellow gates,N,Group of Things,(X p Y) p Z,FALSE,A group of people behind yellow gates.,Group,Landmark,2370275359.jpg
+479,An aerial view,of,a large group,of,people,N,Group of Things,X p (Y p Z),FALSE,An aerial view of a large group of people.,Display,Group,3527407036.jpg
+480,A foreign woman,with,a basket,on,her head,Y,Y,Adjunct Clause,FALSE,A foreign woman with a basket on her head.,Instrument,Spatial,4834744984.jpg
+481,A woman,on,the beach,with,her dog,N,Commonsense Transitive,,FALSE,A woman on the beach with her dog.,Setting,Participant,385452927.jpg
+482,Group,of,people,in,a queue,N,Group of Things,(X p Y) p Z,FALSE,Group of people in a queue.,Group,Spatial,463475838.jpg
+483,A Hispanic popcorn vendor,on,a street corner,at,night,N,Commonsense Transitive,,FALSE,A Hispanic popcorn vendor on a street corner at night.,Setting,Temporal,4909614126.jpg
+484,A group,of,children,in,a field,N,Group of Things,(X p Y) p Z,FALSE,A group of children in a field.,Group,Setting,1685990174.jpg
+485,Two dogs,with,a rag,in,their mouths,Y,Y,Adjunct Clause,FALSE,Two dogs with a rag in their mouths.,Instrument,Spatial,244870123.jpg
+486,A casino,with,a lot,of,slot machines,N,Group of Things,X p (Y p Z),FALSE,A casino with a lot of slot machines.,Attribute,Group,3158365397.jpg
+487,A little boy,with,frizzy hair,on,a slide,Y,X,(X p Y) p Z,FALSE,A little boy with frizzy hair on a slide.,Attribute,Landmark,2766854400.jpg
+488,A lone protester,in,a black jacket,on,the sidewalk,Y,X,(X p Y) p Z,FALSE,A lone protester in a black jacket on the sidewalk.,Clothing,Setting,3400889730.jpg
+489,Young boy,in,blue shorts,at,the beach,Y,X,(X p Y) p Z,FALSE,Young boy in blue shorts at the beach.,Clothing,Setting,823675317.jpg
+490,three children,in,a field,with,white flowers,Y,Y,,TRUE,three children in a field with white flowers.,Setting,Attribute,2506892928.jpg
+491,Man,in,a small white boat,on,a lake,N,Commonsense Transitive,,FALSE,Man in a small white boat on a lake.,Activity,Setting,217583047.jpg
+492,A person,on,a snowmobile,in,mid jump,N,Commonsense Transitive,,FALSE,A person on a snowmobile in mid jump.,Vessel,Activity,109738763.jpg
+493,Person,with,a backpack,in,a field,Y,X,(X p Y) p Z,FALSE,Person with a backpack in a field.,Attribute,Setting,1434005938.jpg
+494,A competitive swimmer,in,a pool,of,water,Y,Y,X p (Y p Z),FALSE,A competitive swimmer in a pool of water.,Setting,PartWhole,4076444220.jpg
+495,A shot,of,shoes,in,water,Y,Y,X p (Y p Z),FALSE,A shot of shoes in water.,Display,Setting,490390951.jpg
+496,Person,on,a horse,on,the beach,N,Semantic Transitive,(X p Y) p Z,FALSE,Person on a horse on the beach.,Vessel,Setting,3272002857.jpg
+497,A boy,in,his blue swim shorts,at,the beach,Y,X,Adjunct Clause,FALSE,A boy in his blue swim shorts at the beach.,Clothing,Setting,106490881.jpg
+498,A group,of,people,in,a room,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a room.,Group,Setting,2600068936.jpg
+499,Spectators,in,sunglasses,at,an event,Y,X,(X p Y) p Z,FALSE,Spectators in sunglasses at an event.,Attribute,Setting,4738781753.jpg
+500,Busy street,with,pedestrians,in,Japan,N,Commonsense Transitive,(X p Y) p Z,FALSE,Busy street with pedestrians in Japan.,Participant,Setting,4675458058.jpg
+501,Several ladies,with,a baby,in,a bedroom,N,Commonsense Transitive,,FALSE,Several ladies with a baby in a bedroom.,Participant,Setting,3655207400.jpg
+502,A group,of,men,with,brass instruments,N,Group of Things,(X p Y) p Z,FALSE,A group of men with brass instruments.,Group,Instrument,1394796089.jpg
+503,Children,in,swimming clothes,in,a field,Y,X,,FALSE,Children in swimming clothes in a field.,Clothing,Setting,2276120079.jpg
+504,An informal outdoor gathering,of,people,around,a table,N,Commonsense Transitive,,FALSE,An informal outdoor gathering of people around a table.,Group,Landmark,4883101538.jpg
+505,A little boy,with,a yellow balloon,at,a fair,N,Commonsense Transitive,(X p Y) p Z,FALSE,A little boy with a yellow balloon at a fair.,Landmark,Setting,213759069.jpg
+506,Young male child,in,a grocery cart,with,food items,N,Commonsense Transitive,,FALSE,Young male child in a grocery cart with food items.,Vessel,Attribute,4939713092.jpg
+507,Brown and white dog,with,brown and black dog,on,gray sheet,Y,X,(X p Y) p Z,TRUE,Brown and white dog with brown and black dog on gray sheet.,Participant,Setting,2347921097.jpg
+508,Two men,in,a room,with,yellow empty beds,N,Commonsense Transitive,,FALSE,Two men in a room with yellow empty beds.,Setting,Landmark,2391883944.jpg
+509,Children,in,a schoolwork,on,an activity,N,Commonsense Transitive,,FALSE,Children in a schoolwork on an activity.,Error,Activity,6918466589.jpg
+510,A group,of,hockey players,around,a goal,N,Group of Things,(X p Y) p Z,FALSE,A group of hockey players around a goal.,Group,Landmark,3523950181.jpg
+511,A woman,in,the bathroom,in,her pajamas,Y,X,X (p Y) (p Z),FALSE,A woman in the bathroom in her pajamas.,Setting,Clothing,317413869.jpg
+512,A man,with,a white hat,on,a scooter,Y,X,(X p Y) p Z,FALSE,A man with a white hat on a scooter.,Clothing,Vessel,3239709584.jpg
+513,An Asian woman,in,a vegetable market,on,a rainy day,N,Commonsense Transitive,,FALSE,An Asian woman in a vegetable market on a rainy day.,Setting,Temporal,74306574.jpg
+514,two children,inside,a kitchen,with,straws,Y,X,X (p Y) (p Z),FALSE,two children inside a kitchen with straws.,Setting,Instrument,6801411052.jpg
+515,A man,on,a dirt road,in,a small town,N,Commonsense Transitive,,FALSE,A man on a dirt road in a small town.,Setting,Setting,294098577.jpg
+516,A large group,of,church choir singers,on,a balcony,N,Group of Things,(X p Y) p Z,FALSE,A large group of church choir singers on a balcony.,Group,Setting,318706557.jpg
+517,A young man,with,a black cap,on,a green bike,Y,X,(X p Y) p Z,FALSE,A young man with a black cap on a green bike.,Clothing,Via,4977719120.jpg
+518,a woman,with,dishes,in,the dirt,Y,Y,X p (Y p Z),TRUE,a woman with dishes in the dirt.,Landmark,Setting,529321454.jpg
+519,A man,in,a martial arts uniform,in,midair,Y,X,(X p Y) p Z,FALSE,A man in a martial arts uniform in midair.,Clothing,Spatial,2894634533.jpg
+520,Several young men,around,a white bus,with,luggage,Y,X,Not Sure,TRUE,Several young men around a white bus with luggage.,Landmark,Landmark,3267847492.jpg
+521,Salmon,on,cedar planks,on,a grill,N,Commonsense Transitive,,FALSE,Salmon on cedar planks on a grill.,Instrument,Instrument,823697026.jpg
+522,A man,with,a broom,on,a smoky road,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A man with a broom on a smoky road.,Instrument,Setting,4612733800.jpg
+523,A woman,with,a tissue,in,her hand,Y,Y,Adjunct Clause,FALSE,A woman with a tissue in her hand.,Attribute,Spatial,1815242986.jpg
+524,A child,in,a fuzzy blue hat,on,a tricycle,Y,X,(X p Y) p Z,FALSE,A child in a fuzzy blue hat on a tricycle.,Clothing,Vessel,2428094795.jpg
+525,A catamaran,on,the sea,in,a sailing competition,Y,X,X (p Y) (p Z),FALSE,A catamaran on the sea in a sailing competition.,Setting,Activity,7436121372.jpg
+526,A man,with,a red flag,with,a bull,N,Commonsense Transitive,(X p Y) p Z,FALSE,A man with a red flag with a bull.,Landmark,Participant,7860117984.jpg
+527,Fat man,on,the beach,with,a stroller,Y,X,X (p Y) (p Z),TRUE,Fat man on the beach with a stroller.,Setting,Landmark,3606355203.jpg
+528,Skateboarder,in,midair,at,a park,N,Commonsense Transitive,,FALSE,Skateboarder in midair at a park.,Spatial,Setting,3096918227.jpg
+529,Person,on,a dirt bike,in,the mud,N,Commonsense Transitive,,FALSE,Person on a dirt bike in the mud.,Vessel,Setting,4489812039.jpg
+530,Three bridesmaids,in,pink dresses,with,pink bouquets,Y,X,X (p Y) (p Z),FALSE,Three bridesmaids in pink dresses with pink bouquets.,Clothing,Landmark,166174352.jpg
+531,A person,in,the air,on,a bike,N,Commonsense Transitive,,FALSE,A person in the air on a bike.,Spatial,Via,2980118787.jpg
+532,A man,with,two dogs,on,a beach,N,Commonsense Transitive,(X p Y) p Z,FALSE,A man with two dogs on a beach.,Participant,Setting,1075867198.jpg
+533,A large ship,on,the water,at,dusk,N,Commonsense Transitive,(X p Y) p Z,FALSE,A large ship on the water at dusk.,Setting,Temporal,238512430.jpg
+534,a man,in,a green shirt,near,a orange cone,Y,X,(X p Y) p Z,FALSE,a man in a green shirt near a orange cone.,Clothing,Landmark,571602538.jpg
+535,A shot,of,a street scene,in,New York City,N,Commonsense Transitive,,FALSE,A shot of a street scene in New York City.,Display,Setting,4922420794.jpg
+536,Little kid,with,a bucket,of,roses,Y,Group of Things,X p (Y p Z),FALSE,Little kid with a bucket of roses.,Landmark,Group,77417252.jpg
+537,Two people,with,wooden staffs,in,a martial arts expo,Y,X,(X p Y) p Z,TRUE,Two people with wooden staffs in a martial arts expo.,Instrument,Activity,98492339.jpg
+538,A boy,in,dark clothing,near,a fountain water spout,Y,X,(X p Y) p Z,FALSE,A boy in dark clothing near a fountain water spout.,Clothing,Landmark,633456174.jpg
+539,A man,on,a bike,in,the air,N,Commonsense Transitive,,FALSE,A man on a bike in the air.,Vessel,Spatial,3501781809.jpg
+540,an infant,with,a toothbrush,in,a sink,Y,X,Not Sure,TRUE,an infant with a toothbrush in a sink.,Instrument,Spatial,2888808511.jpg
+541,Four men,at,a coffee kiosk,on,a city sidewalk,N,Commonsense Transitive,X p (Y p Z),FALSE,Four men at a coffee kiosk on a city sidewalk.,Landmark,Setting,4702314317.jpg
+542,A man,in,a yellow excavator,on,a construction site,N,Commonsense Transitive,,FALSE,A man in a yellow excavator on a construction site.,Vessel,Setting,3937269663.jpg
+543,A bunch,of,dogs,on,a beach,N,Group of Things,(X p Y) p Z,FALSE,A bunch of dogs on a beach.,Group,Setting,3324056835.jpg
+544,three men,in,a boat,on,the water,N,Commonsense Transitive,,FALSE,three men in a boat on the water.,Vessel,Setting,7171239994.jpg
+545,A young girl,on,her bike,in,her underwear,Y,X,X (p Y) (p Z),FALSE,A young girl on her bike in her underwear.,Vessel,Clothing,4716415629.jpg
+546,A boy,in,a pile,of,mud,Y,Y,X p (Y p Z),FALSE,A boy in a pile of mud.,Setting,PartWhole,2470519275.jpg
+547,People,with,a spotlight,on,them,Y,Y,Adjunct Clause,FALSE,People with a spotlight on them.,Attribute,Medium,4267222130.jpg
+548,Man,in,white boxer shorts,on,rollerskates,Y,X,(X p Y) p Z,FALSE,Man in white boxer shorts on rollerskates.,Clothing,Vessel,258083997.jpg
+549,A baby,in,a bathtub,with,a wet hair mohawk,Y,X,Not Sure,FALSE,A baby in a bathtub with a wet hair mohawk.,Setting,Attribute,3384743985.jpg
+550,A man,in,a blue apron,in,a kitchen,Y,X,(X p Y) p Z,FALSE,A man in a blue apron in a kitchen.,Clothing,Setting,4080351447.jpg
+551,A dog,with,a Frisbee,in,the snow,Y,X,Not Sure,TRUE,A dog with a Frisbee in the snow.,Instrument,Setting,309049466.jpg
+552,little boy,on,beach,with,yellow shovel,Y,X,X (p Y) (p Z),FALSE,little boy on beach with yellow shovel.,Setting,Instrument,2940427692.jpg
+553,Two boys,in,a pool,with,two tube rafts,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Two boys in a pool with two tube rafts.,Setting,Vessel,3460458114.jpg
+554,Picture,of,a hotdog vendor,in,the street,Y,Y,X p (Y p Z),FALSE,Picture of a hotdog vendor in the street.,Display,Setting,1749702972.jpg
+555,a man,on,a bike,in,the city area,N,Commonsense Transitive,,FALSE,a man on a bike in the city area.,Vessel,Setting,4923272678.jpg
+556,A child,in,a saucer,in,the snow,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A child in a saucer in the snow.,Vessel,Setting,3401548798.jpg
+557,a street,with,a crowd,of,people,Y,Group of Things,X p (Y p Z),FALSE,a street with a crowd of people.,Participant,Group,4890158457.jpg
+558,A painting,of,a busy street,by,Oxford Circus Station,Y,Y,Not Sure,TRUE,A painting of a busy street by Oxford Circus Station.,Display,Setting,4612024952.jpg
+559,Toddler,with,something,in,his mouth,Y,Y,Adjunct Clause,FALSE,Toddler with something in his mouth.,Attribute,Spatial,5891971963.jpg
+560,A singer,on,a stage,with,a white shirt,Y,X,X (p Y) (p Z),FALSE,A singer on a stage with a white shirt.,Setting,Clothing,1101923011.jpg
+561,Three little boys,on,a float,in,a river,N,Commonsense Transitive,,FALSE,Three little boys on a float in a river.,Vessel,Setting,527272653.jpg
+562,A photo,of,a train platform,on,a chilly day,Y,Y,X p (Y p Z),FALSE,A photo of a train platform on a chilly day.,Display,Temporal,3107513635.jpg
+563,A man,in,yellow rain gear,on,a boat,Y,X,,FALSE,A man in yellow rain gear on a boat.,Clothing,Vessel,3053791069.jpg
+564,A man,with,a GNC store,in,the background,Y,Y,X p (Y p Z),FALSE,A man with a GNC store in the background.,Landmark,Spatial,4589015431.jpg
+565,A woman,in,a headscarf,in,the desert,Y,X,(X p Y) p Z,FALSE,A woman in a headscarf in the desert.,Clothing,Setting,263231469.jpg
+566,Two men,on,a raft,with,a sofa,N,Commonsense Transitive,Not Sure,TRUE,Two men on a raft with a sofa.,Vessel,Attribute,3772503225.jpg
+567,A picture,of,the anatomy,of,a hand,Y,Y,X p (Y p Z),FALSE,A picture of the anatomy of a hand.,Display,Attribute,2151300603.jpg
+568,A hectic race,between,cowboys,at,the rodeo,N,Commonsense Transitive,,FALSE,A hectic race between cowboys at the rodeo.,Activity,Setting,4764975754.jpg
+569,a person,on,a red atv,on,two wheels,N,Commonsense Transitive,,FALSE,a person on a red atv on two wheels.,Vessel,Spatial,7503435144.jpg
+570,A dog,in,a field,of,colorful flowers,Y,Y,X p (Y p Z),FALSE,A dog in a field of colorful flowers.,Setting,PartWhole,2053441349.jpg
+571,Negro Boy,in,homemade boat,on,the water,N,Commonsense Transitive,,FALSE,Negro Boy in homemade boat on the water.,Vessel,Setting,194702176.jpg
+572,A bus,with,people,on,it,Y,Y,Adjunct Clause,FALSE,A bus with people on it.,Participant,Spatial,2865736256.jpg
+573,A woman,on,a computer,at,a desk,N,Commonsense Transitive,,FALSE,A woman on a computer at a desk.,Activity,Setting,298650667.jpg
+574,A brown and white dog,with,a Frisbee,in,his mouth,Y,Y,Adjunct Clause,FALSE,A brown and white dog with a Frisbee in his mouth.,Attribute,Spatial,2525270674.jpg
+575,People,on,stilts,in,a parade,N,Commonsense Transitive,,FALSE,People on stilts in a parade.,Physical Support,Activity,4669564767.jpg
+576,Men,of,asian descent,in,an alleyway,Y,X,(X p Y) p Z,FALSE,Men of asian descent in an alleyway.,Attribute,Setting,3524817073.jpg
+577,A group,of,people,at,a wedding,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a wedding.,Group,Activity,2524768589.jpg
+578,Lady,in,black hoolahoops,on,the street,Y,X,(X p Y) p Z,FALSE,Lady in black hoolahoops on the street.,Activity,Setting,2772532341.jpg
+579,A boy,in,a blue shirt,on,a computer,Y,X,(X p Y) p Z,FALSE,A boy in a blue shirt on a computer.,Clothing,Activity,3713632593.jpg
+580,A carnival ride,with,five people,on,it,Y,Y,Adjunct Clause,FALSE,A carnival ride with five people on it.,Participant,Spatial,2705925646.jpg
+581,A man,in,a orange helmet,on,building,Y,X,(X p Y) p Z,FALSE,A man in a orange helmet on building.,Clothing,Setting,3711344791.jpg
+582,The Orient Hotel,on,an empty street,at,night,N,Commonsense Transitive,,FALSE,The Orient Hotel on an empty street at night.,Setting,Temporal,4862804270.jpg
+583,group,of,people,at,train station,N,Group of Things,(X p Y) p Z,FALSE,group of people at train station.,Group,Setting,3769486949.jpg
+584,Four Walmart shoppers,in,a deep discussion,in,the grocery section,N,Commonsense Transitive,X (p Y) (p Z),FALSE,Four Walmart shoppers in a deep discussion in the grocery section.,Activity,Setting,2127166904.jpg
+585,A man,on,a street,with,his yellow bike,Y,X,,FALSE,A man on a street with his yellow bike.,Setting,Landmark,3039214579.jpg
+586,Asian fruit stand,on,the street,at,night,N,Commonsense Transitive,,FALSE,Asian fruit stand on the street at night.,Setting,Temporal,4979962304.jpg
+587,A body,of,water,at,sunset,N,Commonsense Transitive,(X p Y) p Z,FALSE,A body of water at sunset.,PartWhole,Temporal,2900274587.jpg
+588,A bunch,of,people,at,the beach,N,Group of Things,(X p Y) p Z,FALSE,A bunch of people at the beach.,Group,Setting,442594271.jpg
+589,A girl,with,a giant bucket,of,flowers,Y,Y,X p (Y p Z),FALSE,A girl with a giant bucket of flowers.,Attribute,PartWhole,77417252.jpg
+590,A person,in,a helmet,on,a motorcycle,Y,X,(X p Y) p Z,FALSE,A person in a helmet on a motorcycle.,Clothing,Vessel,4771783770.jpg
+591,Many people,in,formation,on,a field,N,Commonsense Transitive,(X p Y) p Z,FALSE,Many people in formation on a field.,Spatial,Setting,3523559027.jpg
+592,Group,of,children,in,the street,N,Group of Things,(X p Y) p Z,FALSE,Group of children in the street.,Group,Setting,3547647914.jpg
+593,Display,of,cartoon characters,in,museum,Y,X,(X p Y) p Z,TRUE,Display of cartoon characters in museum.,Display,Setting,3798412244.jpg
+594,People,in,a foreign country,on,a pathway,Y,X,X (p Y) (p Z),FALSE,People in a foreign country on a pathway.,Setting,Setting,1318903794.jpg
+595,A group,of,soldiers,in,white hats,N,Group of Things,(X p Y) p Z,FALSE,A group of soldiers in white hats.,Group,Clothing,47136688.jpg
+596,Two bicycle riders,in,twilight,on,the shore,N,Commonsense Transitive,,FALSE,Two bicycle riders in twilight on the shore.,Temporal,Setting,3234401637.jpg
+597,A girl,with,black hair,in,a swimming pool,Y,X,(X p Y) p Z,FALSE,A girl with black hair in a swimming pool.,Attribute,Setting,6556864817.jpg
+598,An archeologist,with,a shovel,at,an excavation site,N,Commonsense Transitive,(X p Y) p Z,FALSE,An archeologist with a shovel at an excavation site.,Instrument,Setting,175826463.jpg
+599,Several people,at,a table,with,laptops,N,Commonsense Transitive,,FALSE,Several people at a table with laptops.,Spatial,Instrument,299265726.jpg
+600,A dog,on,a leash,near,a tree,Y,X,(X p Y) p Z,FALSE,A dog on a leash near a tree.,Attribute,Landmark,2759813381.jpg
+601,A group,of,people,in,a bar,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a bar.,Group,Setting,2087423271.jpg
+602,a group,of,girls,at,talent show,N,Group of Things,(X p Y) p Z,FALSE,a group of girls at talent show.,Group,Activity,4697178028.jpg
+603,A young girl,in,a red dress,in,midair,Y,X,(X p Y) p Z,FALSE,A young girl in a red dress in midair.,Clothing,Spatial,3520869880.jpg
+604,Man,on,bike,in,mountains,N,Commonsense Transitive,(X p Y) p Z,FALSE,Man on bike in mountains.,Vessel,Setting,95728660.jpg
+605,A foreign county,with,children,on,moped,Y,Y,X p (Y p Z),FALSE,A foreign county with children on moped.,Participant,Vessel,2898332758.jpg
+606,A boy,with,a hat,in,a cage-style outdoor gym,Y,X,(X p Y) p Z,FALSE,A boy with a hat in a cage-style outdoor gym.,Clothing,Setting,3214576889.jpg
+607,a man,in,green pants,on,a bicycle,Y,X,(X p Y) p Z,FALSE,a man in green pants on a bicycle.,Clothing,Vessel,4808316459.jpg
+608,A dog,with,a yellow toy,in,its mouth,Y,Y,Adjunct Clause,FALSE,A dog with a yellow toy in its mouth.,Attribute,Spatial,2243904502.jpg
+609,A woman,in,a blue shirt,in,the wild,Y,X,(X p Y) p Z,FALSE,A woman in a blue shirt in the wild.,Clothing,Setting,3826425403.jpg
+610,A baby,in,a blue jumper,in,a leather swing,Y,X,(X p Y) p Z,FALSE,A baby in a blue jumper in a leather swing.,Clothing,Vessel,2336606243.jpg
+611,Little girl,in,pink coat,on,a swing,Y,X,(X p Y) p Z,FALSE,Little girl in pink coat on a swing.,Clothing,Vessel,3477315700.jpg
+612,A shot,of,a few people,in,a laundromat,Y,Y,X p (Y p Z),FALSE,A shot of a few people in a laundromat.,Display,Setting,2929181389.jpg
+613,Busy intersection,in,the summer time,in,a city,N,Commonsense Transitive,,FALSE,Busy intersection in the summer time in a city.,Temporal,Setting,1174629344.jpg
+614,Baby,in,playpen,with,wide eyes,Y,X,X (p Y) (p Z),FALSE,Baby in playpen with wide eyes.,Landmark,Attribute,2095007523.jpg
+615,a baby,in,a pot,on,a stove,N,Commonsense Transitive,,FALSE,a baby in a pot on a stove.,Spatial,Landmark,3308612894.jpg
+616,A crowd,of,people,at,the airport,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people at the airport.,Group,Setting,467679857.jpg
+617,A bunch,of,boats,in,the nice blue water,N,Group of Things,(X p Y) p Z,FALSE,A bunch of boats in the nice blue water.,Group,Setting,6952893010.jpg
+618,A group,of,basketball players,in,a huddle,N,Group of Things,(X p Y) p Z,FALSE,A group of basketball players in a huddle.,Group,Spatial,3435653630.jpg
+619,small boy,with,a life vest,in,shallow water,Y,X,(X p Y) p Z,TRUE,small boy with a life vest in shallow water.,Clothing,Setting,4679736464.jpg
+620,Two children,in,green plastic boat,on,lawn,N,Commonsense Transitive,,FALSE,Two children in green plastic boat on lawn.,Vessel,Setting,3148286846.jpg
+621,Young man,in,gold helmet,with,red fringe,Y,Y,X p (Y p Z),FALSE,Young man in gold helmet with red fringe.,Clothing,Attribute,3649384501.jpg
+622,A group,of,girls,in,a huddle,N,Group of Things,(X p Y) p Z,FALSE,A group of girls in a huddle.,Group,Spatial,2721954475.jpg
+623,Several people,on,a stage,with,a blue background,N,Commonsense Transitive,,FALSE,Several people on a stage with a blue background.,Setting,Attribute,3749668646.jpg
+624,The lights,at,night,in,the city,N,Commonsense Transitive,,FALSE,The lights at night in the city.,Temporal,Setting,4311708229.jpg
+625,Three adolescent boys,on,computers,in,a room,N,Commonsense Transitive,,FALSE,Three adolescent boys on computers in a room.,Activity,Setting,2105893101.jpg
+626,A child,with,a green bucket,on,the beach,N,Commonsense Transitive,(X p Y) p Z,FALSE,A child with a green bucket on the beach.,Landmark,Setting,3544233095.jpg
+627,A woman,with,a camera,on,a foggy day,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A woman with a camera on a foggy day.,Attribute,Temporal,4478794627.jpg
+628,A group,of,children,in,African clothing,N,Group of Things,(X p Y) p Z,FALSE,A group of children in African clothing.,Group,Clothing,3159569570.jpg
+629,Dog,on,a red leash,with,a woman,Y,X,X (p Y) (p Z),FALSE,Dog on a red leash with a woman.,Attribute,Participant,394463341.jpg
+630,A boy,in,a blue jacket,on,a subway train,Y,X,(X p Y) p Z,FALSE,A boy in a blue jacket on a subway train.,Clothing,Vessel,3302471503.jpg
+631,A crowd,of,girls,at,a concert,N,Group of Things,(X p Y) p Z,FALSE,A crowd of girls at a concert.,Group,Activity,3561130207.jpg
+632,A man,in,fishing overalls,in,the water,Y,X,(X p Y) p Z,FALSE,A man in fishing overalls in the water.,Clothing,Setting,937559727.jpg
+633,Two people,in,Africa,with,a homemade toy car,Y,X,X (p Y) (p Z),FALSE,Two people in Africa with a homemade toy car.,Setting,Landmark,458833944.jpg
+634,Two monks,in,long white robes,in,a religious ceremony,Y,X,(X p Y) p Z,FALSE,Two monks in long white robes in a religious ceremony.,Clothing,Activity,4738236580.jpg
+635,Three people,around,large containers,of,shoes,Y,Group of Things,X p (Y p Z),FALSE,Three people around large containers of shoes.,Spatial,Group,287257735.jpg
+636,A couple,of,travelers,in,a train station,N,Group of Things,(X p Y) p Z,FALSE,A couple of travelers in a train station.,Group,Setting,4980149155.jpg
+637,Two contractors,at,work,behind,a white mailbox,N,X,X (p Y) (p Z),FALSE,Two contractors at work behind a white mailbox.,Activity,Landmark,3890223491.jpg
+638,2 men,with,guitars,in,a music place,N,Commonsense Transitive,,FALSE,2 men with guitars in a music place.,Instrument,Setting,3335035034.jpg
+639,A crowd,of,people,in,a city neighborhood,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people in a city neighborhood.,Group,Setting,4688196032.jpg
+640,Three people,in,jackets,at,a rocky beach,Y,X,(X p Y) p Z,FALSE,Three people in jackets at a rocky beach.,Clothing,Setting,244760289.jpg
+641,Several construction workers,at,work,on,a city walkway,Y,X,Not Sure,TRUE,Several construction workers at work on a city walkway.,Activity,Setting,1720431026.jpg
+642,A group,of,people,in,a street marketplace,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a street marketplace.,Group,Setting,4695723369.jpg
+643,a group,of,people,on,a medal walkway,N,Group of Things,(X p Y) p Z,FALSE,a group of people on a medal walkway.,Group,Setting,4690951134.jpg
+644,A group,of,women,at,a knitting class,N,Group of Things,(X p Y) p Z,FALSE,A group of women at a knitting class.,Group,Activity,2250580906.jpg
+645,A person,in,makeup,in,a traditional ceremony,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A person in makeup in a traditional ceremony.,Attribute,Activity,2937606915.jpg
+646,A man,with,sunglasses,in,a pink shirt,Y,X,(X p Y) p Z,FALSE,A man with sunglasses in a pink shirt.,Attribute,Clothing,2841449931.jpg
+647,A man,on,a yellow and green surfboard,near,shore,N,Commonsense Transitive,,FALSE,A man on a yellow and green surfboard near shore.,Vessel,Setting,6441444261.jpg
+648,A crowd,of,people,around,a bike rail,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people around a bike rail.,Group,Landmark,4690242705.jpg
+649,A group,of,people,in,a sack race,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a sack race.,Group,Activity,202440477.jpg
+650,A street shot,of,people,in,an Asian country,Y,Y,X p (Y p Z),FALSE,A street shot of people in an Asian country.,Display,Setting,4756060669.jpg
+651,A group,of,people,in,a bicycle race,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a bicycle race.,Group,Activity,2708176152.jpg
+652,A group,of,people,at,a freecycle meeting,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a freecycle meeting.,Group,Activity,3190267445.jpg
+653,A photographer,at,work,at,a golf event,Y,X,,FALSE,A photographer at work at a golf event.,Activity,Setting,2401027304.jpg
+654,A crowd,of,people,on,a busy street,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people on a busy street.,Group,Setting,466761566.jpg
+655,Construction workers,on,site,near,a railroad track,N,Commonsense Transitive,,FALSE,Construction workers on site near a railroad track.,Setting,Landmark,567909573.jpg
+656,A large amount,of,people,at,an outdoor festival,N,Group of Things,(X p Y) p Z,FALSE,A large amount of people at an outdoor festival.,Group,Activity,1409731198.jpg
+657,A group,of,firemen,on,a hydraulic lift,N,Group of Things,(X p Y) p Z,FALSE,A group of firemen on a hydraulic lift.,Group,Vessel,3735771637.jpg
+658,A crowd,of,people,at,a Jewish celebration,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people at a Jewish celebration.,Group,Activity,85014310.jpg
+659,A man,with,tattoos,at,a costume party,N,X,(X p Y) p Z,FALSE,A man with tattoos at a costume party.,Attribute,Activity,2992217972.jpg
+660,Two students,at,work,in,a science class,Y,X,,FALSE,Two students at work in a science class.,Activity,Setting,7027883609.jpg
+661,A group,of,people,in,a small plaza,N,Group of Things,(X p Y) p Z,FALSE,A group of people in a small plaza.,Group,Setting,3748769937.jpg
+662,A person,in,midair,on,a yellow motorcycle,Y,X,X (p Y) (p Z),FALSE,A person in midair on a yellow motorcycle.,Spatial,Vessel,640053014.jpg
+663,A man,with,wine,near,a Christmas tree,Y,X,,TRUE,A man with wine near a Christmas tree.,Attribute,Landmark,4355004220.jpg
+664,A group,of,people,at,an olympic event,N,Group of Things,(X p Y) p Z,FALSE,A group of people at an olympic event.,Group,Activity,2845078659.jpg
+665,A crowd,of,people,in,an Asian country,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people in an Asian country.,Group,Setting,4951566705.jpg
+666,A crowd,of,people,in,an outdoor area,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people in an outdoor area.,Group,Setting,4676386270.jpg
+667,A bunch,of,people,on,a dance floor,N,Group of Things,(X p Y) p Z,FALSE,A bunch of people on a dance floor.,Group,Setting,2525578978.jpg
+668,A gathering,of,people,at,a small concert,N,Group of Things,(X p Y) p Z,FALSE,A gathering of people at a small concert.,Group,Activity,288192537.jpg
+669,A group,of,motorcyclists,on,a sunny day,N,Group of Things,(X p Y) p Z,FALSE,A group of motorcyclists on a sunny day.,Group,Temporal,252151991.jpg
+670,A group,of,men,in,an art gallery,N,Group of Things,(X p Y) p Z,FALSE,A group of men in an art gallery.,Group,Setting,2707835735.jpg
+671,a lot,of,people,at,a street venue,N,Group of Things,(X p Y) p Z,FALSE,a lot of people at a street venue.,Group,Setting,4658745957.jpg
+672,A group,of,ladies,in,a yoga pose,N,Group of Things,(X p Y) p Z,FALSE,A group of ladies in a yoga pose.,Group,Spatial,3094107069.jpg
+673,A crowd,of,people,at,an outdoor event,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people at an outdoor event.,Group,Activity,960092.jpg
+674,A team,of,people,on,a bike race,N,Group of Things,(X p Y) p Z,FALSE,A team of people on a bike race.,Group,Activity,7062352447.jpg
+675,A lot,of,firemen,by,a car crash,N,Group of Things,(X p Y) p Z,FALSE,A lot of firemen by a car crash.,Group,Landmark,4644961410.jpg
+676,A group,of,people,on,a mountain trail,N,Group of Things,(X p Y) p Z,FALSE,A group of people on a mountain trail.,Group,Setting,3105743276.jpg
+677,Young kid,in,pajamas,near,the Christmas tree,Y,X,X (p Y) (p Z),FALSE,Young kid in pajamas near the Christmas tree.,Clothing,Landmark,3138018309.jpg
+678,A man,on,inline-skates,at,a skate park,N,Commonsense Transitive,X (p Y) (p Z),FALSE,A man on inline-skates at a skate park.,Vessel,Setting,3625049113.jpg
+679,Some kind,of,gathering,in,a foreign land,N,Commonsense Transitive,(X p Y) p Z,FALSE,Some kind of gathering in a foreign land.,Species,Setting,3248869467.jpg
+680,A crowd,of,people,at,an outdoor festival,N,Group of Things,(X p Y) p Z,FALSE,A crowd of people at an outdoor festival.,Group,Activity,4775810124.jpg
+681,A bunch,of,people,at,a dog show,N,Group of Things,(X p Y) p Z,FALSE,A bunch of people at a dog show.,Group,Activity,4360937435.jpg
+682,A girl,at,bat,in,a softball game,Y,X,Not Sure,FALSE,A girl at bat in a softball game.,Activity,Activity,3513362553.jpg
+683,A lot,of,people,in,their daily lives,N,Group of Things,(X p Y) p Z,FALSE,A lot of people in their daily lives.,Group,Activity,8144714172.jpg
+684,A group,of,people,on,a boat tour,N,Group of Things,(X p Y) p Z,FALSE,A group of people on a boat tour.,Group,Activity,275202755.jpg
+685,A nearly monochromatic picture,of,a gorgeous old city street,at,sunset,N,Commonsense Transitive,,FALSE,A nearly monochromatic picture of a gorgeous old city street at sunset.,Display,Temporal,4888243690.jpg
+686,A couple,of,patron,at,a jazz club,N,Group of Things,(X p Y) p Z,FALSE,A couple of patron at a jazz club.,Group,Setting,2288988751.jpg
+687,A group,of,people,near,a fishing port,N,Group of Things,(X p Y) p Z,FALSE,A group of people near a fishing port.,Group,Setting,267223366.jpg
+688,A construction crew,on,site,near,a work truck,N,Commonsense Transitive,,FALSE,A construction crew on site near a work truck.,Setting,Landmark,6378330987.jpg
+689,A large crowd,of,people,at,an outdoor event,N,Group of Things,(X p Y) p Z,FALSE,A large crowd of people at an outdoor event.,Group,Activity,4549641134.jpg
+690,A man,in,a green and silver Mardi Gras costume,in,a parade,Y,X,,FALSE,A man in a green and silver Mardi Gras costume in a parade.,Clothing,Activity,3685328542.jpg
+691,Woman,at,the beach,with,a small girl,N,X,,FALSE,Woman at the beach with a small girl.,Setting,Participant,2658667254.jpg
+692,Workers,in,bright orange vests,on,the railway platform,Y,X,(X p Y) p Z,FALSE,Workers in bright orange vests on the railway platform.,Clothing,Setting,2537620224.jpg
+693,Excavation,of,the ruins,of,a ancient temple,N,Commonsense Transitive,,FALSE,Excavation of the ruins of a ancient temple.,ObjectOfVerb,PartWhole,3704588601.jpg
+694,Walkers,on,a concrete boardwalk,under,a blue sky,N,Commonsense Transitive,,FALSE,Walkers on a concrete boardwalk under a blue sky.,Setting,Temporal,824123145.jpg
+695,Workers,in,baseball hats,in,their bright office,Y,X,Not Sure,FALSE,Workers in baseball hats in their bright office.,Clothing,Setting,4201682728.jpg
+696,People,in,a park,near,a refreshment stand,Y,X,,FALSE,People in a park near a refreshment stand.,Setting,Landmark,1433149277.jpg
+697,Woman,on,a fitness machine,in,an untidy house,N,Commonsense Transitive,,FALSE,Woman on a fitness machine in an untidy house.,Activity,Setting,581630745.jpg
+698,Child,on,a small motorbike,near,a small pond,N,Commonsense Transitive,,FALSE,Child on a small motorbike near a small pond.,Vessel,Setting,128479785.jpg
+699,Kids,on,a set,of,red monkey bars,Y,Group of Things,X p (Y p Z),FALSE,Kids on a set of red monkey bars.,Activity,Group,4469153514.jpg
+700,Women,on,a swing ride,at,an amusement park,N,Commonsense Transitive,,FALSE,Women on a swing ride at an amusement park.,Vessel,Setting,6218721441.jpg
+701,Children,on,a ride,at,an amusement park,N,Commonsense Transitive,,FALSE,Children on a ride at an amusement park.,Vessel,Setting,2693539377.jpg
+702,Picture,of,a guy,at,a gas station,Y,Y,X p (Y p Z),FALSE,Picture of a guy at a gas station.,Display,Setting,4482794481.jpg
+703,Person,in,the midst,of,a ramp jump,Y,Y,Compound Noun,FALSE,Person in the midst of a ramp jump.,Activity,PartWhole,3179336562.jpg
+704,Man,in,a suit,in,Grand Central station,Y,X,(X p Y) p Z,FALSE,Man in a suit in Grand Central station.,Clothing,Setting,4721533619.jpg
+705,man,in,striped shirt,with,red clown nose,Y,X,X (p Y) (p Z),FALSE,man in striped shirt with red clown nose.,Clothing,Attribute,4483555682.jpg
+706,View,of,the historic area,of,a European city,N,Commonsense Transitive,,FALSE,View of the historic area of a European city.,Display,Setting,4888243690.jpg
+707,Photo,of,a ghetto,in,a poor country,Y,Y,X p (Y p Z),FALSE,Photo of a ghetto in a poor country.,Display,Setting,4969473643.jpg
+708,Buildings,on,a city street,with,a colorful collage,N,Commonsense Transitive,Not Sure,TRUE,Buildings on a city street with a colorful collage.,Setting,Attribute,4958488278.jpg
+709,People,in,a shopping center,in,an Asian city,N,Commonsense Transitive,,FALSE,People in a shopping center in an Asian city.,Setting,Setting,4690243307.jpg
+710,People,in,a bedroom,with,a bunk bed,N,Commonsense Transitive,,FALSE,People in a bedroom with a bunk bed.,Setting,Landmark,390900476.jpg
+711,Woman,in,long skirt,in,a town square,Y,X,(X p Y) p Z,FALSE,Woman in long skirt in a town square.,Clothing,Setting,299676757.jpg
+712,Man,in,a canoe,on,a still lake,N,Commonsense Transitive,,FALSE,Man in a canoe on a still lake.,Activity,Setting,229951087.jpg
+713,Woman,with,blue hair,at,a large gathering,Y,X,(X p Y) p Z,FALSE,Woman with blue hair at a large gathering.,Attribute,Setting,4738942164.jpg
+714,People,on,the street,at,a block party,N,Commonsense Transitive,,FALSE,People on the street at a block party.,Setting,Activity,4775810124.jpg
+715,Kids,on,a ride,at,an amusement park,N,Commonsense Transitive,,FALSE,Kids on a ride at an amusement park.,Vessel,Setting,4781019036.jpg
+716,A group,of,people,at,a Domestic Violence Awareness show,N,Group of Things,(X p Y) p Z,FALSE,A group of people at a Domestic Violence Awareness show.,Group,Activity,3639005388.jpg
+717,A skateboarder,in,the air,at,"a big , outdoor ramp",N,Commonsense Transitive,,FALSE,"A skateboarder in the air at a big, outdoor ramp.",Spatial,Landmark,2944362789.jpg
+718,Young girls,at,a pool,on,"a bright , sunny day",N,Commonsense Transitive,,FALSE,"Young girls at a pool on a bright, sunny day.",Setting,Temporal,4700843895.jpg
+719,People,in,costume,at,a renaissance fair,Y,X,,FALSE,People in costume at a renaissance fair.,Clothing,Activity,1282392036.jpg
+720,Two men,on,the beach,with,two black and white dogs,Y,X,X (p Y) (p Z),TRUE,Two men on the beach with two black and white dogs.,Setting,Participant,4905057832.jpg
+721,Group,of,people,in,a busy Asian city street,N,Group of Things,(X p Y) p Z,FALSE,Group of people in a busy Asian city street.,Group,Setting,124523773.jpg
+722,Travelers,with,briefcases,on,a busy street,Y,X,(X p Y) p Z,FALSE,Travelers with briefcases on a busy street.,Attribute,Setting,4805896271.jpg
+723,People,on,swings,in,a city park,N,Commonsense Transitive,,FALSE,People on swings in a city park.,Vessel,Setting,4516347697.jpg
+724,Crowd,of,people,at,a formal event,N,Group of Things,(X p Y) p Z,FALSE,Crowd of people at a formal event.,Group,Activity,3517466790.jpg
+725,A man,in,the window,of,a red big rig truck,Y,Y,X p (Y p Z),FALSE,A man in the window of a red big rig truck.,Landmark,PartWhole,1364031423.jpg
+726,Group,of,people,on,a brick plaza,N,Group of Things,(X p Y) p Z,FALSE,Group of people on a brick plaza.,Group,Setting,300577374.jpg
+727,Group,of,men,at,a business meeting,N,Group of Things,(X p Y) p Z,FALSE,Group of men at a business meeting.,Group,Activity,4325279339.jpg
+728,Gathering,of,people,on,a cold day,N,Group of Things,(X p Y) p Z,FALSE,Gathering of people on a cold day.,Group,Temporal,137430967.jpg
+729,Man,at,bar,with,a green drink,Y,X,,TRUE,Man at bar with a green drink.,Setting,Attribute,2767646251.jpg
