@@ -41,8 +41,8 @@
   ],
   "with": [
     {"label": "Attribute", "prompts": {
-      "p1rel": "Some item or feature that {X} may possess. ",
-      "p2rel": "Some item or feature that {X}, {Y}, or {X} {P1} {Y} may possess. "
+      "p1rel": "{Y} is/are an item(s) or feature(s) that {X} may possess. ",
+      "p2rel": "{Y} is/are an item(s) or feature(s){X}, {Y}, or {X} {P1} {Y} may possess. "
     }},
     {"label": "Clothing", "prompts": {
       "p1rel": "Clothing being worn by {X}. ", 
