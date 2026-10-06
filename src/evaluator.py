@@ -58,7 +58,10 @@ def fetch_labels(dev, prels={}):
             c = c[1]
         cd = ord(c)-ord('A')
         if cd<0:
-            raise ValueError(f"Invalid choice '{c}'.")
+            c = di["response"][0]
+            cd = ord(c)-ord('A')
+        if cd<0:
+            raise ValueError(f"Invalid choice '{c}' (response={di['response']}).")
         if di["class"]=="p1rel":
             pp = di["P1"]
         elif di["class"]=="p2rel":
@@ -67,11 +70,11 @@ def fetch_labels(dev, prels={}):
         if type(plist)!=list:
             raise TypeError(f"prels[{pp}] is not a list.")
         if cd>=len(plist):
-            raise KeyError(f"r={c};class={di['class']};pp={pp}")
+            raise KeyError(f"r={c}|{di['response']};class={di['class']};pp={pp}")
         try:
             csel = prels[pp][cd]
         except IndexError:
-            raise ValueError(f"r={c};class={di['class']};pp={pp};cd={cd}")
+            raise ValueError(f"r={c}|{di['response']};class={di['class']};pp={pp};cd={cd}")
         if type(csel)==dict:
             if not csel["choice"]==c:
                 raise KeyError

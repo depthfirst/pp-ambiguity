@@ -288,7 +288,6 @@ class PrepRelYesNoPrompter(Prompter):
             rec['class'] = f"p2-{p2}-{rel}"
             yield rec
 
-
 class PrepRelationPrompter(Prompter):
     def initialize(self):
         with open("data/preprels.json") as relin:
@@ -300,33 +299,45 @@ class PrepRelationPrompter(Prompter):
         rec["context"] = self.context
         return rec
 
-    def make_prompt(self, source_dict, prep, ppobj, pclass="p1rel"):
+    def interpolate_prompt(self, source_dict, prompt):
+        for var in ["X","P1","Y","P2","Z"]:
+            # Replaces occurrences of "{X}"" with value of X, etc.
+            if var=="X":
+                srcvar = source_dict[var].lower()
+            else:
+                srcvar = source_dict[var]
+
+            prompt = re.sub("{{{}}}".format(var), srcvar, prompt)
+        return prompt
+
+    def make_intro(self, source_dict, prep, ppobj, pclass="p1rel"):
         sentence_text = source_dict["sentence_text"]
         prompt_intro= f"""In the phrase "{sentence_text}", which of the following best describes the role of the relation "{prep} {ppobj}"? 
 """
+        return self.interpolate_prompt(source_dict, prompt_intro)
+
+    def make_choice(self, source_dict, rel, pclass="p1rel", choice='A'):
+        if type(rel)==dict: 
+            rellab = rel["label"]
+            prompt = rel["prompts"][pclass]
+        elif type(rel)==str:
+            rellab = rel
+            prompt = rel
+        else:
+            raise TypeError
+        prompt = self.interpolate_prompt(source_dict, prompt)
+        option = f"({choice}) {prompt}"
+        return option
+
+    def make_prompt(self, source_dict, prep, ppobj, pclass="p1rel"):
         options = []
         choice = 'A'
+        intro = self.make_intro(source_dict, prep, ppobj, pclass)
         for rel in self.preprels[prep]:
-            if type(rel)==dict: 
-                rellab = rel["label"]
-                prompt = rel["prompts"][pclass]
-            elif type(rel)==str:
-                rellab = rel
-                prompt = rel
-            else:
-                raise TypeError
-            for var in ["X","P1","Y","P2","Z"]:
-                # Replaces occurrences of "{X}"" with value of X, etc.
-                if var=="X":
-                    srcvar = source_dict[var].lower()
-                else:
-                    srcvar = source_dict[var]
-
-                prompt = re.sub("{{{}}}".format(var), srcvar, prompt)
-            option = f"({choice}) {prompt}"
+            option = self.make_choice(source_dict, rel, pclass, choice)
             options.append(option)
             choice = chr(ord(choice) + 1)
-        return "\n".join([prompt_intro] + options)
+        return "\n".join([intro] + options)
 
     def preprocess(self, source_dict=None, promptcolprefix=None):
         if source_dict is None or 'sentence_text' not in source_dict:
@@ -358,6 +369,23 @@ class PrepRelationPrompter(Prompter):
             rec['class'] = "p2rel"
             yield rec
 '''
+
+class PrepRelationExperimentalPrompter(PrepRelationPrompter):
+    def make_intro(self, source_dict, prep, ppobj, pclass="p1rel"):
+        sentence_text = source_dict["sentence_text"]
+        if pclass=="p1rel":
+            relsrc = "{Y}"
+            relobj = "{X}"
+        elif pclass=="p2rel":
+            relsrc = "{Z}"
+            relobj = "{X}, {Y}, or {X} {P1} {Y}"
+        else:
+            raise ValueError
+        prompt_intro= f"""In the following sentence, how does {relobj} relate to {relsrc}?  
+{sentence_text}
+"""
+        return self.interpolate_prompt(source_dict, prompt_intro)
+
 
 class PrepSensePrompter(Prompter):
     def initialize(self):

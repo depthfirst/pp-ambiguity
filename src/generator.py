@@ -371,6 +371,8 @@ def init_prompter(prompter_name):
         prompter = PrepSensePrompter()
     elif prompter_name=="preprel":
         prompter = PrepRelationPrompter()
+    elif prompter_name=="prelexp":
+        prompter = PrepRelationExperimentalPrompter()
     elif prompter_name in ["preprelyesno", "pryn"]:
         prompter = PrepRelYesNoPrompter()
     else:
