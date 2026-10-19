@@ -381,7 +381,8 @@ class PrepRelationExperimentalPrompter(PrepRelationPrompter):
             relobj = "{X}, {Y}, or {X} {P1} {Y}"
         else:
             raise ValueError
-        prompt_intro= f"""In the following sentence, how does {relobj} relate to {relsrc}?  
+        #prompt_intro= f"""In the following sentence, how does {relobj} relate to {relsrc}?  
+        prompt_intro= f"""In the following sentence, which best describes the relationship between {relsrc} and {relobj}?  
 {sentence_text}
 """
         return self.interpolate_prompt(source_dict, prompt_intro)
