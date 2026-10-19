@@ -41,28 +41,24 @@
   ],
   "with": [
     {"label": "Attribute", "prompts": {
-      "p1rel": "{Y} is/are an item(s) or feature(s) that {X} may possess. ",
-      "p2rel": "{Y} is/are an item(s) or feature(s){X}, {Y}, or {X} {P1} {Y} may possess. "
+      "p1rel": "{Y} is/are an item(s) or feature(s) in {X}'s possession. ",
+      "p2rel": "{Z} is/are an item(s) or feature(s) in {X}'s or {Y}'s possession. "
     }},
     {"label": "Clothing", "prompts": {
-      "p1rel": "Clothing being worn by {X}. ", 
-      "p2rel": "Clothing being worn by {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "{Y} is an article of clothing being worn by {X}. ", 
+      "p2rel": "{Z} is an article of clothing being worn by {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Instrument", "prompts": {
-      "p1rel": "Some kind of instrument being used by {X}. ",
-      "p2rel": "Some kind of instrument being used by {X}, {Y}, or {X} {P1} {Y}. "
+      "p1rel": "{Y} is being used as a tool or weapon by {X}. ",
+      "p2rel": "{Z} is being used as a tool or weapon by {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Landmark", "prompts": {
-      "p1rel": "A landmark that {X} may be seen {P1}. ", 
-      "p2rel": "A landmark that {X}, {Y}, or {X} {P1} {Y} may be seen {P2}. "
+      "p1rel": "{Y} is an object or background feature near {X}. ", 
+      "p2rel": "{Z} is an object or background feature near {X}, {Y}, or {X} {P1} {Y}. "
     }},
     {"label": "Participant", "prompts": {
-      "p1rel": "That {Y} is an entity or entities that accompany {X}. ",
-      "p2rel": "That {Z} is an entity or entities that accompany {X}, {Y}, or {X} {P1} {Y}. "
-    }},
-    {"label": "Setting", "prompts": {
-      "p1rel": "The setting that {X} appear(s) to be situated in. ",
-      "p2rel": "The setting that {X}, {Y}, or {X} {P1} {Y} appear(s) to be situated in. "      
+      "p1rel": "{Y} is a living thing that accompanies {X}. ",
+      "p2rel": "{Z} is a living thing that accompanies {X}, {Y}, or {X} {P1} {Y}. "
     }}
   ], 
   "in": [
