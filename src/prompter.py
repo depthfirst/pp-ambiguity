@@ -289,9 +289,13 @@ class PrepRelYesNoPrompter(Prompter):
             yield rec
 
 class PrepRelationPrompter(Prompter):
-    def initialize(self):
-        with open("data/preprels.json") as relin:
+    def __init__(self, datadir="data"):
+        self.initialize(datadir)
+
+    def initialize(self, datadir="data"):
+        with open(f"{datadir}/preprels.json") as relin:
             self.preprels = json.load(relin)
+        self.datadir = datadir
         self.context = "You are a helpful assistant that answers questions with only the letter of the correct choice."
     
     def init_rec(self, source_dict):
@@ -381,8 +385,8 @@ class PrepRelationExperimentalPrompter(PrepRelationPrompter):
             relobj = "{X}, {Y}, or {X} {P1} {Y}"
         else:
             raise ValueError
-        prompt_intro= f"""In the following sentence, how does {relobj} relate to {relsrc}?  
         #prompt_intro= f"""In the following sentence, which best describes the relationship between {relsrc} and {relobj}?  
+        prompt_intro= f"""In the following sentence, how does {relobj} relate to {relsrc}?  
 {sentence_text}
 """
         return self.interpolate_prompt(source_dict, prompt_intro)

@@ -339,6 +339,7 @@ def init_parser():
     parser.add_argument("-m", "--model", metavar="<model>", help="Model to use (llama3, vera)", 
         default=None, required=False)
     parser.add_argument("-p", '--prompter', metavar="<prompter>", help="Prompter to use (raw, here, herenorm, there, this, orig)", default="raw", required=True)
+    parser.add_argument("-d", "--data_dir", metavar="<data_dir>", help="Directory for data files (preprels.json)", default="data")
     parser.add_argument("-r", "--results_dir", metavar="<results_dir>", help="Directory for results files (jsonlines and html)", default="results")
     parser.add_argument("-t", '--token', metavar="<token>", help="Which token to use for probabilities (first,last, period, p2z)", required=False)
     parser.add_argument("--promptcolprefix", metavar="<pcp>", help="Columns named <pcp>_x, <pcp>_y",
@@ -349,7 +350,7 @@ def init_parser():
         sys.exit(1)
     return parser
 
-def init_prompter(prompter_name):
+def init_prompter(prompter_name, datadir="data"):
     # Initialize Prompter
     if prompter_name=="raw":
         prompter = RawPrompter()
@@ -370,9 +371,9 @@ def init_prompter(prompter_name):
     elif prompter_name=="prepsense":
         prompter = PrepSensePrompter()
     elif prompter_name=="preprel":
-        prompter = PrepRelationPrompter()
+        prompter = PrepRelationPrompter(datadir=datadir)
     elif prompter_name=="prelexp":
-        prompter = PrepRelationExperimentalPrompter()
+        prompter = PrepRelationExperimentalPrompter(datadir=datadir)
     elif prompter_name in ["preprelyesno", "pryn"]:
         prompter = PrepRelYesNoPrompter()
     else:
@@ -433,7 +434,7 @@ def main():
 
     parser = init_parser()
     args = parser.parse_args()
-    prompter = init_prompter(args.prompter)
+    prompter = init_prompter(args.prompter, args.data_dir)
     inputs = collect_inputs(args, prompter)
     if args.model is not None:
         plot_prefix = f"{args.results_dir}/info_vs_plausibility-{args.model.lower()}{args.token}-{args.prompter}"
@@ -469,19 +470,35 @@ def main():
             journal = list(generator.generate(inputs, outputfile=args.output_file, verbose=True))
         else:
             journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
-            fig01=plot_results(journal, title="Information Structure vs Plausibility", 
-                model=args.model.lower(), prompter=args.prompter, token=args.token,
-                boundary=args.boundary)
-            fig01.write_html(f"{plot_prefix}.html")
-            fig01.write_image(f"{plot_prefix}.png")        
-            if args.model.lower()=='vera':
-                fig02=plot_results(journal, title="Information Structure vs Plausibility", 
+            if args.prompter in ['preprel', 'prelexp']:
+                devsrc = pd.read_csv(args.input_file)
+                devres = load_results(args.output_file, drop_columns=[], index="annidx")
+                dropcols = ['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'context']
+                cols2drop = [col for col in dropcols if col in devres.columns]
+                devres  = fill_choices(devres, response_mapper=prompter.prels)
+                devres  = devres.drop(columns=cols2drop)
+                devres  = collate_results(devres)                    
+                dev  = devres.join(devsrc)
+                cleaned = (dev['matters'].isin(['N','Y'])) & (dev['p1_relation'].notnull()) & (dev['p2_relation'].notnull()) & \
+                    (dev['p1_relation']!='Error') & (dev['p2_relation']!='Error') & (dev['attachment_or_justification']!='Error') 
+                dev = dev[cleaned]
+                for prep in prompter.prels:
+                    summarize_results(dev, prep=prep)
+                summarize_results(dev)
+            else:
+                fig01=plot_results(journal, title="Information Structure vs Plausibility", 
                     model=args.model.lower(), prompter=args.prompter, token=args.token,
-                    xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
                     boundary=args.boundary)
-                plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
-                fig02.write_html(f"{plot_prefix}.html")
-                fig02.write_image(f"{plot_prefix}.png")        
+                fig01.write_html(f"{plot_prefix}.html")
+                fig01.write_image(f"{plot_prefix}.png")        
+                if args.model.lower()=='vera':
+                    fig02=plot_results(journal, title="Information Structure vs Plausibility", 
+                        model=args.model.lower(), prompter=args.prompter, token=args.token,
+                        xcol="log_neg_log_ypz_over_xpz", ycol="log_neg_log_xpy_over_xpypz", 
+                        boundary=args.boundary)
+                    plot_prefix = f"{results_dir}/info_vs_plausibility-{args.model.lower()}-log-{args.prompter}"
+                    fig02.write_html(f"{plot_prefix}.html")
+                    fig02.write_image(f"{plot_prefix}.png")        
     else:
         print("Generating prompts without a model.")
         generator = Generator()
