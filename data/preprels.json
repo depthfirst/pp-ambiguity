@@ -59,6 +59,10 @@
     {"label": "Participant", "prompts": {
       "p1rel": "{Y} is a living thing that accompanies {X}. ",
       "p2rel": "{Z} is a living thing that accompanies {X}, {Y}, or {X} {P1} {Y}. "
+    }},
+    {"label": "Setting", "prompts": {
+      "p1rel": "A place or environment that {X} may be situated in. ",
+      "p2rel": "A place or environment that {X}, {Y}, or {X} {P1} {Y} may be situated in. "
     }}
   ], 
   "in": [
