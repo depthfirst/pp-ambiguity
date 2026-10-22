@@ -76,8 +76,8 @@ def fetch_labels(dev, prels={}):
         except IndexError:
             raise ValueError(f"r={c}|{di['response']};class={di['class']};pp={pp};cd={cd}")
         if type(csel)==dict:
-            if not csel["choice"]==c:
-                raise KeyError
+            if not "choice" in csel or not csel["choice"]==c:
+                raise KeyError(di["sentence_text"], f"({pp})")
             label = csel["label"]
         else:
             label = csel
@@ -176,7 +176,7 @@ def collate_results(df):
     return df
 
 def load_relations(f):
-    prels   = json.load(open("../pp-ambiguity/data/preprels.json"))
+    prels   = json.load(open(f))
     # Derive the choices from enumeration ('A', 'B', 'C', ...)
     # for each preposition in our inventory. 
     for prep,rels in prels.items():
@@ -480,6 +480,24 @@ def summarize_results(df, prep=None):
         return
     oacc = ((n1*acc1)+(n2*acc2))/(n1+n2)
     print(f"{label}: acc={oacc*100.0:.1f}% (N={n1+n2}); acc={acc1*100.0:.2f}% (P1;N={n1}); acc={acc2*100.0:.2f}% (P2;N={n2}); ")
+
+def show_results(input_file, output_file, datadir):
+    devsrc = pd.read_csv(input_file)
+    devres = load_results(output_file, drop_columns=[], index="annidx")
+    dropcols = ['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'context']
+    cols2drop = [col for col in dropcols if col in devres.columns]
+    preprels = load_relations(f"{datadir}/preprels.json")
+    devres  = fill_choices(devres, response_mapper=preprels)
+    devres  = devres.drop(columns=cols2drop)
+    devres  = collate_results(devres)                    
+    dev  = devres.join(devsrc)
+    cleaned = (dev['matters'].isin(['N','Y'])) & (dev['p1_relation'].notnull()) & (dev['p2_relation'].notnull()) & \
+        (dev['p1_relation']!='Error') & (dev['p2_relation']!='Error') & (dev['attachment_or_justification']!='Error') 
+    dev = dev[cleaned]
+    for prep in preprels:
+        summarize_results(dev, prep=prep)
+    summarize_results(dev)
+
 def main():
 
     parser = init_parser()

@@ -428,8 +428,6 @@ def collect_inputs(args, prompter):
     else:
         raise ValueError("Invalid arguments")
 
-
-
 def main():
 
     parser = init_parser()
@@ -442,13 +440,20 @@ def main():
         while args.output_file is not None and os.path.exists(args.output_file) and not overwrite:
             print(f"Output file {args.output_file} exists. ")
             print("What do you want to do?")
+            if args.prompter in ['preprel','prelexp']:
+                print("(S)ummarize results")
             print("(P)lot the results")
             print("(O)verwrite")
             print("(R)ename")
             print("(Q)uit")
-            choice = input("Enter choice ([P]ORQ): ").strip()
+            if args.prompter in ['preprel','prelexp']:
+                choice = input("Enter choice ([S]PORQ): ").strip()
+                default_choice = "S"
+            else:
+                choice = input("Enter choice (S[P]ORQ): ").strip()
+                default_choice = "P"
             if choice is None or len(choice)==0:
-                choice = "P"
+                choice = default_choice
             choice = choice[0].lower()
             if choice=='q':
                 sys.exit(0)
@@ -461,6 +466,11 @@ def main():
                     fig01.write_html(f"{plot_prefix}.html")
                     fig01.write_image(f"{plot_prefix}.png")        
                 sys.exit(0)
+            elif choice=='s':
+                if args.prompter in ['preprel','prelexp']:
+                    print("Summarizing results.")
+                    show_results(args.input_file, args.output_file, prompter.datadir)
+                    sys.exit(0)
             elif choice=='r':
                 args.output_file = input("Enter new output_file: ").strip()
             elif choice=='o':
@@ -471,20 +481,7 @@ def main():
         else:
             journal = list(generator.generate(progress_bar(list(inputs)), outputfile=args.output_file))
             if args.prompter in ['preprel', 'prelexp']:
-                devsrc = pd.read_csv(args.input_file)
-                devres = load_results(args.output_file, drop_columns=[], index="annidx")
-                dropcols = ['sentence_text', 'X', 'P1', 'Y', 'P2', 'Z', 'context']
-                cols2drop = [col for col in dropcols if col in devres.columns]
-                devres  = fill_choices(devres, response_mapper=prompter.prels)
-                devres  = devres.drop(columns=cols2drop)
-                devres  = collate_results(devres)                    
-                dev  = devres.join(devsrc)
-                cleaned = (dev['matters'].isin(['N','Y'])) & (dev['p1_relation'].notnull()) & (dev['p2_relation'].notnull()) & \
-                    (dev['p1_relation']!='Error') & (dev['p2_relation']!='Error') & (dev['attachment_or_justification']!='Error') 
-                dev = dev[cleaned]
-                for prep in prompter.prels:
-                    summarize_results(dev, prep=prep)
-                summarize_results(dev)
+                show_results(args.input_file, args.output_file, prompter.datadir)
             else:
                 fig01=plot_results(journal, title="Information Structure vs Plausibility", 
                     model=args.model.lower(), prompter=args.prompter, token=args.token,
